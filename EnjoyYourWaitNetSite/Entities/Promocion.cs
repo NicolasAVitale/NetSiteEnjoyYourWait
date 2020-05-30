@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entities
+﻿namespace EnjoyYourWaitNetSite.Entities
 {
     public class Promocion
     {

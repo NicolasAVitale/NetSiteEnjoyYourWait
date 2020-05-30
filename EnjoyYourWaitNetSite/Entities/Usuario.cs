@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entities
+﻿namespace EnjoyYourWaitNetSite.Entities
 {
     public class Usuario
     {

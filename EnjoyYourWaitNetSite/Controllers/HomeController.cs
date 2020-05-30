@@ -1,29 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using EnjoyYourWaitNetSite.BusinessLogic;
 using System.Web.Mvc;
 
 namespace EnjoyYourWaitNetSite.Controllers
 {
     public class HomeController : Controller
     {
+        private BSHome bsHome = new BSHome();
         public ActionResult Index()
         {
+            //if (SessionHelper.Cliente != null)
+            //{
+
+            //} 
+            //else
+            //{
+
+            //}
+            //ViewBag.Message = bsHome
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult IndexAdmin()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult IndexRecepcionista()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
