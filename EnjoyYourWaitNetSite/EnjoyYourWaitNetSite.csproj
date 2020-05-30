@@ -218,6 +218,7 @@
     <Compile Include="Entities\Reporte.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Exceptions\DataAccessException.cs" />
+    <Compile Include="Exceptions\TokenExpirationException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
