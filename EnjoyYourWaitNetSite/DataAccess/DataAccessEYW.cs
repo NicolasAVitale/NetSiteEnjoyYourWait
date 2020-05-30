@@ -9,6 +9,8 @@ using System.Net;
 using EnjoyYourWaitNetSite.Helper;
 using EnjoyYourWaitNetSite.Exceptions;
 using java.net;
+using Newtonsoft.Json.Linq;
+using EnjoyYourWaitNetSite.Entities;
 
 namespace EnjoyYourWaitNetSite.DataAccess
 {
@@ -21,6 +23,18 @@ namespace EnjoyYourWaitNetSite.DataAccess
         {
         }
 
+        public async Task<string> GetHolaMundo()
+        {
+            var response = await BuildRequest(HttpMethod.Get, "productos", false);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+
+            var jObj = JObject.Parse(content);
+
+            return jObj["Mensaje"].ToString();
+        }
 
         private async Task<HttpResponseMessage> BuildRequest(HttpMethod method, string url, bool auth, object body = null)
         {
@@ -40,7 +54,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
                     requestMessage.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
                 //Valido si precisa autenticación
                 if (auth)
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", SessionHelper.Cliente);
+                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", SessionHelper.Token);
 
                 response = await httpClient.SendAsync(requestMessage);
             }

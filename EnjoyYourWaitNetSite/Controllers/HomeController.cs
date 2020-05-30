@@ -1,4 +1,5 @@
 ﻿using EnjoyYourWaitNetSite.BusinessLogic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace EnjoyYourWaitNetSite.Controllers
@@ -6,7 +7,7 @@ namespace EnjoyYourWaitNetSite.Controllers
     public class HomeController : Controller
     {
         private BSHome bsHome = new BSHome();
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             //if (SessionHelper.Cliente != null)
             //{
@@ -16,7 +17,8 @@ namespace EnjoyYourWaitNetSite.Controllers
             //{
 
             //}
-            //ViewBag.Message = bsHome
+            string msg = await bsHome.GetHolaMundoAsync();
+            ViewBag.Message = msg;
             return View();
         }
 

@@ -1,4 +1,4 @@
-﻿using Entities;
+﻿using EnjoyYourWaitNetSite.Entities;
 using System.Web;
 
 namespace EnjoyYourWaitNetSite.Helper
@@ -39,6 +39,18 @@ namespace EnjoyYourWaitNetSite.Helper
             set
             {
                 HttpContext.Current.Session["Administrador"] = value;
+            }
+        }
+
+        public static string Token
+        {
+            get
+            {
+                return (string)HttpContext.Current.Session["Token"];
+            }
+            set
+            {
+                HttpContext.Current.Session["Token"] = value;
             }
         }
 
