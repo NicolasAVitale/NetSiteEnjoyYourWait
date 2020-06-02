@@ -206,6 +206,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogic\BSBase.cs" />
     <Compile Include="BusinessLogic\BSHome.cs" />
+    <Compile Include="Controllers\RecepcionistaController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Administrador.cs" />
     <Compile Include="Entities\Cliente.cs" />
@@ -225,6 +227,7 @@
     </Compile>
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="DataAccess\DataAccessEYW.cs" />
+    <Compile Include="Models\RecepcionistaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,11 +266,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Recepcionista\Recepcionista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
