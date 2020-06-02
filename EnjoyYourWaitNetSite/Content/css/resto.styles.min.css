@@ -70,7 +70,7 @@ html, body {
 }
 
 .body-content {
-    padding-top: 1vw;
+    padding-top: 2vw;
 }
 
 .pinchos {
@@ -245,6 +245,11 @@ h4 {
 
 /*OTROS TAMAÑOS*/
 @media(max-width: 767px) {
+
+    .body-content {
+        padding-top: 0.5vw;
+    }
+
     #barra-cliente {
         padding-left: 1vw;
     }
