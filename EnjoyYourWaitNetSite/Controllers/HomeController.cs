@@ -13,17 +13,13 @@ namespace EnjoyYourWaitNetSite.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Menu()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+           return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Promociones()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

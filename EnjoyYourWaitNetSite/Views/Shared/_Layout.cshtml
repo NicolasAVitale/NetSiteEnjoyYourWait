@@ -1,14 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <title>@ViewBag.Title - On The Grill</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/pinches co.ico">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/fontawesome-free/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/css/animate.css" rel="stylesheet">   
+    <link href="~/Content/css/resto.styles.min.css" rel="stylesheet">
 </head>
-<body>
+<body  class="fondo-madera">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -32,6 +39,21 @@
         @RenderBody()
         <hr />
         <footer>
+
+            <div id="social-icons">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://www.facebook.com"><i class="fab fa-facebook fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com"><i class="fab fa-twitter fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com"><i class="fab fa-instagram fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+            </div>
+
             <p>&copy; @DateTime.Now.Year - Power by Enjoy Your Wait</p>
         </footer>
     </div>
@@ -39,5 +61,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
