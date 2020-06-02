@@ -22,5 +22,15 @@ namespace EnjoyYourWaitNetSite.Controllers
         {
             return View();
         }
+
+        public ActionResult Juegos()
+        {
+            return View();
+        }
+
+        public ActionResult MisPremios()
+        {
+            return View();
+        }
     }
 }
