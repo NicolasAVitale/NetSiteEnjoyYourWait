@@ -1,14 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <title>@ViewBag.Title - On The Grill</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/pinches co.ico">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/fontawesome-free/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/css/animate.css" rel="stylesheet">   
+    <link href="~/Content/css/resto.styles.min.css" rel="stylesheet">
 </head>
-<body>
+<body  class="fondo-madera">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,27 +24,48 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div id="barra-cliente">
+                    <img src="~/Content/img/pinches red.svg" alt="logo-grill" class="logo-grill-1" />
+                    <div id="nom-resto"><h1 class="titulo">On the <span id="grill">grill</span></h1></div>
+                </div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Menú", "Menu", "Home")</li>
+                    <li>@Html.ActionLink("Promociones", "Promociones", "Home")</li>
+                    <li>@Html.ActionLink("Juegos", "Juegos", "Home")</li>
+                    <li>@Html.ActionLink("Mis Premios", "MisPremios", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+
+            <div id="social-icons">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://www.facebook.com"><i class="fab fa-facebook fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com"><i class="fab fa-twitter fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com"><i class="fab fa-instagram fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <p id="power-by">&copy; @DateTime.Now.Year - Powered by Enjoy Your Wait</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

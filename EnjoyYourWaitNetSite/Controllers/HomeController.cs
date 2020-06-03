@@ -65,5 +65,35 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
             return View();
         }
+
+        public ActionResult Menu()
+        {
+           return View();
+        }
+
+        public ActionResult Promociones()
+        {
+            return View();
+        }
+
+        public ActionResult Juegos()
+        {
+            return View();
+        }
+
+        public ActionResult MisPremios()
+        {
+            return View();
+        }
+
+        public ActionResult Memotest()
+        {
+            return View();
+        }
+
+        public ActionResult Ruleta()
+        {
+            return View();
+        }
     }
 }

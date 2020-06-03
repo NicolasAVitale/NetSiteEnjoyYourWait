@@ -1,0 +1,369 @@
+/*LETRAS*/
+/* latin */
+@font-face {
+    font-family: 'Acme';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Acme Regular'), local('Acme-Regular'), url(https://fonts.gstatic.com/s/acme/v9/RrQfboBx-C5_XxrBbg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Bree Serif';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Bree Serif Regular'), local('BreeSerif-Regular'), url(https://fonts.gstatic.com/s/breeserif/v9/4UaHrEJCrhhnVA3DgluA96Tp56N1.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Bree Serif';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Bree Serif Regular'), local('BreeSerif-Regular'), url(https://fonts.gstatic.com/s/breeserif/v9/4UaHrEJCrhhnVA3DgluA96rp5w.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* vietnamese */
+@font-face {
+    font-family: 'Dancing Script';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/dancingscript/v14/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7B1i03Rep8ltA.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Dancing Script';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/dancingscript/v14/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7B1i03ROp8ltA.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Dancing Script';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/dancingscript/v14/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7B1i03Sup8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*BASICO*/
+html, body {
+    margin: 0px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: Acme;
+    color: white;
+}
+
+.fondo-madera {
+    background-image: url("../img/fondo-madera.jpg");
+}
+
+.body-content {
+    padding-top: 2vw;
+}
+
+.pinchos {
+    position: absolute;
+    right: 0px;
+    height: 110%;
+    bottom: -60px;
+    z-index: -1;
+}
+
+.slideInUp {
+    animation-duration: 4s; 
+    animation-delay: 0s;
+}
+
+.btn-primary {
+    background-color: #a71b1b;
+    border-color: #a71b1b;
+}
+
+.btn-primary:hover {
+        background-color: #8c1c1c;
+        border-color: #8c1c1c;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: yellow;
+}
+
+.titulo-secundario {
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    font-size: 6vw;
+}
+
+/*TITULO*/
+
+/*header {
+    max-height: 80px;
+    margin-top: 15px;
+}*/
+
+.titulo {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    text-align: left;
+    display: inline-block;
+    vertical-align: super;
+    margin-right: 1vw;
+    font-size: 4.5vw;
+}
+
+#barra-cliente {
+}
+
+#nom-resto {
+    display: inline-block;
+    height: inherit;
+}
+
+#grill {
+        color: yellow;
+}
+
+.logo-grill-1 {
+    height: 4vw;
+    display: inline-block;
+    position: relative;
+    vertical-align: text-bottom;
+    margin: 0.5vw;
+}
+
+/*.logo-grill-2 {
+    height: 3vw;
+    display: inline-block;
+    position: relative;
+    vertical-align: text-bottom;
+}*/
+
+/*NAV*/
+
+.nav {
+    margin-top: 2vw;
+    font-family: 'Acme', sans-serif;
+}
+
+.nav li {
+        list-style: none;
+        font-size: x-large;
+    }
+
+.nav a {
+        color: rgb(248, 249, 252);
+}
+
+.nav a:hover {
+    color: yellow /*rgba(248, 249, 252, 0.7)*/;
+}
+
+a:link, a:hover, a:visited {
+   text-decoration: none;
+}
+
+.navbar-inverse {
+    background-color: rgba(34, 34, 34, 0.1);
+    border-color: rgba(34, 34, 34, 0.1);
+}
+
+/*PANEL de TIEMPO*/
+#panel-tiempo {
+    width: max-content;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    position: relative;
+    background-color: rgba(177, 49, 43, 0.6);
+    color: white;
+    background-size: cover;
+}
+
+    #panel-tiempo i {
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+    }
+
+h3 {
+    font-family: 'Acme', sans-serif;
+}
+
+h4 {
+    display: inline-block;
+    margin-left: 1vw;
+    vertical-align: text-bottom;
+}
+
+/*ICONOS SOCIALES*/
+
+#social-icons {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+#social-icons li {
+    padding-top: 10px;
+    display: inline-block;
+    height: 50px;
+}
+
+#social-icons a {
+    color: rgb(248, 249, 252);
+}
+
+#social-icons a:hover {
+    color: yellow/*rgba(248, 249, 252, 0.7)*/;
+}
+
+.social-img {
+    height: 100%;
+}
+
+#power-by {
+    position: absolute;
+    bottom: 0px;
+}
+
+/*LOGIN*/
+.bg-login-image, .bg-password-image {
+    background-image: url("../img/carne2.png");
+}
+
+/*JUEGOS*/
+.carta-juego {
+    background-color: #a81c1c;
+    width: -webkit-fill-available;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 4px #999;
+    font-size: 2.5vw;
+}
+
+    .carta-juego:hover {
+        background-color: #7d1a1c;
+    }
+
+.carta-juego:active {
+   background-color: yellow;
+   box-shadow: 0 5px #666;
+   transform: translateY(4px);
+}
+
+/*OTROS TAMAÑOS*/
+@media(max-width: 991px) {
+    .col-juegos {
+        margin-top: 10px;
+    }
+}
+
+@media(max-width: 991px) and (min-width: 768px) {
+    .body-content {
+        padding-top: 7vw;
+    }
+    
+    .titulo-secundario {
+        margin-bottom: 2vw;
+    }    
+
+    .nav {
+        margin-top: 0vw;
+    }
+}
+
+@media(max-width: 767px) {
+
+    .body-content {
+        padding-top: 0.5vw;
+    }
+
+    #barra-cliente {
+        padding-left: 1vw;
+    }
+
+    .titulo {
+        margin-top: 10px;
+        vertical-align: baseline;
+    }
+
+    .titulo-secundario {
+        font-size: 8vw;
+    }
+
+    .nav li {
+        font-size: large;
+    }
+
+    .navbar-nav > li > a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        line-height: 20px;
+    }
+
+    .navbar-collapse {
+        background-color: rgba(29, 28, 34, 1);
+    }
+
+    .carta-juego {
+        font-size: 4vw;
+    }
+}
+
+@media(max-width: 425px) {
+    .titulo {
+        font-size: 7.5vw;
+    }
+
+    .titulo-secundario {
+        font-size: 12vw;
+    }
+
+    .logo-grill-1 {
+        height: 7vw;
+    }
+
+    #social-icons {
+        font-size: 10px;
+    }
+
+    .list-inline > li {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+@media(max-width: 320px) {
+    .titulo {
+        font-size: 9.5vw;
+    }
+
+    .logo-grill-1 {
+        height: 8vw;
+    }
+
+    #social-icons {
+        bottom: 15px;
+    }
+}
