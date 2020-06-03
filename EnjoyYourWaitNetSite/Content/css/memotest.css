@@ -1,0 +1,60 @@
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#juego {
+    opacity: 0.6;
+    text-align: center;
+    font-size: xx-large;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+td {
+    display: block;
+    background-color: black;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin: 4px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.letra {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    font-style: italic;
+}
+
+input {
+    width: 90px;
+    height: 30px;
+}
+
+.all-btn-memotest {
+    text-align: center;
+    margin-top: 1vw;
+}
+
+    .all-btn-memotest input {
+        background-color: #a11c1c;
+    }
+
+@media(max-width: 768px) {
+    tr {
+        padding-right: 4px !important;
+        padding-left: 4px !important;
+    }
+}
+
+@media(max-width: 375px) {
+    tr {
+        padding-right: 2px !important;
+        padding-left: 2px !important;
+    }
+}

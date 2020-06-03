@@ -132,6 +132,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\memotest.css" />
     <Content Include="Content\css\resto.styles.min.css" />
     <Content Include="Content\fontawesome-free\css\all.css" />
     <Content Include="Content\fontawesome-free\css\all.min.css" />
@@ -177,6 +178,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\memotest.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\fontawesome-free\package.json" />
@@ -256,6 +258,7 @@
     <Content Include="Views\Home\MisPremios.cshtml" />
     <Content Include="Views\Home\Juegos.cshtml" />
     <Content Include="Views\Home\Memotest.cshtml" />
+    <Content Include="Views\Home\Ruleta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

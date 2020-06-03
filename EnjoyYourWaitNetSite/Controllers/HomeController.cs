@@ -37,5 +37,10 @@ namespace EnjoyYourWaitNetSite.Controllers
         {
             return View();
         }
+
+        public ActionResult Ruleta()
+        {
+            return View();
+        }
     }
 }
