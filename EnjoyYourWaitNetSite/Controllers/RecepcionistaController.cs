@@ -1,12 +1,8 @@
-﻿using com.sun.tools.javac.util;
-using EnjoyYourWaitNetSite.BusinessLogic;
+﻿using EnjoyYourWaitNetSite.BusinessLogic;
 using EnjoyYourWaitNetSite.Entities;
-using EnjoyYourWaitNetSite.Helper;
 using EnjoyYourWaitNetSite.Models;
-using java.sql;
 using System;
 using System.Collections.Generic;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -14,24 +10,10 @@ namespace EnjoyYourWaitNetSite.Controllers
 {
     public class RecepcionistaController : Controller
     {
-        private BSHome bsHome = new BSHome();
+        private BSRecepcionista bsRecepcionista = new BSRecepcionista();
 
-        public ActionResult Index()
+        public ActionResult Recepcionista()
         {
-            //string token = HttpContext.Session.GetString("AuthToken");
-            //if (token == null)
-            //{
-            //    return RedirectToAction("Index",
-            //        "Authentication");
-            //}
-
-            //if (idClient == null)
-            //{
-            //    return RedirectToAction("ClientSelection",
-            //        "Client", new { target = "Resource" });
-            //}
-            //try
-            //{
             ViewBag.SuccessState = TempData["SuccessState"];
             //Cargo lista de recepcionistas
 
@@ -45,18 +27,38 @@ namespace EnjoyYourWaitNetSite.Controllers
             recepcionista.FechaNacimiento = DateTime.Now;
             model.lstRecepcionista.Add(recepcionista);
             return View("Recepcionista", model);
-
-            //}
-            //catch (Exception)
-            //{
-            //    ViewBag.SuccessState = "LOAD_FAILED";
-            //    return View("ClientResource", null);
-            //}
         }
 
-        public ActionResult RegistrarRecepcionista()
+
+        [HttpGet]
+        public ActionResult AbrirRegistroRecepcionista()
         {
-            return View();
+            AddRecepcionistaViewModel model = new AddRecepcionistaViewModel();
+            return View("RegistroRecepcionista", model);
+        }
+
+        public async Task<ActionResult> AñadirRecepcionista(AddRecepcionistaViewModel recepcionista)
+        {
+            ViewBag.Success = null;
+            if (ModelState.IsValid)
+            {
+                ViewBag.Success = false;
+                bool result = await bsRecepcionista.CreateRecepcionista(new Recepcionista()
+                {
+                    Dni = recepcionista.Dni,
+                    Nombre = recepcionista.Nombre,
+                    Apellido = recepcionista.Apellido,
+                    Email = recepcionista.Email,
+                    FechaNacimiento = recepcionista.FechaNacimiento
+                });
+                if (result)
+                {
+                    TempData["Success"] = true;
+                    return RedirectToAction("Registration", "Resource");
+                }
+            }
+
+            return View("RegistroRecepcionista", recepcionista);
         }
 
         public ActionResult EliminarRecepcionista()

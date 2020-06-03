@@ -76,7 +76,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <font class="float-left" size="5">Recepionistas</font>
-                        <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right">+ Registrar</button>
+                        <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">+ Registrar</button>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -134,20 +134,20 @@
     {
         <script>
             $(function () {
-                $("#btnRegistrarRecepcionista").click(function () {
-                    var options = { "backdrop": "static", keyboard: true };
-                    $.ajax({
-                        type: "GET",
-                        url: "/Recepcionista/RegistrarRecepcionista",
-                        contentType: "application/json; charset=utf-8",
-                        datatype: "json",
-                        success: function (data) {
-                            $("#addModalContent").html(data);
-                            $("#addModal").modal(options);
-                            $("#addModal").modal("show");
-                        }
-                    });
-                });
+                //$("#btnRegistrarRecepcionista").click(function () {
+                //    var options = { "backdrop": "static", keyboard: true };
+                //    $.ajax({
+                //        type: "GET",
+                //        url: "/Recepcionista/AbrirRegistroRecepcionista",
+                //        contentType: "application/json; charset=utf-8",
+                //        datatype: "json",
+                //        success: function (data) {
+                //            $("#addModalContent").html(data);
+                //            $("#addModal").modal(options);
+                //            $("#addModal").modal("show");
+                //        }
+                //    });
+                //});
                 $(".item-delete-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');

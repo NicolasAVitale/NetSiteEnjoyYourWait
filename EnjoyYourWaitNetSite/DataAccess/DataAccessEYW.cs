@@ -36,6 +36,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return jObj["Mensaje"].ToString();
         }
 
+        internal Task<bool> CreateRecepcionista()
+        {
+            throw new NotImplementedException();
+        }
+
         private async Task<HttpResponseMessage> BuildRequest(HttpMethod method, string url, bool auth, object body = null)
         {
             HttpResponseMessage response = null;
