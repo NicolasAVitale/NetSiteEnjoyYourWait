@@ -32,5 +32,10 @@ namespace EnjoyYourWaitNetSite.Controllers
         {
             return View();
         }
+
+        public ActionResult Memotest()
+        {
+            return View();
+        }
     }
 }
