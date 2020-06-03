@@ -1,107 +1,50 @@
-﻿@model EnjoyYourWaitNetSite.Models.AddRecepcionistaViewModel
-@{
-    ViewBag.Title = "Registro de Recepcionista";
+﻿@{
+    ViewBag.Title = "Memotest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
-    @if (ViewBag.Success != null)
-    {
-        <div id="messageModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            @if (ViewBag.Success)
-                            {
-                                <p>El/La recepcionista se registro correctamente</p>
-                            }
-                            else
-                            {
-                                <p>Error al crear el/la recepcionista</p>
-                            }
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
 
-    <div class="mb-3">
-        <font size="6">Ingresar los datos de el/la recepcionista</font>
-    </div>
+    <link href="~/Content/css/memotest.css" rel="stylesheet">
 
-    @using (Html.BeginForm("AñadirRecepcionista", "Recepcionista", FormMethod.Post))
-    {
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="row justify-content-center">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <label>DNI:</label>
-                                    @Html.TextBoxFor(model => model.Dni, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Dni, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <label>Nombre:</label>
-                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <label>Apellido:</label>
-                                    @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <label>Email:</label>
-                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <label>Fecha de Nacimiento:</label>
-                                    @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "datefield", type = "date" })
-                                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Crear" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
-                        </tr>
-                    </table>
+<h2>@ViewBag.Title.</h2>
 
-                </div>
-            </div>
-        </div>
-    }
+<div><p>¿Listo para jugar al memotest? Haz clic en "iniciar" para empezar.</p></div>
+
+<div id="juego">
+
+    <table class="row">
+        <tr class="col-xs-3">
+            <td id="0" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="1" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="2" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="3" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+       
+        <tr class="col-xs-3">
+            <td id="4" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="5" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="6" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="7" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+        
+        <tr class="col-xs-3">
+            <td id="8" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="9" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="10" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="11" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+        
+        <tr class="col-xs-3">
+            <td id="12" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="13" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="14" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+            <td id="15" class="letra" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+    </table>
+</div>
+<div class="all-btn-memotest">
+    <input type="button" value="Iniciar" onclick="iniciarJuego()" />
+    <input type="button" value="De nuevo" onclick="resetearJuego()" />
 </div>
 
-@section scripts
-{
-    @if (ViewBag.Success != null)
-    {
-        <script>
-            $(function () {
-                $('#messageModal').modal('show');
-            });
-        </script>
-    }
-}
+
+<script src="~/Scripts/memotest.js"></script>
