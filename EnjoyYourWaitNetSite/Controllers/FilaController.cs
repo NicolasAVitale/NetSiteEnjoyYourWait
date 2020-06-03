@@ -1,15 +1,13 @@
 ﻿using EnjoyYourWaitNetSite.BusinessLogic;
-using EnjoyYourWaitNetSite.Helper;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace EnjoyYourWaitNetSite.Controllers
 {
-    public class ProductosController : Controller
+    public class FilaController : Controller
     {
         private BSHome bsHome = new BSHome();
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             return View();
         }

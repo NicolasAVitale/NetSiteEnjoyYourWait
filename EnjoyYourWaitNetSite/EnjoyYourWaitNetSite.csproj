@@ -321,8 +321,13 @@
     <Compile Include="BusinessLogic\BSBase.cs" />
     <Compile Include="BusinessLogic\BSRecepcionista.cs" />
     <Compile Include="BusinessLogic\BSHome.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PremioController.cs" />
+    <Compile Include="Controllers\JuegoController.cs" />
+    <Compile Include="Controllers\FilaController.cs" />
+    <Compile Include="Controllers\PromocionController.cs" />
     <Compile Include="Controllers\RecepcionistaController.cs" />
-    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Administrador.cs" />
     <Compile Include="Entities\Cliente.cs" />
@@ -379,11 +384,22 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Recepcionista\Recepcionista.cshtml" />
+    <Content Include="Views\Recepcionista\GestionRecepcionista.cshtml" />
     <Content Include="Views\Recepcionista\RegistroRecepcionista.cshtml" />
+    <Content Include="Views\Producto\RegistroProducto.cshtml" />
+    <Content Include="Views\Producto\GestionProducto.cshtml" />
+    <Content Include="Views\Producto\Menu.cshtml" />
+    <Content Include="Views\Promocion\GestionPromocion.cshtml" />
+    <Content Include="Views\Promocion\RegistroPromocion.cshtml" />
+    <Content Include="Views\Promocion\Promociones.cshtml" />
+    <Content Include="Views\Premio\RegistroPremio.cshtml" />
+    <Content Include="Views\Premio\ClientePremios.cshtml" />
+    <Content Include="Views\Premio\GestionPremios.cshtml" />
+    <Content Include="Views\Juego\Juegos.cshtml" />
+    <Content Include="Views\Juego\Ruleta.cshtml" />
+    <Content Include="Views\Juego\Memotest.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

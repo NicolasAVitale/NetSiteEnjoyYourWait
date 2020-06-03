@@ -26,7 +26,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             recepcionista.Email = "Email";
             recepcionista.FechaNacimiento = DateTime.Now;
             model.lstRecepcionista.Add(recepcionista);
-            return View("Recepcionista", model);
+            return View("GestionRecepcionista", model);
         }
 
 
