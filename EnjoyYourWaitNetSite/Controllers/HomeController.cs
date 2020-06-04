@@ -35,8 +35,8 @@ namespace EnjoyYourWaitNetSite.Controllers
             //mail.CC.Add(new MailAddress("nicolas.a.vitale@gmail.com"));
             ////mail.Body = "Hola Joni y Nico";
             //smtpClient.Send(mail);
-            string msg = await bsHome.GetHolaMundoAsync();
-            ViewBag.Message = msg;
+            //string msg = await bsHome.GetHolaMundoAsync();
+            //ViewBag.Message = msg;
             return View();
         }
 

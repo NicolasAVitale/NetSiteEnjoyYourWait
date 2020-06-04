@@ -60,12 +60,13 @@
                             <p>¿Desea eliminar el/la recepcionista seleccionado/a?</p>
                         </div>
                         <div class="modal-footer">
-                            <form method="post" asp-controller="Recepcionista" asp-action="EliminarRecepcionista">
+                            @using (Html.BeginForm("EliminarRecepcionista", "Recepcionista", FormMethod.Post))
+                            {
                                 <input id="inRecepcionista" name="dni" type="hidden">
                                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
                                 <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
-                            </form>
-                        </div>
+                            }
+                            </div>
                     </div>
                 </div>
             </div>
@@ -134,20 +135,6 @@
     {
         <script>
             $(function () {
-                //$("#btnRegistrarRecepcionista").click(function () {
-                //    var options = { "backdrop": "static", keyboard: true };
-                //    $.ajax({
-                //        type: "GET",
-                //        url: "/Recepcionista/AbrirRegistroRecepcionista",
-                //        contentType: "application/json; charset=utf-8",
-                //        datatype: "json",
-                //        success: function (data) {
-                //            $("#addModalContent").html(data);
-                //            $("#addModal").modal(options);
-                //            $("#addModal").modal("show");
-                //        }
-                //    });
-                //});
                 $(".item-delete-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');

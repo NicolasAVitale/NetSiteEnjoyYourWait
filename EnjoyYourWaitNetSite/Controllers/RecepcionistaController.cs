@@ -12,7 +12,7 @@ namespace EnjoyYourWaitNetSite.Controllers
     {
         private BSRecepcionista bsRecepcionista = new BSRecepcionista();
 
-        public ActionResult Recepcionista()
+        public ActionResult GestionRecepcionista()
         {
             ViewBag.SuccessState = TempData["SuccessState"];
             //Cargo lista de recepcionistas
@@ -61,9 +61,11 @@ namespace EnjoyYourWaitNetSite.Controllers
             return View("RegistroRecepcionista", recepcionista);
         }
 
-        public ActionResult EliminarRecepcionista()
+        [HttpPost]
+        public ActionResult EliminarRecepcionista(int dni)
         {
-            return View();
+            TempData["SuccessState"] = "DELETE_FAILED";
+            return RedirectToAction("GestionRecepcionista");
         }
 
         public ActionResult ModificarRecepcionista()
