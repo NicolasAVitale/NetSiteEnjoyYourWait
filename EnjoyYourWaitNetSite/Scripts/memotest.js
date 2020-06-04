@@ -57,12 +57,17 @@ function girarCarta() {
 
     if (jugada1 !== "") {
 
-        if (jugada1 === jugada2 && identificadorJ1 !== identificadorJ2 && cartas[parseInt(identificadorJ2)].seleccion != true && cartas[parseInt(identificadorJ1)].seleccion != true) {
+        if (jugada1 === jugada2 && identificadorJ1 !== identificadorJ2 &&
+            cartas[parseInt(identificadorJ2)].seleccion != true && cartas[parseInt(identificadorJ1)].seleccion != true) {
 
             cartas[parseInt(identificadorJ1)].seleccion = true;
             cartas[parseInt(identificadorJ2)].seleccion = true;
 
             colorCambio(identificadorJ2, "red", jugada2);
+
+            $("#" + identificadorJ1).prop("onclick", null).off("click");
+            $("#" + identificadorJ2).prop("onclick", null).off("click");
+
             vaciar();
             comprobar();
         } else if (identificadorJ1 !== identificadorJ2) {
