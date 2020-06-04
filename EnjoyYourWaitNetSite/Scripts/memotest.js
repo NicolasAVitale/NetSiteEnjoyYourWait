@@ -14,6 +14,10 @@ var jugada2 = "";
 var identificadorJ1 = "";
 var identificadorJ2 = "";
 
+var btninicio = document.getElementById("btnmemotestinicio");
+var btnreset = document.getElementById("btnmemotestreset");
+var btncargar = document.getElementById("btnmemotestcargar");
+
 function iniciarJuego() {
     var dato = document.getElementById("juego");
     dato.style.opacity = 0.9;
@@ -24,6 +28,9 @@ function iniciarJuego() {
         var dato = document.getElementById(i.toString());
         dato.dataset.valor = carta;
     }
+
+    btninicio.style.display = 'none';
+    btnreset.style.display = 'none';
 };
 
 function resetearJuego() {
@@ -34,6 +41,7 @@ function resetearJuego() {
         dato.dataset.valor = carta;
         colorCambio(i, 'black', '?');
     }
+
 }
 
 function girarCarta() {
@@ -96,15 +104,8 @@ function comprobar() {
 
     if (aciertos == 16) {
         document.getElementById("juego").innerHTML = "GANASTE";
+        btninicio.style.display = 'none';
+        btnreset.style.display = 'none';
+        btncargar.style.display = 'inline-block';
     }
 }
-
-function resetearJuego() {
-    cartas.sort(function () { return Math.random() - 0.5 });
-    for (var i = 0; i < 16; i++) {
-        var carta = cartas[i].nombre;
-        var dato = document.getElementById(i.toString());
-        dato.dataset.valor = carta;
-        colorCambio(i, 'black', '?');
-    }
-};
