@@ -7,22 +7,16 @@ namespace EnjoyYourWaitNetSite.Controllers
     public class JuegoController : Controller
     {
         private BSHome bsHome = new BSHome();
-        public ActionResult Index()
+        public ActionResult Juegos()
         {
             return View();
         }
 
-        public ActionResult AgregarProducto()
+        public ActionResult Memotest()
         {
             return View();
         }
-
-        public ActionResult ModificarProducto()
-        {
-            return View();
-        }
-
-        public ActionResult EliminarProducto()
+        public ActionResult Ruleta()
         {
             return View();
         }

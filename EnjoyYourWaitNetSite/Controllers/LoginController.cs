@@ -9,7 +9,7 @@ namespace EnjoyYourWaitNetSite.Controllers
     public class LoginController : Controller
     {
         // GET: Log
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
