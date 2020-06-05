@@ -1,6 +1,6 @@
 ﻿namespace EnjoyYourWaitNetSite.Entities
 {
-    public class Administrador
+    public class Administrador : Usuario
     {
     }
 }

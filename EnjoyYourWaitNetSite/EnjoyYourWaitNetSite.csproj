@@ -319,6 +319,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogic\BSBase.cs" />
+    <Compile Include="BusinessLogic\BSLogin.cs" />
     <Compile Include="BusinessLogic\BSRecepcionista.cs" />
     <Compile Include="BusinessLogic\BSHome.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -341,6 +342,7 @@
     <Compile Include="Entities\Reporte.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Exceptions\DataAccessException.cs" />
+    <Compile Include="Exceptions\AuthException.cs" />
     <Compile Include="Exceptions\TokenExpirationException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -348,6 +350,7 @@
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="DataAccess\DataAccessEYW.cs" />
     <Compile Include="Models\AddRecepcionistaViewModel.cs" />
+    <Compile Include="Models\UserAuthenticationViewModel.cs" />
     <Compile Include="Models\RecepcionistaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -496,7 +499,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

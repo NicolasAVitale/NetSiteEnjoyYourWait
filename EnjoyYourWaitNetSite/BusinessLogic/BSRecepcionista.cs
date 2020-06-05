@@ -25,7 +25,7 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             return await dataAccess.UpdateRecepcionista(dni, email);
         }
 
-        public Task<List<Usuario>> GetAllRecepcionistas()
+        public async Task<List<Usuario>> GetAllRecepcionistas()
         {
             return await dataAccess.GetAllRecepcionistas();
         }

@@ -39,6 +39,18 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
             return jObj["Mensaje"].ToString();
         }
+        public async Task<object[]> GetAuthToken(Usuario userModel)
+        {
+            var response = await BuildRequest(HttpMethod.Post, "auth", false, userModel);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+
+            var jObj = JObject.Parse(content);
+
+            return new List<object>() { jObj["token"].ToString(), JsonConvert.DeserializeObject<Usuario>(jObj["userModel"].ToString()) }.ToArray();
+        }
 
         public async Task<List<Usuario>> GetAllRecepcionistas()
         {

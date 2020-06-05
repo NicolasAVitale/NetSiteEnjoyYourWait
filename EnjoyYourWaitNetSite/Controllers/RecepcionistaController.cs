@@ -15,6 +15,7 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> GestionRecepcionista()
         {
+            Usuario recepcionista = new Usuario();
             try
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
@@ -32,8 +33,8 @@ namespace EnjoyYourWaitNetSite.Controllers
                 //    })
                 //});
                 RecepcionistaViewModel model = new RecepcionistaViewModel();
-                model.lstRecepcionista = new List<Recepcionista>();
-                Recepcionista recepcionista = new Recepcionista();
+                model.lstRecepcionista = new List<Usuario>();
+                //Usuario recepcionista = new Usuario();
                 recepcionista.Dni = 123;
                 recepcionista.Nombre = "Nico";
                 recepcionista.Apellido = "Vitale";
