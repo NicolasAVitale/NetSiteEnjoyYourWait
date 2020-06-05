@@ -30,7 +30,7 @@ namespace EnjoyYourWaitNetSite.Controllers
         }
 
 
-        [HttpGet]
+        
         public ActionResult AbrirRegistroRecepcionista()
         {
             AddRecepcionistaViewModel model = new AddRecepcionistaViewModel();
@@ -39,33 +39,69 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> AñadirRecepcionista(AddRecepcionistaViewModel recepcionista)
         {
-            ViewBag.Success = null;
-            if (ModelState.IsValid)
+            try
             {
-                ViewBag.Success = false;
-                bool result = await bsRecepcionista.CreateRecepcionista(new Recepcionista()
+                ViewBag.Success = null;
+                int difDateYear = DateTime.Today.Year - recepcionista.FechaNacimiento.Year;
+                int difDateMonth = DateTime.Today.Month - recepcionista.FechaNacimiento.Month;
+                int difDateDay = DateTime.Today.Day - recepcionista.FechaNacimiento.Day;
+                bool difEdad = difDateYear >= 17 && difDateMonth >= 0 && difDateDay >= 0;
+                if (ModelState.IsValid && difEdad)
                 {
-                    Dni = recepcionista.Dni,
-                    Nombre = recepcionista.Nombre,
-                    Apellido = recepcionista.Apellido,
-                    Email = recepcionista.Email,
-                    FechaNacimiento = recepcionista.FechaNacimiento
-                });
-                if (result)
-                {
-                    TempData["Success"] = true;
-                    return RedirectToAction("Registration", "Resource");
+                    ViewBag.Success = false;
+                    bool result = await bsRecepcionista.CreateRecepcionista(new Usuario()
+                    {
+                        Dni = int.Parse(recepcionista.Dni),
+                        Nombre = recepcionista.Nombre,
+                        Apellido = recepcionista.Apellido,
+                        Email = recepcionista.Email,
+                        FechaNacimiento = recepcionista.FechaNacimiento,
+                        Contrasena = recepcionista.Dni.ToString()
+                    });
+                    if (result)
+                    {
+                        TempData["Success"] = true;
+                        return RedirectToAction("GestionRecepcionista");
+                    }
                 }
-            }
+                if (!difEdad)
+                {
+                    ViewBag.InvalidAge = "La edad minima requerida debe ser al menos 17 años";
+                }
 
-            return View("RegistroRecepcionista", recepcionista);
+                return View("RegistroRecepcionista", recepcionista);
+            }
+            catch (Exception)
+            {
+                TempData["Success"] = false;
+                return View("RegistroRecepcionista", recepcionista);
+            }
         }
 
-        [HttpPost]
-        public ActionResult EliminarRecepcionista(int dni)
+        public async Task<ActionResult> EliminarRecepcionista(int dni)
         {
-            TempData["SuccessState"] = "DELETE_FAILED";
-            return RedirectToAction("GestionRecepcionista");
+            //string token = HttpContext.Session.GetString("AuthToken");
+            //if (token == null)
+            //{
+            //    return RedirectToAction("Index",
+            //        "Authentication");
+            //}
+
+            try
+            {
+                TempData["SuccessState"] = "DELETE_FAILED";
+                bool result = await bsRecepcionista.DeleteRecepcionista(dni);
+                if (result)
+                {
+                    TempData["SuccessState"] = "DELETE_SUCCESS";
+                }
+                return RedirectToAction("GestionRecepcionista");
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "DELETE_FAILED";
+                return RedirectToAction("GestionRecepcionista");
+            }
         }
 
         public ActionResult ModificarRecepcionista()

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using EnjoyYourWaitNetSite.Entities;
+using System.Threading.Tasks;
 
 namespace EnjoyYourWaitNetSite.BusinessLogic
 {
@@ -8,9 +9,13 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         {
         }
 
-        public async Task<bool> CreateRecepcionista(Entities.Recepcionista recepcionista)
+        public async Task<bool> CreateRecepcionista(Usuario recepcionista)
         {
-            return await dataAccess.CreateRecepcionista();
+            return await dataAccess.CreateRecepcionista(recepcionista);
+        }
+        public async Task<bool> DeleteRecepcionista(int dni)
+        {
+            return await dataAccess.DeleteRecepcionista(dni);
         }
     }
 }

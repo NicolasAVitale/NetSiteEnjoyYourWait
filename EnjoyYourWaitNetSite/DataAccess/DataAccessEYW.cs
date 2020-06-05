@@ -11,12 +11,14 @@ using EnjoyYourWaitNetSite.Exceptions;
 using java.net;
 using Newtonsoft.Json.Linq;
 using EnjoyYourWaitNetSite.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EnjoyYourWaitNetSite.DataAccess
 {
     public class DataAccessEYW
     {
         private readonly string appSettings = ConfigurationManager.AppSettings.Get("EYWService");
+
         private readonly HttpClient httpClient = new HttpClient();
 
         public DataAccessEYW()
@@ -36,9 +38,26 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return jObj["Mensaje"].ToString();
         }
 
-        internal Task<bool> CreateRecepcionista()
+        public async Task<bool> CreateRecepcionista(Usuario recepcionista)
         {
-            throw new NotImplementedException();
+            var response = await BuildRequest(HttpMethod.Post, "recepcionistas", false, recepcionista);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+
+            return true;
+        }
+
+        public async Task<bool> DeleteRecepcionista(int dni)
+        {
+            var response = await BuildRequest(HttpMethod.Delete, $"recepcionistas/{dni}", false);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+
+            return true;
         }
 
         private async Task<HttpResponseMessage> BuildRequest(HttpMethod method, string url, bool auth, object body = null)
