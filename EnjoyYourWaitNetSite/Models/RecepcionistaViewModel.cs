@@ -5,6 +5,6 @@ namespace EnjoyYourWaitNetSite.Models
 {
     public class RecepcionistaViewModel
     {
-        public List<Recepcionista> lstRecepcionista { get; set; }
+        public List<Usuario> lstRecepcionista { get; set; }
     }
 }

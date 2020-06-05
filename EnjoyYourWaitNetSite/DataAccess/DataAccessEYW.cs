@@ -12,6 +12,8 @@ using java.net;
 using Newtonsoft.Json.Linq;
 using EnjoyYourWaitNetSite.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace EnjoyYourWaitNetSite.DataAccess
 {
@@ -38,26 +40,49 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return jObj["Mensaje"].ToString();
         }
 
+        public async Task<List<Usuario>> GetAllRecepcionistas()
+        {
+            return await Request<List<Usuario>>(HttpMethod.Get, "recepcionistas", false);
+        }
+
         public async Task<bool> CreateRecepcionista(Usuario recepcionista)
         {
-            var response = await BuildRequest(HttpMethod.Post, "recepcionistas", false, recepcionista);
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
-                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
-
-            return true;
+            return await Request(HttpMethod.Post, "recepcionistas", false, recepcionista);
         }
 
         public async Task<bool> DeleteRecepcionista(int dni)
         {
-            var response = await BuildRequest(HttpMethod.Delete, $"recepcionistas/{dni}", false);
+            return await Request(HttpMethod.Delete, $"recepcionistas/{dni}", false);
+        }
+
+        public async Task<bool> UpdateRecepcionista(int dni, string email)
+        {
+            return await Request(HttpMethod.Put, $"recepcionistas/{dni}/{email}", false);
+        }
+
+        private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)
+        {
+            var response = await BuildRequest(method, url, auth, body);
+
+            return response.StatusCode == HttpStatusCode.OK;
+        }
+
+        private async Task<T> Request<T>(HttpMethod method, string url, bool auth = false, object body = null)
+        {
+            T result;
+            var response = await BuildRequest(method, url, auth, body);
             var content = await response.Content.ReadAsStringAsync();
 
-            if (!response.IsSuccessStatusCode)
-                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+            try
+            {
+                result = JsonConvert.DeserializeObject<T>(content);
+            }
+            catch (JsonException)
+            {
+                throw new DataAccessException(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+            }
 
-            return true;
+            return result;
         }
 
         private async Task<HttpResponseMessage> BuildRequest(HttpMethod method, string url, bool auth, object body = null)

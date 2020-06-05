@@ -1,4 +1,6 @@
 ﻿using EnjoyYourWaitNetSite.Entities;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnjoyYourWaitNetSite.BusinessLogic
@@ -16,6 +18,16 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         public async Task<bool> DeleteRecepcionista(int dni)
         {
             return await dataAccess.DeleteRecepcionista(dni);
+        }
+
+        public async Task<bool> UpdateRecepcionista(int dni, string email)
+        {
+            return await dataAccess.UpdateRecepcionista(dni, email);
+        }
+
+        public Task<List<Usuario>> GetAllRecepcionistas()
+        {
+            return await dataAccess.GetAllRecepcionistas();
         }
     }
 }

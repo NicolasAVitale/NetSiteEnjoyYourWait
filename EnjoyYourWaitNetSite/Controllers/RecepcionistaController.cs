@@ -3,6 +3,7 @@ using EnjoyYourWaitNetSite.Entities;
 using EnjoyYourWaitNetSite.Models;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -12,21 +13,40 @@ namespace EnjoyYourWaitNetSite.Controllers
     {
         private BSRecepcionista bsRecepcionista = new BSRecepcionista();
 
-        public ActionResult GestionRecepcionista()
+        public async Task<ActionResult> GestionRecepcionista()
         {
-            ViewBag.SuccessState = TempData["SuccessState"];
-            //Cargo lista de recepcionistas
-
-            RecepcionistaViewModel model = new RecepcionistaViewModel();
-            model.lstRecepcionista = new List<Recepcionista>();
-            Recepcionista recepcionista = new Recepcionista();
-            recepcionista.Dni = 123;
-            recepcionista.Nombre = "Nico";
-            recepcionista.Apellido = "Vitale";
-            recepcionista.Email = "Email";
-            recepcionista.FechaNacimiento = DateTime.Now;
-            model.lstRecepcionista.Add(recepcionista);
-            return View("GestionRecepcionista", model);
+            try
+            {
+                ViewBag.SuccessState = TempData["SuccessState"];
+                //Cargo lista de recepcionistas
+                //List<Usuario> recepcionistas = await bsRecepcionista.GetAllRecepcionistas();
+                //return View("GestionRecepcionista", new RecepcionistaViewModel()
+                //{
+                //    lstRecepcionista = recepcionistas.ConvertAll(r => new Usuario
+                //    {
+                //        Dni = r.Dni,
+                //        Nombre = r.Nombre,
+                //        Apellido = r.Apellido,
+                //        Email = r.Email,
+                //        FechaNacimiento = r.FechaNacimiento
+                //    })
+                //});
+                RecepcionistaViewModel model = new RecepcionistaViewModel();
+                model.lstRecepcionista = new List<Recepcionista>();
+                Recepcionista recepcionista = new Recepcionista();
+                recepcionista.Dni = 123;
+                recepcionista.Nombre = "Nico";
+                recepcionista.Apellido = "Vitale";
+                recepcionista.Email = "EmailBienPiola";
+                recepcionista.FechaNacimiento = DateTime.Now;
+                model.lstRecepcionista.Add(recepcionista);
+                return View("GestionRecepcionista", model);
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "LOAD_FAILED";
+                return View("RegistroRecepcionista", recepcionista);
+            }
         }
 
 
@@ -104,9 +124,35 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public ActionResult ModificarRecepcionista()
+        public async Task<ActionResult> ModificarRecepcionista(int dni, string email)
         {
-            return View();
+            //string token = HttpContext.Session.GetString("AuthToken");
+            //if (token == null)
+            //{
+            //    return RedirectToAction("Index",
+            //        "Authentication");
+            //}
+
+            try
+            {
+                TempData["SuccessState"] = "UPDATE_FAILED";
+                bool isValid = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+                if(isValid)
+                {
+                    bool result = await bsRecepcionista.UpdateRecepcionista(dni, email);
+                    if (result)
+                    {
+                        TempData["SuccessState"] = "UPDATE_SUCCESS";
+                    }
+                }
+                
+                return RedirectToAction("GestionRecepcionista");
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "UPDATE_FAILED";
+                return RedirectToAction("GestionRecepcionista");
+            }
         }
     }
 }
