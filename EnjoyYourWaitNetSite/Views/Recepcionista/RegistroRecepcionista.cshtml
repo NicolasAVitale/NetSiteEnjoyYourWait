@@ -80,6 +80,10 @@
                                     <label>Fecha de Nacimiento:</label>
                                     @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "datefield", type = "date" })
                                     @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                                    @if (ViewBag.InvalidAge != null)
+                                    {
+                                        <span class="field-validation-error text-danger" data-valmsg-for="FechaNacimiento" data-valmsg-replace="true">@ViewBag.InvalidAge</span>
+                                    }
                                 </div>
                             </td>
                         </tr>

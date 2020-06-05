@@ -11,12 +11,16 @@ using EnjoyYourWaitNetSite.Exceptions;
 using java.net;
 using Newtonsoft.Json.Linq;
 using EnjoyYourWaitNetSite.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace EnjoyYourWaitNetSite.DataAccess
 {
     public class DataAccessEYW
     {
         private readonly string appSettings = ConfigurationManager.AppSettings.Get("EYWService");
+
         private readonly HttpClient httpClient = new HttpClient();
 
         public DataAccessEYW()
@@ -35,10 +39,62 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
             return jObj["Mensaje"].ToString();
         }
-
-        internal Task<bool> CreateRecepcionista()
+        public async Task<object[]> GetAuthToken(Usuario userModel)
         {
-            throw new NotImplementedException();
+            var response = await BuildRequest(HttpMethod.Post, "auth", false, userModel);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+
+            var jObj = JObject.Parse(content);
+
+            return new List<object>() { jObj["token"].ToString(), JsonConvert.DeserializeObject<Usuario>(jObj["userModel"].ToString()) }.ToArray();
+        }
+
+        public async Task<List<Usuario>> GetAllRecepcionistas()
+        {
+            return await Request<List<Usuario>>(HttpMethod.Get, "recepcionistas", false);
+        }
+
+        public async Task<bool> CreateRecepcionista(Usuario recepcionista)
+        {
+            return await Request(HttpMethod.Post, "recepcionistas", false, recepcionista);
+        }
+
+        public async Task<bool> DeleteRecepcionista(int dni)
+        {
+            return await Request(HttpMethod.Delete, $"recepcionistas/{dni}", false);
+        }
+
+        public async Task<bool> UpdateRecepcionista(int dni, string email)
+        {
+            return await Request(HttpMethod.Put, $"recepcionistas/{dni}/{email}", false);
+        }
+
+        private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)
+        {
+            var response = await BuildRequest(method, url, auth, body);
+
+            return response.StatusCode == HttpStatusCode.OK;
+        }
+
+        private async Task<T> Request<T>(HttpMethod method, string url, bool auth = false, object body = null)
+        {
+            T result;
+            var response = await BuildRequest(method, url, auth, body);
+            var content = await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                result = JsonConvert.DeserializeObject<T>(content);
+            }
+            catch (JsonException)
+            {
+                throw new DataAccessException(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+            }
+
+            return result;
         }
 
         private async Task<HttpResponseMessage> BuildRequest(HttpMethod method, string url, bool auth, object body = null)

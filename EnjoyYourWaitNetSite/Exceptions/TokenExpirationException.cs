@@ -6,21 +6,21 @@ using System.Web;
 
 namespace EnjoyYourWaitNetSite.Exceptions
 {
-    public class TokenExpiredException : Exception
+    public class AuthException : Exception
     {
-        public TokenExpiredException() : base()
+        public AuthException() : base()
         {
         }
 
-        public TokenExpiredException(string message) : base(message)
+        public AuthException(string message) : base(message)
         {
         }
 
-        public TokenExpiredException(string message, Exception innerException) : base(message, innerException)
+        public AuthException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
-        public TokenExpiredException(SerializationInfo info, StreamingContext context) : base(info, context)
+        public AuthException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }
