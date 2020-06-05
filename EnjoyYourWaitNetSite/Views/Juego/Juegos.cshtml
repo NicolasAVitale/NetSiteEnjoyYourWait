@@ -2,16 +2,49 @@
     ViewBag.Title = "Juegos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2 class="titulo-secundario">@ViewBag.Title</h2>
+<!--<h2 class="titulo-secundario">@ViewBag.Title</h2>-->    
 
 <div class="row">
-    <div class="col-md-4 col-juegos">
-        <button class="carta-juego" onclick="location.href='@Url.Action("Memotest", "Juego")'">Memotest</button>
+    <div class="col-xs-4 col-juegos">
+        <button class="carta-juego" onclick="location.href='@Url.Action("Memotest", "Juego")'"><img alt="memotest" src="~/Content/img/memotest2.png" />Memotest</button>
     </div>
-    <div class="col-md-4 col-juegos">
-        <button class="carta-juego" onclick="location.href='@Url.Action("Ruleta", "Juego")'">Ruleta</button>
+    <div class="col-xs-4 col-juegos">
+        <button class="carta-juego" onclick="location.href='@Url.Action("Ruleta", "Juego")'"><img alt="ruleta" src="~/Content/img/memotest2.png" />Ruleta</button>
     </div>
-    <div class="col-md-4 col-juegos">
-        <p><i>Proximamente más juegos.</i></p>
+    <div class="col-xs-4 col-juegos">
+        <button class="carta-juego" onclick="location.href=''"><img alt="proximo" src="~/Content/img/comida1.png" />Proximamente</button>
     </div>
 </div>
+
+<script>
+
+    cambioColumJuegos();
+
+    window.addEventListener('resize', () => cambioColumJuegos());
+
+    function cambioColumJuegos() {
+
+        var x = window.matchMedia("(max-width: 600px)")
+
+        console.log()
+
+        if (x.matches) { // If media query matches
+            var coljuegos = document.getElementsByClassName("col-juegos");
+
+            for (var i = 0; i < coljuegos.length; i++) {
+                coljuegos[i].classList.remove("col-xs-4");
+                coljuegos[i].classList.add("col-xs-6");
+            }
+        } else {
+            var coljuegos = document.getElementsByClassName("col-juegos");
+
+            for (var i = 0; i < coljuegos.length; i++) {
+                coljuegos[i].classList.remove("col-xs-6");
+                coljuegos[i].classList.add("col-xs-4");
+            }
+        }
+
+
+    }
+
+</script>

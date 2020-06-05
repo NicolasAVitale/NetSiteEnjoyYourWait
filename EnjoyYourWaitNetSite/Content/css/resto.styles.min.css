@@ -70,7 +70,7 @@ html, body {
 }
 
 .body-content {
-    padding-top: 2vw;
+    padding-top: 5vw;
 }
 
 .pinchos {
@@ -251,28 +251,45 @@ h4 {
 
 /*JUEGOS*/
 .carta-juego {
-    background-color: #a81c1c;
+    color: white;
     width: -webkit-fill-available;
     text-align: center;
     cursor: pointer;
     outline: none;
     border: none;
-    border-radius: 2px;
-    box-shadow: 0 4px #999;
     font-size: 2.5vw;
+    /*background-position: center;
+    background-image: url("../img/tabla-madera.png");
+    background-color: rgba(0, 0, 0, 0);
+    background-size: contain;
+    background-repeat: no-repeat;*/
+    background-color: rgba(119, 119, 119, 0.6);
+    border-radius: 4px;
 }
 
     .carta-juego:hover {
-        background-color: #7d1a1c;
+        color: #ffff00;
     }
 
 .carta-juego:active {
-   background-color: yellow;
+   color: yellow;
    box-shadow: 0 5px #666;
    transform: translateY(4px);
 }
 
+    .carta-juego img {
+        max-width: -webkit-fill-available;
+        margin-top: 5px;
+        border-radius: 2px;
+    }
+
 /*OTROS TAMAÑOS*/
+@media(min-width: 992px) {
+    .carta-juego {
+        min-height: 90px;        
+    }
+}
+
 @media(max-width: 991px) {
     .col-juegos {
         margin-top: 10px;
@@ -327,7 +344,12 @@ h4 {
     }
 
     .carta-juego {
-        font-size: 4vw;
+        font-size: 3vw;
+    }
+
+    .col-juegos {
+        padding-right: 5px;
+        padding-left: 5px;
     }
 }
 
@@ -351,6 +373,10 @@ h4 {
     .list-inline > li {
         padding-right: 0px;
         padding-left: 0px;
+    }
+
+    .carta-juego {
+        font-size: 4.5vw;
     }
 }
 

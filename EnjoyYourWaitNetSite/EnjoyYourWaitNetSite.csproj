@@ -396,9 +396,12 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\img\comida1.png" />
     <Content Include="Content\img\fondo-madera.jpg" />
+    <Content Include="Content\img\memotest2.png" />
     <Content Include="Content\img\pinches co.ico" />
     <Content Include="Content\img\pinches red.svg" />
+    <Content Include="Content\img\tabla-madera.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
