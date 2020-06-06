@@ -16,22 +16,16 @@
                                     <p>Error al cargar los productos.</p>
                                     break;
                                 case "ADD_SUCCESS":
-                                    <p>El producto se agregó correctamente.</p>
+                                    <p>El producto se creó correctamente.</p>
                                     break;
                                 case "ADD_FAILED":
-                                    <p>Error al agregar el producto.</p>
+                                    <p>Error al crear el producto.</p>
                                     break;
                                 case "DELETE_SUCCESS":
                                     <p>El producto se eliminó correctamente.</p>
                                     break;
                                 case "DELETE_FAILED":
                                     <p>Error al eliminar el producto.</p>
-                                    break;
-                                case "UPDATE_SUCCESS":
-                                    <p>El producto se modificó correctamente.</p>
-                                    break;
-                                case "UPDATE_FAILED":
-                                    <p>Error al modificar el producto.</p>
                                     break;
                             }
                         </div>
@@ -45,6 +39,16 @@
     }
     @if (Model != null)
     {
+        <div id="addModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div id="addModalContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="deleteModal" class="modal">
             <div class="modal-dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -56,12 +60,11 @@
                             <p>¿Desea eliminar el producto seleccionado?</p>
                         </div>
                         <div class="modal-footer">
-                            @using (Html.BeginForm("EliminarProducto", "Producto", FormMethod.Post))
-                            {
-                                <input id="inProducto" name="idProducto" type="hidden">
+                            <form method="post" asp-controller="Producto" asp-action="EliminarProducto">
+                                <input id="inProducto" name="dni" type="hidden">
                                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
                                 <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
-                            }
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -73,7 +76,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <font class="float-left" size="5">Productos</font>
-                        <button type="button" id="btnRegistrarProducto" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroProducto", "Producto")'">Registrar</button>
+                        <button type="button" id="btnRegistrarProducto" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroProducto", "Producto")'">+ Registrar</button>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -82,29 +85,26 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th scope="col">DNI</th>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">Precio</th>
-                                        <th scope="col">Imagen</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Fecha de Nacimiento</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var producto in Model.lstProducto)
+                                    @foreach (var recepcionista in Model.lstRecepcionista)
                                     {
                                         <tr>
-                                            <td class="align-middle">@producto.Nombre</td>
-                                            <td class="align-middle">$@producto.Precio</td>
-                                            <td class="align-middle">imagen</td>
-                                            <td>
-                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
-                                                    onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">
-                                                    Modificar
-                                                </button>
-                                            </td>
+                                            <td class="align-middle">@recepcionista.Dni</td>
+                                            <td class="align-middle">@recepcionista.Nombre</td>
+                                            <td class="align-middle">@recepcionista.Apellido</td>
+                                            <td class="align-middle">@recepcionista.Email</td>
+                                            <td class="align-middle">@recepcionista.FechaNacimiento</td>
                                             <td>
                                                 <button type="button" class="btn btn-danger btn-sm item-delete-selection"
-                                                        item-id="@producto.IdProducto">
+                                                        item-id="@recepcionista.Dni">
                                                     Borrar
                                                 </button>
                                             </td>
@@ -134,13 +134,27 @@
     {
         <script>
             $(function () {
+                //$("#btnRegistrarRecepcionista").click(function () {
+                //    var options = { "backdrop": "static", keyboard: true };
+                //    $.ajax({
+                //        type: "GET",
+                //        url: "/Recepcionista/AbrirRegistroRecepcionista",
+                //        contentType: "application/json; charset=utf-8",
+                //        datatype: "json",
+                //        success: function (data) {
+                //            $("#addModalContent").html(data);
+                //            $("#addModal").modal(options);
+                //            $("#addModal").modal("show");
+                //        }
+                //    });
+                //});
                 $(".item-delete-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
-                    $("#inProducto").val(id);
+                    $("#inRecepcionista").val(id);
                     $("#deleteModal").modal("show");
                 });
             });
         </script>
     }
-}
+}  

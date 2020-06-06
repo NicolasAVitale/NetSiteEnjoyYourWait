@@ -112,11 +112,6 @@ a:hover {
 
 /*TITULO*/
 
-/*header {
-    max-height: 80px;
-    margin-top: 15px;
-}*/
-
 .titulo {
     color: white;
     font-family: 'Dancing Script', cursive;
@@ -146,13 +141,6 @@ a:hover {
     vertical-align: text-bottom;
     margin: 0.5vw;
 }
-
-/*.logo-grill-2 {
-    height: 3vw;
-    display: inline-block;
-    position: relative;
-    vertical-align: text-bottom;
-}*/
 
 /*NAV*/
 
@@ -249,6 +237,36 @@ h4 {
     background-image: url("../img/carne2.png");
 }
 
+#cuadro-login {
+    padding-bottom: 6%;
+    padding-top: 6%;
+}
+
+.logo-grill-2 {
+    height: 4vw;
+    display: inline-block;
+    position: relative;
+    vertical-align: text-bottom;
+}
+
+.centrar-bloques {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-center {
+    text-align: center;
+}
+
+.txt-login {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.form-control {
+    font-size: 1.5rem;
+}
+
 /*JUEGOS*/
 .carta-juego {
     color: white;
@@ -258,11 +276,6 @@ h4 {
     outline: none;
     border: none;
     font-size: 2.5vw;
-    /*background-position: center;
-    background-image: url("../img/tabla-madera.png");
-    background-color: rgba(0, 0, 0, 0);
-    background-size: contain;
-    background-repeat: no-repeat;*/
     background-color: rgba(119, 119, 119, 0.6);
     border-radius: 4px;
 }

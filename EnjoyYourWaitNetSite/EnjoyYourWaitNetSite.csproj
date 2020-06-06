@@ -320,7 +320,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogic\BSBase.cs" />
     <Compile Include="BusinessLogic\BSLogin.cs" />
-    <Compile Include="BusinessLogic\BSProducto.cs" />
     <Compile Include="BusinessLogic\BSRecepcionista.cs" />
     <Compile Include="BusinessLogic\BSHome.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -341,7 +340,6 @@
     <Compile Include="Entities\Promocion.cs" />
     <Compile Include="Entities\Recepcionista.cs" />
     <Compile Include="Entities\Reporte.cs" />
-    <Compile Include="Entities\TipoProducto.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Exceptions\DataAccessException.cs" />
     <Compile Include="Exceptions\AuthException.cs" />
@@ -351,10 +349,7 @@
     </Compile>
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="DataAccess\DataAccessEYW.cs" />
-    <Compile Include="Models\AddProductoViewModel.cs" />
     <Compile Include="Models\AddRecepcionistaViewModel.cs" />
-    <Compile Include="Models\ProductoViewModel.cs" />
-    <Compile Include="Models\UpdateProductoViewModel.cs" />
     <Compile Include="Models\UserAuthenticationViewModel.cs" />
     <Compile Include="Models\RecepcionistaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -367,6 +362,7 @@
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\memotest.css" />
     <Content Include="Content\css\resto.styles.min.css" />
+    <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\fontawesome-free\css\all.css" />
     <Content Include="Content\fontawesome-free\css\all.min.css" />
     <Content Include="Content\fontawesome-free\css\brands.css" />
@@ -404,6 +400,7 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\img\carne2.png" />
     <Content Include="Content\img\comida1.png" />
     <Content Include="Content\img\fondo-madera.jpg" />
     <Content Include="Content\img\memotest2.png" />
@@ -414,6 +411,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\jquery.easing.compatibility.js" />
+    <Content Include="Scripts\jquery.easing.js" />
+    <Content Include="Scripts\jquery.easing.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\memotest.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -477,6 +479,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\sb-admin-2.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -504,7 +507,6 @@
     <Content Include="Views\Juego\Memotest.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Producto\ModificarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

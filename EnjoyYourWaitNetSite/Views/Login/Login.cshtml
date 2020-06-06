@@ -6,80 +6,110 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <title>LogIn - TGV GPC</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <title>Login - On The Grill</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/pinches co.ico">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+
+    <link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/fontawesome-free/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/Content/css/resto.styles.min.css" rel="stylesheet">
+
 </head>
-<body>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <div>
-        @if (ViewBag.SuccessState != null)
-        {
-            <div id="messageModal" class="modal">
-                <div class="modal-dialog">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                @switch (ViewBag.SuccessState)
-                                {
-                                    case "LOGIN_FAILED":
-                                        <p>El nombre de usuario o la contraseña son invalidos.</p>
-                                        break;
-                                    case "TOKEN_FAILED":
-                                        <p>Se produjo un error inesperado al iniciar sesión.</p>
-                                        break;
-                                }
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+<body class="fondo-madera">
+
+    <div class="container">
+        <div>
+            @if (ViewBag.SuccessState != null)
+            {
+                <div id="messageModal" class="modal">
+                    <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    @switch (ViewBag.SuccessState)
+                                    {
+                                        case "LOGIN_FAILED":
+                                            <p>El nombre de usuario o la contraseña son invalidos.</p>
+                                            break;
+                                        case "TOKEN_FAILED":
+                                            <p>Se produjo un error inesperado al iniciar sesión.</p>
+                                            break;
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <script>
-                $(function () {
-                    $('#messageModal').modal('show');
-                });
-            </script>
-        }
-    </div>
-    <div>
-        @using (Html.BeginForm("LoginAuth", "Login", FormMethod.Post))
-        {
-            <div class="card shadow-lg" style="width: 30%; height: 35%; position: absolute; top: 15%; left: 35%;">
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                        <table>
-                            <tr>
-                                <td>
-                                    <div class="form-group row">
-                                        <label>Nombre de usuario:</label>
-                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control mt-1 shadow" })
-                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                <script>
+                    $(function () {
+                        $('#messageModal').modal('show');
+                    });
+                </script>
+            }
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                @using (Html.BeginForm("LoginAuth", "Login", FormMethod.Post))
+                {
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6" id="cuadro-login">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <img src="~/Content/img/pinches red.svg" alt="logo-grill" class="logo-grill-2" />
+                                            <h1 class="titulo mb-4">On the <span id="grill">grill</span></h1>
+                                        </div>
+                                        <form class="user">
+                                            <div class="form-group form-center">
+                                                <label class="txt-login">Email</label>
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user centrar-bloques" })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="form-group form-center">
+                                               <label class="txt-login">Contraseña</label>
+                                                @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control form-control-user centrar-bloques" })
+                                                @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+                                            </div>
+                                            <input type="submit" value="Iniciar Sesión" class="btn btn-primary btn-user btn-block centrar-bloques txt-login" />
+                                        </form>
+
+
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group row">
-                                        <label>Contraseña:</label>
-                                        @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control mt-1 shadow" })
-                                        @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="submit" value="Iniciar Sesión" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
-                            </tr>
-                        </table>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
+                }
                 </div>
-            </div>
-        }
+        </div>
+                
     </div>
+
+     <script src="~/Scripts/jquery.min.js"></script>
+     <script src="~/Scripts/bootstrap.bundle.min.js"></script>                   
+    <script src="~/Scripts/jquery.easing.min.js"></script>
+    <script src="~/Scripts/sb-admin-2.min.js"></script>
+    
 </body>
+
 </html>

@@ -1,6 +1,6 @@
-﻿@model EnjoyYourWaitNetSite.Models.AddProductoViewModel
+﻿@model EnjoyYourWaitNetSite.Models.AddRecepcionistaViewModel
 @{
-    ViewBag.Title = "Registro de Producto";
+    ViewBag.Title = "Registro de Recepcionista";
 }
 <div>
     @if (ViewBag.Success != null)
@@ -12,11 +12,11 @@
                         <div class="modal-body">
                             @if (ViewBag.Success)
                             {
-                                <p>El producto se registró correctamente</p>
+                                <p>El/La recepcionista se registro correctamente</p>
                             }
                             else
                             {
-                                <p>Error al crear el producto</p>
+                                <p>Error al crear el/la recepcionista</p>
                             }
                         </div>
                         <div class="modal-footer">
@@ -29,15 +29,24 @@
     }
 
     <div class="mb-3">
-        <font size="6">Ingresar los datos del producto</font>
+        <font size="6">Ingresar los datos de el/la recepcionista</font>
     </div>
 
-    @using (Html.BeginForm("AñadirProducto", "Producto", FormMethod.Post))
+    @using (Html.BeginForm("AñadirRecepcionista", "Recepcionista", FormMethod.Post))
     {
         <div class="card shadow-lg">
             <div class="card-body">
                 <div class="row justify-content-center">
                     <table>
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <label>DNI:</label>
+                                    @Html.TextBoxFor(model => model.Dni, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Dni, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <div class="form-group row">
@@ -50,28 +59,27 @@
                         <tr>
                             <td>
                                 <div class="form-group row">
-                                    <label>Precio:</label>
-                                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                                    <label>Apellido:</label>
+                                    @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="form-group row">
-                                    <label>Imagen:</label>
-                                    @Html.TextBoxFor(model => model.Imagen, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+                                    <label>Email:</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="form-group row">
-                                    <label>Tipo:</label>
-                                    <select class="btn btn-primary" id="tipos">
-                                        <option>Seleccione Tipo</option>
-                                    </select>
+                                    <label>Fecha de Nacimiento:</label>
+                                    @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "datefield", type = "date" })
+                                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>
@@ -88,32 +96,7 @@
 
 @section scripts
 {
-    @if (ViewBag.Success == null)
-    {
-        <script>
-            $(document).ready(function () {
-                ObtenerTiposProducto();
-            });
-            function ObtenerTiposProducto() {
-                $.ajax({
-                    type: "POST",
-                    url: "/Producto/ObtenerTiposProducto",
-                    data: {},
-                    dataType: "json",
-                    success: function (data) {
-                        var select = $("#tipos");
-                        for (var i in data) {
-                            select.append($("<option></option>").attr("value", data[i].IdTipo).text(data[i].Descripcion));
-                        }
-                    },
-                    error: function (errorThrown) {
-                        alert(errorThrown);
-                    }
-                });
-            }
-        </script>
-    }
-    else
+    @if (ViewBag.Success != null)
     {
         <script>
             $(function () {
