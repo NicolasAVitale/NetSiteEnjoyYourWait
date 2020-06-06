@@ -1,4 +1,4 @@
-﻿@model EnjoyYourWaitNetSite.Models.ProductoViewModel
+﻿@*@model EnjoyYourWaitNetSite.Models.ProductoViewModel
 @{
     ViewBag.Title = "Gestión de Productos";
 }
@@ -16,16 +16,22 @@
                                     <p>Error al cargar los productos.</p>
                                     break;
                                 case "ADD_SUCCESS":
-                                    <p>El producto se creó correctamente.</p>
+                                    <p>El producto se agregó correctamente.</p>
                                     break;
                                 case "ADD_FAILED":
-                                    <p>Error al crear el producto.</p>
+                                    <p>Error al agregar el producto.</p>
                                     break;
                                 case "DELETE_SUCCESS":
                                     <p>El producto se eliminó correctamente.</p>
                                     break;
                                 case "DELETE_FAILED":
                                     <p>Error al eliminar el producto.</p>
+                                    break;
+                                case "UPDATE_SUCCESS":
+                                    <p>El producto se modificó correctamente.</p>
+                                    break;
+                                case "UPDATE_FAILED":
+                                    <p>Error al modificar el producto.</p>
                                     break;
                             }
                         </div>
@@ -39,11 +45,25 @@
     }
     @if (Model != null)
     {
-        <div id="addModal" class="modal">
+        <div id="updateModal" class="modal">
             <div class="modal-dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div id="addModalContent"></div>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modificar</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Desea modificar el producto seleccionado?</p>
+                        </div>
+                        <div class="modal-footer">
+                            @using (Html.BeginForm("ModificarProducto", "Producto", FormMethod.Post))
+                            {
+                                <input id="inRecepcionistaId" name="idpr" type="hidden">
+                                <input id="inRecepcionistaVal" name="email" type="hidden">
+                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <input type="submit" class="btn btn-sm btn-success" value="Modificar">
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,14 +77,15 @@
                             <h5 class="modal-title">Eliminar</h5>
                         </div>
                         <div class="modal-body">
-                            <p>¿Desea eliminar el producto seleccionado?</p>
+                            <p>¿Desea eliminar el/la recepcionista seleccionado/a?</p>
                         </div>
                         <div class="modal-footer">
-                            <form method="post" asp-controller="Producto" asp-action="EliminarProducto">
-                                <input id="inProducto" name="dni" type="hidden">
+                            @using (Html.BeginForm("EliminarRecepcionista", "Recepcionista", FormMethod.Post))
+                            {
+                                <input id="inRecepcionista" name="dni" type="hidden">
                                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
                                 <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
-                            </form>
+                            }
                         </div>
                     </div>
                 </div>
@@ -75,8 +96,8 @@
             <div class="col justify-content-center">
                 <div class="row mt-3">
                     <div class="col">
-                        <font class="float-left" size="5">Productos</font>
-                        <button type="button" id="btnRegistrarProducto" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroProducto", "Producto")'">+ Registrar</button>
+                        <font class="float-left" size="5">Recepionistas</font>
+                        <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">Registrar</button>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -94,14 +115,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var recepcionista in Model.lstRecepcionista)
+                                    @foreach (var recepcionista in Model.lstProducto)
                                     {
                                         <tr>
                                             <td class="align-middle">@recepcionista.Dni</td>
                                             <td class="align-middle">@recepcionista.Nombre</td>
                                             <td class="align-middle">@recepcionista.Apellido</td>
-                                            <td class="align-middle">@recepcionista.Email</td>
-                                            <td class="align-middle">@recepcionista.FechaNacimiento</td>
+                                            <td class="align-middle">
+                                                <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
+                                            </td>
+                                            <td class="align-middle">@recepcionista.FechaNacimiento.Date</td>
+                                            <td>
+                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
+                                                        item-id="@recepcionista.Dni">
+                                                    Modificar
+                                                </button>
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-danger btn-sm item-delete-selection"
                                                         item-id="@recepcionista.Dni">
@@ -134,20 +163,6 @@
     {
         <script>
             $(function () {
-                //$("#btnRegistrarRecepcionista").click(function () {
-                //    var options = { "backdrop": "static", keyboard: true };
-                //    $.ajax({
-                //        type: "GET",
-                //        url: "/Recepcionista/AbrirRegistroRecepcionista",
-                //        contentType: "application/json; charset=utf-8",
-                //        datatype: "json",
-                //        success: function (data) {
-                //            $("#addModalContent").html(data);
-                //            $("#addModal").modal(options);
-                //            $("#addModal").modal("show");
-                //        }
-                //    });
-                //});
                 $(".item-delete-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
@@ -155,6 +170,16 @@
                     $("#deleteModal").modal("show");
                 });
             });
+            $(function () {
+                $(".item-update-selection").click(function () {
+                    var $itemClicked = $(this);
+                    var id = $itemClicked.attr('item-id');
+                    var val = document.getElementById("emailInput").value
+                    $("#inRecepcionistaId").val(id);
+                    $("#inRecepcionistaVal").val(val);
+                    $("#updateModal").modal("show");
+                });
+            });
         </script>
     }
-}  
+}*@  

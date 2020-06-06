@@ -350,6 +350,7 @@
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="DataAccess\DataAccessEYW.cs" />
     <Compile Include="Models\AddRecepcionistaViewModel.cs" />
+    <Compile Include="Models\ProductoViewModel.cs" />
     <Compile Include="Models\UserAuthenticationViewModel.cs" />
     <Compile Include="Models\RecepcionistaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
