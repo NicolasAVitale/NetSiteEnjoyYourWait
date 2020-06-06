@@ -1,6 +1,6 @@
-﻿@model EnjoyYourWaitNetSite.Models.AddProductoViewModel
+﻿@model EnjoyYourWaitNetSite.Models.UpdateProductoViewModel
 @{
-    ViewBag.Title = "Registro de Producto";
+    ViewBag.Title = "Modificar producto";
 }
 <div>
     @if (ViewBag.Success != null)
@@ -12,11 +12,11 @@
                         <div class="modal-body">
                             @if (ViewBag.Success)
                             {
-                                <p>El producto se registró correctamente</p>
+                                <p>El producto se modificó correctamente</p>
                             }
                             else
                             {
-                                <p>Error al crear el producto</p>
+                                <p>Error al modificar el producto</p>
                             }
                         </div>
                         <div class="modal-footer">
@@ -32,7 +32,7 @@
         <font size="6">Ingresar los datos del producto</font>
     </div>
 
-    @using (Html.BeginForm("AñadirProducto", "Producto", FormMethod.Post))
+    @using (Html.BeginForm("ModificarProducto", "Producto", FormMethod.Post))
     {
         <div class="card shadow-lg">
             <div class="card-body">
@@ -66,17 +66,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <label>Tipo:</label>
-                                    <select class="btn btn-primary" id="tipos">
-                                        <option>Seleccione Tipo</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Crear" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
+                            <td><input type="submit" value="Modificar" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
                         </tr>
                     </table>
 
@@ -88,32 +78,7 @@
 
 @section scripts
 {
-    @if (ViewBag.Success == null)
-    {
-        <script>
-            $(document).ready(function () {
-                ObtenerTiposProducto();
-            });
-            function ObtenerTiposProducto() {
-                $.ajax({
-                    type: "POST",
-                    url: "/Producto/ObtenerTiposProducto",
-                    data: {},
-                    dataType: "json",
-                    success: function (data) {
-                        var select = $("#tipos");
-                        for (var i in data) {
-                            select.append($("<option></option>").attr("value", data[i].IdTipo).text(data[i].Descripcion));
-                        }
-                    },
-                    error: function (errorThrown) {
-                        alert(errorThrown);
-                    }
-                });
-            }
-        </script>
-    }
-    else
+    @if (ViewBag.Success != null)
     {
         <script>
             $(function () {
@@ -122,3 +87,6 @@
         </script>
     }
 }
+
+
+

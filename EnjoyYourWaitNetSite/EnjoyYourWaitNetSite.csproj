@@ -320,6 +320,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogic\BSBase.cs" />
     <Compile Include="BusinessLogic\BSLogin.cs" />
+    <Compile Include="BusinessLogic\BSProducto.cs" />
     <Compile Include="BusinessLogic\BSRecepcionista.cs" />
     <Compile Include="BusinessLogic\BSHome.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -340,6 +341,7 @@
     <Compile Include="Entities\Promocion.cs" />
     <Compile Include="Entities\Recepcionista.cs" />
     <Compile Include="Entities\Reporte.cs" />
+    <Compile Include="Entities\TipoProducto.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Exceptions\DataAccessException.cs" />
     <Compile Include="Exceptions\AuthException.cs" />
@@ -349,8 +351,10 @@
     </Compile>
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="DataAccess\DataAccessEYW.cs" />
+    <Compile Include="Models\AddProductoViewModel.cs" />
     <Compile Include="Models\AddRecepcionistaViewModel.cs" />
     <Compile Include="Models\ProductoViewModel.cs" />
+    <Compile Include="Models\UpdateProductoViewModel.cs" />
     <Compile Include="Models\UserAuthenticationViewModel.cs" />
     <Compile Include="Models\RecepcionistaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -500,6 +504,7 @@
     <Content Include="Views\Juego\Memotest.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Producto\ModificarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

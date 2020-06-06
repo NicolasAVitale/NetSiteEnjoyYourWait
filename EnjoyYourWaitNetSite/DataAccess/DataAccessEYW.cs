@@ -39,6 +39,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
             return jObj["Mensaje"].ToString();
         }
+
         public async Task<object[]> GetAuthToken(Usuario userModel)
         {
             var response = await BuildRequest(HttpMethod.Post, "auth", false, userModel);
@@ -70,6 +71,31 @@ namespace EnjoyYourWaitNetSite.DataAccess
         public async Task<bool> UpdateRecepcionista(int dni, string email)
         {
             return await Request(HttpMethod.Put, $"recepcionistas/{dni}/{email}", false);
+        }
+
+        public async Task<bool> CreateProducto(Producto producto)
+        {
+            return await Request(HttpMethod.Post, "productos", false, producto);
+        }
+
+        public async Task<List<TipoProducto>> GetAllTiposProducto()
+        {
+            return await Request<List<TipoProducto>>(HttpMethod.Get, "productos", false);
+        }
+
+        public async Task<List<Producto>> GetAllProductos()
+        {
+            return await Request<List<Producto>>(HttpMethod.Get, "productos", false);
+        }
+
+        public async Task<bool> DeleteProducto(int idProducto)
+        {
+            return await Request(HttpMethod.Delete, $"productos/{idProducto}", false);
+        }
+
+        public async Task<bool> UpdateProducto(int idProducto)
+        {
+            return await Request(HttpMethod.Put, $"productos/{idProducto}", false);
         }
 
         private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)
@@ -130,5 +156,6 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
             return response;
         }
+
     }
 }
