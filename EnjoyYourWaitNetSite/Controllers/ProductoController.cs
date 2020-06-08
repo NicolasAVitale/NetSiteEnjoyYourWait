@@ -79,20 +79,20 @@ namespace EnjoyYourWaitNetSite.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.Success = false;
-                    bool result = await bsProducto.CreateProducto(new Producto()
-                    {
-                        Nombre = producto.Nombre,
-                        Precio = producto.Precio,
-                        Imagen = producto.Imagen.FileName,
-                        IdTipo = producto.IdTipo
-                    });
-                    if (result)
-                    {
+                    //bool result = await bsProducto.CreateProducto(new Producto()
+                    //{
+                    //    Nombre = producto.Nombre,
+                    //    Precio = producto.Precio,
+                    //    Imagen = producto.Imagen.FileName,
+                    //    IdTipo = producto.IdTipo
+                    //});
+                    //if (result)
+                    //{
                         string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings.Get("ImagesFolder"), Path.GetFileName(producto.Imagen.FileName));
                         producto.Imagen.SaveAs(fullPath);
                         TempData["Success"] = true;
                         return RedirectToAction("GestionProducto");
-                    }
+                    //}
                 }
                 //if (!difEdad)
                 //{

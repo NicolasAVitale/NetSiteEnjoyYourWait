@@ -87,37 +87,34 @@
 
 @section scripts
 {
-    @if (ViewBag.Success == null)
-    {
-        <script>
-            $(document).ready(function () {
-                ObtenerTiposProducto();
-            });
-            function ObtenerTiposProducto() {
-                $.ajax({
-                    type: "POST",
-                    url: "/Producto/ObtenerTiposProducto",
-                    data: {},
-                    dataType: "json",
-                    success: function (data) {
-                        var select = $("#tipos");
-                        for (var i in data) {
-                            select.append($("<option></option>").attr("value", data[i].IdTipo).text(data[i].Descripcion));
-                        }
-                    },
-                    error: function (errorThrown) {
-                        alert(errorThrown);
+    <script>
+        $(document).ready(function () {
+            ObtenerTiposProducto();
+        });
+        function ObtenerTiposProducto() {
+            $.ajax({
+                type: "POST",
+                url: "/Producto/ObtenerTiposProducto",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    var select = $("#tipos");
+                    for (var i in data) {
+                        select.append($("<option></option>").attr("value", data[i].IdTipo).text(data[i].Descripcion));
                     }
-                });
-            }
-        </script>
-    }
-    else
+                },
+                error: function (errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+    </script>
+    @if (ViewBag.Success != null)
     {
         <script>
             $(function () {
                 $('#messageModal').modal('show');
             });
-        </script>
+        </script>   
     }
 }
