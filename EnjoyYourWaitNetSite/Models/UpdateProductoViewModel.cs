@@ -14,7 +14,6 @@ namespace EnjoyYourWaitNetSite.Models
         public string Nombre { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es obligatorio.")]
         public double Precio { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es obligatorio.")]
-        public string Imagen { get; set; }
+        public HttpPostedFileBase Imagen { get; set; }
     }
 }

@@ -1,9 +1,14 @@
 ﻿using EnjoyYourWaitNetSite.BusinessLogic;
 using EnjoyYourWaitNetSite.Entities;
+using EnjoyYourWaitNetSite.Helper;
 using EnjoyYourWaitNetSite.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace EnjoyYourWaitNetSite.Controllers
@@ -17,6 +22,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             try
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
+                    
                 //Cargo lista de recepcionistas
                 //List<Usuario> recepcionistas = await bsRecepcionista.GetAllRecepcionistas();
                 //return View("GestionRecepcionista", new RecepcionistaViewModel()
@@ -36,7 +42,7 @@ namespace EnjoyYourWaitNetSite.Controllers
                 producto.IdProducto = 1;
                 producto.Nombre = "Hamburguejas al vapor";
                 producto.Precio = 120.60;
-                producto.Imagen = "Ham_al_vapor";
+                producto.Imagen = "hamburguesa.jpg";
                 producto.IdTipo = 1;
                 model.lstProducto.Add(producto);
                 return View("GestionProducto", model);
@@ -60,7 +66,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             {
                 Nombre = producto.Nombre,
                 Precio = producto.Precio,
-                Imagen = producto.Imagen
+                Imagen = null
             };
             return View("ModificarProducto", model);
         }
@@ -70,10 +76,6 @@ namespace EnjoyYourWaitNetSite.Controllers
             try
             {
                 ViewBag.Success = null;
-                //int difDateYear = DateTime.Today.Year - recepcionista.FechaNacimiento.Year;
-                //int difDateMonth = DateTime.Today.Month - recepcionista.FechaNacimiento.Month;
-                //int difDateDay = DateTime.Today.Day - recepcionista.FechaNacimiento.Day;
-                //bool difEdad = difDateYear >= 17 && difDateMonth >= 0 && difDateDay >= 0;
                 if (ModelState.IsValid)
                 {
                     ViewBag.Success = false;
@@ -81,11 +83,13 @@ namespace EnjoyYourWaitNetSite.Controllers
                     {
                         Nombre = producto.Nombre,
                         Precio = producto.Precio,
-                        Imagen = producto.Imagen,
+                        Imagen = producto.Imagen.FileName,
                         IdTipo = producto.IdTipo
                     });
                     if (result)
                     {
+                        string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings.Get("ImagesFolder"), Path.GetFileName(producto.Imagen.FileName));
+                        producto.Imagen.SaveAs(fullPath);
                         TempData["Success"] = true;
                         return RedirectToAction("GestionProducto");
                     }

@@ -60,8 +60,7 @@
                             <td>
                                 <div class="form-group row">
                                     <label>Imagen:</label>
-                                    @Html.TextBoxFor(model => model.Imagen, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+                                    <input class="form-control" type="file" id="Imagen" name="Imagen" value="@Model.Imagen" required />
                                 </div>
                             </td>
                         </tr>

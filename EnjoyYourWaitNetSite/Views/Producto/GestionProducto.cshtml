@@ -95,7 +95,11 @@
                                         <tr>
                                             <td class="align-middle">@producto.Nombre</td>
                                             <td class="align-middle">$@producto.Precio</td>
-                                            <td class="align-middle">imagen</td>
+                                            <td class="align-middle">
+                                                <div style="display: inline-block" id="img_prod" class="col-sm-6 col-md-3 col-xl-5ths film-item, col-int-index">
+                                                    <img class="img-responsive center-block lazy" src="~/Images/@producto.Imagen" style="display: block;">
+                                                </div>
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-success btn-sm item-update-selection"
                                                         onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">

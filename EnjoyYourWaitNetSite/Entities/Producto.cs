@@ -1,4 +1,6 @@
-﻿namespace EnjoyYourWaitNetSite.Entities
+﻿using System.Web;
+
+namespace EnjoyYourWaitNetSite.Entities
 {
     public class Producto
     {

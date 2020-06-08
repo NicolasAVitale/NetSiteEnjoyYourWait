@@ -408,6 +408,7 @@
     <Content Include="Content\img\carne2.png" />
     <Content Include="Content\img\comida1.png" />
     <Content Include="Content\img\fondo-madera.jpg" />
+    <Content Include="Content\img\hamburguesa.jpg" />
     <Content Include="Content\img\memotest2.png" />
     <Content Include="Content\img\pinches co.ico" />
     <Content Include="Content\img\pinches red.svg" />
@@ -473,6 +474,7 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
