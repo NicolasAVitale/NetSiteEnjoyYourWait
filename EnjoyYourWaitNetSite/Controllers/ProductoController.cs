@@ -18,39 +18,24 @@ namespace EnjoyYourWaitNetSite.Controllers
         private BSProducto bsProducto = new BSProducto();
         public async Task<ActionResult> GestionProducto()
         {
-            Producto producto = new Producto();
+            ProductoViewModel model = new ProductoViewModel();
             try
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
                     
-                //Cargo lista de recepcionistas
-                //List<Usuario> recepcionistas = await bsRecepcionista.GetAllRecepcionistas();
-                //return View("GestionRecepcionista", new RecepcionistaViewModel()
-                //{
-                //    lstRecepcionista = recepcionistas.ConvertAll(r => new Usuario
-                //    {
-                //        Dni = r.Dni,
-                //        Nombre = r.Nombre,
-                //        Apellido = r.Apellido,
-                //        Email = r.Email,
-                //        FechaNacimiento = r.FechaNacimiento
-                //    })
-                //});
-                ProductoViewModel model = new ProductoViewModel();
-                model.lstProducto = new List<Producto>();
-                //Usuario recepcionista = new Usuario();
-                producto.IdProducto = 1;
-                producto.Nombre = "Hamburguejas al vapor";
-                producto.Precio = 120.60;
-                producto.Imagen = "hamburguesa.jpg";
-                producto.IdTipo = 1;
-                model.lstProducto.Add(producto);
+                //Cargo lista de productos
+                List<Producto> productos = await bsProducto.GetAllProductos();
+                model.lstProducto = productos;
+                if (productos.Count == 0)
+                {
+                    TempData["SuccessState"] = "LOAD_NOPRODUCTS";
+                }
                 return View("GestionProducto", model);
             }
             catch (Exception)
             {
                 TempData["SuccessState"] = "LOAD_FAILED";
-                return View("RegistroProducto", producto);
+                return View("RegistroProducto", model);
             }
         }
 
@@ -139,7 +124,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> EliminarProducto(int idProducto)
+        public async Task<ActionResult> DeshabilitarProducto(int idProducto)
         {
             //string token = HttpContext.Session.GetString("AuthToken");
             //if (token == null)
@@ -150,17 +135,47 @@ namespace EnjoyYourWaitNetSite.Controllers
 
             try
             {
-                TempData["SuccessState"] = "DELETE_FAILED";
-                bool result = await bsProducto.DeleteProducto(idProducto);
+                TempData["SuccessState"] = "DISABLE_FAILED";
+                Producto producto = new Producto()
+                {
+                    Activo = false
+                };
+                bool result = await bsProducto.DisableProducto(idProducto, producto);
                 if (result)
                 {
-                    TempData["SuccessState"] = "DELETE_SUCCESS";
+                    TempData["SuccessState"] = "DISABLE_SUCCESS";
                 }
                 return RedirectToAction("GestionProducto");
             }
             catch (Exception)
             {
-                TempData["SuccessState"] = "DELETE_FAILED";
+                TempData["SuccessState"] = "DISABLE_FAILED";
+                return RedirectToAction("GestionProducto");
+            }
+        }
+
+        public async Task<ActionResult> HabilitarProducto(int idProducto)
+        {
+            //string token = HttpContext.Session.GetString("AuthToken");
+            //if (token == null)
+            //{
+            //    return RedirectToAction("Index",
+            //        "Authentication");
+            //}
+
+            try
+            {
+                TempData["SuccessState"] = "ENABLE_FAILED";
+                bool result = await bsProducto.EnableProducto(idProducto);
+                if (result)
+                {
+                    TempData["SuccessState"] = "ENABLE_SUCCESS";
+                }
+                return RedirectToAction("GestionProducto");
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "ENABLE_FAILED";
                 return RedirectToAction("GestionProducto");
             }
         }

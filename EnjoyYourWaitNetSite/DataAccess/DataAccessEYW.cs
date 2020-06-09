@@ -88,9 +88,14 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return await Request<List<Producto>>(HttpMethod.Get, "productos", false);
         }
 
-        public async Task<bool> DeleteProducto(int idProducto)
+        public async Task<bool> DisableProducto(int idProducto, Producto producto)
         {
-            return await Request(HttpMethod.Delete, $"productos/{idProducto}", false);
+            return await Request(HttpMethod.Put, $"productos/{idProducto}", false, producto);
+        }
+
+        public async Task<bool> EnableProducto(int idProducto)
+        {
+            return await Request(HttpMethod.Put, $"productos/{idProducto}", false);
         }
 
         public async Task<bool> UpdateProducto(int idProducto)
@@ -102,7 +107,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
         {
             var response = await BuildRequest(method, url, auth, body);
 
-            return response.StatusCode == HttpStatusCode.OK;
+            return response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created || response.StatusCode == HttpStatusCode.NoContent;
         }
 
         private async Task<T> Request<T>(HttpMethod method, string url, bool auth = false, object body = null)

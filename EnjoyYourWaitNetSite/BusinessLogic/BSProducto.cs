@@ -15,9 +15,14 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         {
             return await dataAccess.CreateProducto(producto);
         }
-        public async Task<bool> DeleteProducto(int idProducto)
+        public async Task<bool> DisableProducto(int idProducto, Producto producto)
         {
-            return await dataAccess.DeleteProducto(idProducto);
+            return await dataAccess.DisableProducto(idProducto, producto);
+        }
+
+        public async Task<bool> EnableProducto(int idProducto)
+        {
+            return await dataAccess.EnableProducto(idProducto);
         }
 
         public async Task<bool> UpdateProducto(int idProducto)

@@ -2,127 +2,175 @@
 @{
     ViewBag.Title = "Gestión de Productos";
 }
-<div>
-    @if (ViewBag.SuccessState != null)
-    {
-        <div id="messageModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            @switch (ViewBag.SuccessState)
-                            {
-                                case "LOAD_FAILED":
-                                    <p>Error al cargar los productos.</p>
-                                    break;
-                                case "ADD_SUCCESS":
-                                    <p>El producto se agregó correctamente.</p>
-                                    break;
-                                case "ADD_FAILED":
-                                    <p>Error al agregar el producto.</p>
-                                    break;
-                                case "DELETE_SUCCESS":
-                                    <p>El producto se eliminó correctamente.</p>
-                                    break;
-                                case "DELETE_FAILED":
-                                    <p>Error al eliminar el producto.</p>
-                                    break;
-                                case "UPDATE_SUCCESS":
-                                    <p>El producto se modificó correctamente.</p>
-                                    break;
-                                case "UPDATE_FAILED":
-                                    <p>Error al modificar el producto.</p>
-                                    break;
-                            }
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-    @if (Model != null)
-    {
-        <div id="deleteModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Eliminar</h5>
-                        </div>
-                        <div class="modal-body">
-                            <p>¿Desea eliminar el producto seleccionado?</p>
-                        </div>
-                        <div class="modal-footer">
-                            @using (Html.BeginForm("EliminarProducto", "Producto", FormMethod.Post))
-                            {
-                                <input id="inProducto" name="idProducto" type="hidden">
-                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
-                            }
+    <div>
+        @if (ViewBag.SuccessState != null)
+        {
+            <div id="messageModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                @switch (ViewBag.SuccessState)
+                                {
+                                    case "LOAD_NOPRODUCTS":
+                                        <p>No hay productos cargados en el sistema aún.</p>
+                                        break;
+                                    case "LOAD_FAILED":
+                                        <p>Error al cargar los productos.</p>
+                                        break;
+                                    case "ADD_SUCCESS":
+                                        <p>El producto se agregó correctamente.</p>
+                                        break;
+                                    case "ADD_FAILED":
+                                        <p>Error al agregar el producto.</p>
+                                        break;
+                                    case "DISABLE_SUCCESS":
+                                        <p>El producto se deshabilitó correctamente.</p>
+                                        break;
+                                    case "DISABLE_FAILED":
+                                        <p>Error al deshabilitar el producto.</p>
+                                        break;
+                                    case "ENABLE_SUCCESS":
+                                        <p>El producto se habilitó correctamente.</p>
+                                        break;
+                                    case "ENABLE_FAILED":
+                                        <p>Error al habilitar el producto.</p>
+                                        break;
+                                    case "UPDATE_SUCCESS":
+                                        <p>El producto se modificó correctamente.</p>
+                                        break;
+                                    case "UPDATE_FAILED":
+                                        <p>Error al modificar el producto.</p>
+                                        break;
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+        @if (Model != null)
+        {
+            <div id="disableModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Deshabilitar</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea deshabilitar el producto seleccionado? De esta forma se eliminará el producto del menú.</p>
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("DeshabilitarProducto", "Producto", FormMethod.Post))
+                                {
+                                    <input id="inProducto" name="idProducto" type="hidden">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="row mt-3">
-            <div class="col justify-content-center">
-                <div class="row mt-3">
-                    <div class="col">
-                        <font class="float-left" size="5">Productos</font>
-                        <button type="button" id="btnRegistrarProducto" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroProducto", "Producto")'">Registrar</button>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Precio</th>
-                                        <th scope="col">Imagen</th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var producto in Model.lstProducto)
-                                    {
-                                        <tr>
-                                            <td class="align-middle">@producto.Nombre</td>
-                                            <td class="align-middle">$@producto.Precio</td>
-                                            <td class="align-middle">
-                                                <div style="display: inline-block" id="img_prod" class="col-sm-6 col-md-3 col-xl-5ths film-item, col-int-index">
-                                                    <img class="img-responsive center-block lazy" src="~/Content/img/@producto.Imagen" style="display: block;">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
-                                                        onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">
-                                                    Modificar
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger btn-sm item-delete-selection"
-                                                        item-id="@producto.IdProducto">
-                                                    Borrar
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+            <div id="enableModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Habilitar</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea habilitar el producto seleccionado?</p>
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("HabilitarProducto", "Producto", FormMethod.Post))
+                                {
+                                    <input id="inProducto" name="idProducto" type="hidden">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-primary" value="Habilitar">
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+
+            <div class="row mt-3">
+                <div class="col justify-content-center">
+                    <div class="row mt-3">
+                        <div class="col">
+                            <font class="float-left" size="5">Productos</font>
+                            <button type="button" id="btnRegistrarProducto" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroProducto", "Producto")'">Registrar</button>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Imagen</th>
+                                            <th scope="col">Estado Producto</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var producto in Model.lstProducto)
+                                        {
+                                            <tr>
+                                                <td class="align-middle">@producto.Nombre</td>
+                                                <td class="align-middle">$@producto.Precio</td>
+                                                <td class="align-middle">
+                                                    <div style="display: inline-block" id="img_prod" class="col-sm-6 col-md-3 col-xl-5ths film-item, col-int-index">
+                                                        <img class="img-responsive center-block lazy" src="~/Content/img/@producto.Imagen" style="display: block;">
+                                                    </div>
+                                                </td>
+                                                @if (producto.Activo)
+                                                {
+                                                    <td class="align-middle">Habilitado</td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="align-middle">Deshabilitado</td>
+                                                }
+                                                <td>
+                                                    <button type="button" class="btn btn-success btn-sm item-update-selection"
+                                                            onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">
+                                                        Modificar
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-sm item-enable-selection"
+                                                            item-id="@producto.IdProducto">
+                                                        Habilitar
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-sm item-disable-selection"
+                                                            item-id="@producto.IdProducto">
+                                                        Deshabilitar
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 
 @section scripts
 {
@@ -138,11 +186,19 @@
     {
         <script>
             $(function () {
-                $(".item-delete-selection").click(function () {
+                $(".item-disable-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
                     $("#inProducto").val(id);
-                    $("#deleteModal").modal("show");
+                    $("#disableModal").modal("show");
+                });
+            });
+            $(function () {
+                $(".item-enable-selection").click(function () {
+                    var $itemClicked = $(this);
+                    var id = $itemClicked.attr('item-id');
+                    $("#inProducto").val(id);
+                    $("#enableModal").modal("show");
                 });
             });
         </script>
