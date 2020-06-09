@@ -99,7 +99,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> EliminarRecepcionista(int dni)
+        public async Task<ActionResult> DeshabilitarRecepcionista(int dni)
         {
             //string token = HttpContext.Session.GetString("AuthToken");
             //if (token == null)
@@ -110,17 +110,43 @@ namespace EnjoyYourWaitNetSite.Controllers
 
             try
             {
-                TempData["SuccessState"] = "DELETE_FAILED";
-                bool result = await bsRecepcionista.DeleteRecepcionista(dni);
+                TempData["SuccessState"] = "DISABLE_FAILED";
+                bool result = await bsRecepcionista.DisableRecepcionista(dni);
                 if (result)
                 {
-                    TempData["SuccessState"] = "DELETE_SUCCESS";
+                    TempData["SuccessState"] = "DISABLE_SUCCESS";
                 }
                 return RedirectToAction("GestionRecepcionista");
             }
             catch (Exception)
             {
-                TempData["SuccessState"] = "DELETE_FAILED";
+                TempData["SuccessState"] = "DISABLE_FAILED";
+                return RedirectToAction("GestionRecepcionista");
+            }
+        }
+
+        public async Task<ActionResult> HabilitarRecepcionista(int dni)
+        {
+            //string token = HttpContext.Session.GetString("AuthToken");
+            //if (token == null)
+            //{
+            //    return RedirectToAction("Index",
+            //        "Authentication");
+            //}
+
+            try
+            {
+                TempData["SuccessState"] = "ENABLE_FAILED";
+                bool result = await bsRecepcionista.EnableRecepcionista(dni);
+                if (result)
+                {
+                    TempData["SuccessState"] = "ENABLE_SUCCESS";
+                }
+                return RedirectToAction("GestionRecepcionista");
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "ENABLE_FAILED";
                 return RedirectToAction("GestionRecepcionista");
             }
         }

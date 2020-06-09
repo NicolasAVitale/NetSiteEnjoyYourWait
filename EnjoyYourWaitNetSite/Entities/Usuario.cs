@@ -12,5 +12,6 @@ namespace EnjoyYourWaitNetSite.Entities
         public DateTime FechaNacimiento { get; set; }
         public string Contrasena { get; set; }
         public int IdRol { get; set; }
+        public bool Activo { get; set; }
     }
 }

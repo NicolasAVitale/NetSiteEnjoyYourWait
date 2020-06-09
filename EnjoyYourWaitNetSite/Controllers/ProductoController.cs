@@ -136,11 +136,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             try
             {
                 TempData["SuccessState"] = "DISABLE_FAILED";
-                Producto producto = new Producto()
-                {
-                    Activo = false
-                };
-                bool result = await bsProducto.DisableProducto(idProducto, producto);
+                bool result = await bsProducto.DisableProducto(idProducto);
                 if (result)
                 {
                     TempData["SuccessState"] = "DISABLE_SUCCESS";
@@ -188,7 +184,6 @@ namespace EnjoyYourWaitNetSite.Controllers
             lista.Add(new TipoProducto { IdTipo = 2, Descripcion = "Bebida" });
             return Json(lista);
         }
-
 
     }
 }

@@ -2,153 +2,198 @@
 @{
     ViewBag.Title = "Gestión de Recepcionistas";
 }
-<div>
-    @if (ViewBag.SuccessState != null)
-    {
-        <div id="messageModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            @switch (ViewBag.SuccessState)
-                            {
-                                case "LOAD_FAILED":
-                                    <p>Error al cargar los recepcionistas.</p>
-                                    break;
-                                case "ADD_SUCCESS":
-                                    <p>El/La recepcionista se registró correctamente.</p>
-                                    break;
-                                case "ADD_FAILED":
-                                    <p>Error al registrar el/la recepcionista.</p>
-                                    break;
-                                case "DELETE_SUCCESS":
-                                    <p>El/La recepcionista se elimino correctamente.</p>
-                                    break;
-                                case "DELETE_FAILED":
-                                    <p>Error al eliminar el/la recepcionista.</p>
-                                    break;
-                                case "UPDATE_SUCCESS":
-                                    <p>El/La recepcionista se modificó correctamente.</p>
-                                    break;
-                                case "UPDATE_FAILED":
-                                    <p>Error al modificar el/la recepcionista.</p>
-                                    break;
-                            }
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-    @if (Model != null)
-    {
-        <div id="updateModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modificar</h5>
-                        </div>
-                        <div class="modal-body">
-                            <p>¿Desea modificar el/la recepcionista seleccionado/a?</p>
-                        </div>
-                        <div class="modal-footer">
-                            @using (Html.BeginForm("ModificarRecepcionista", "Recepcionista", FormMethod.Post))
-                            {
-                                <input id="inRecepcionistaId" name="dni" type="hidden">
-                                <input id="inRecepcionistaVal" name="email" type="hidden">
-                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <input type="submit" class="btn btn-sm btn-success" value="Modificar">
-                            }
+    <div>
+        @if (ViewBag.SuccessState != null)
+        {
+            <div id="messageModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                @switch (ViewBag.SuccessState)
+                                {
+                                    case "LOAD_FAILED":
+                                        <p>Error al cargar los recepcionistas.</p>
+                                        break;
+                                    case "ADD_SUCCESS":
+                                        <p>El/La recepcionista se registró correctamente.</p>
+                                        break;
+                                    case "ADD_FAILED":
+                                        <p>Error al registrar el/la recepcionista.</p>
+                                        break;
+                                    case "DISABLE_SUCCESS":
+                                        <p>El acceso al sistema se deshabilitó correctamente.</p>
+                                        break;
+                                    case "DISABLE_FAILED":
+                                        <p>Error al deshabilitar el acceso al sistema.</p>
+                                        break;
+                                    case "ENABLE_SUCCESS":
+                                        <p>El acceso al sistema se habilitó correctamente.</p>
+                                        break;
+                                    case "ENABLE_FAILED":
+                                        <p>Error al habilitar el acceso al sistema.</p>
+                                        break;
+                                    case "UPDATE_SUCCESS":
+                                        <p>El/La recepcionista se modificó correctamente.</p>
+                                        break;
+                                    case "UPDATE_FAILED":
+                                        <p>Error al modificar el/la recepcionista.</p>
+                                        break;
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+        @if (Model != null)
+        {
+            <div id="updateModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modificar</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea modificar el/la recepcionista seleccionado/a?</p>
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("ModificarRecepcionista", "Recepcionista", FormMethod.Post))
+                                {
+                                    <input id="inRecepcionistaId" name="dni" type="hidden">
+                                    <input id="inRecepcionistaVal" name="email" type="hidden">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-success" value="Modificar">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div id="deleteModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Eliminar</h5>
-                        </div>
-                        <div class="modal-body">
-                            <p>¿Desea eliminar el/la recepcionista seleccionado/a?</p>
-                        </div>
-                        <div class="modal-footer">
-                            @using (Html.BeginForm("EliminarRecepcionista", "Recepcionista", FormMethod.Post))
-                            {
-                                <input id="inRecepcionista" name="dni" type="hidden">
-                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
-                            }
+            <div id="disableModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Deshabilitar</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea deshabilitar el/la recepcionista seleccionado/a? De esta forma se eliminará el acceso al sistema.</p>
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("DisableRecepcionista", "Recepcionista", FormMethod.Post))
+                                {
+                                    <input id="inRecepcionista" name="dni" type="hidden">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-3">
-            <div class="col justify-content-center">
-                <div class="row mt-3">
-                    <div class="col">
-                        <font class="float-left" size="5">Recepionistas</font>
-                        <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">Registrar</button>
+            <div id="enableModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Habilitar</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea habilitar el/la recepcionista seleccionado/a?</p>
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("EnableRecepcionista", "Recepcionista", FormMethod.Post))
+                                {
+                                    <input id="inRecepcionista" name="dni" type="hidden">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">DNI</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Apellido</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Fecha de Nacimiento</th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var recepcionista in Model.lstRecepcionista)
-                                    {
+            </div>
+
+            <div class="row mt-3">
+                <div class="col justify-content-center">
+                    <div class="row mt-3">
+                        <div class="col">
+                            <font class="float-left" size="5">Recepionistas</font>
+                            <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">Registrar</button>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td class="align-middle">@recepcionista.Dni</td>
-                                            <td class="align-middle">@recepcionista.Nombre</td>
-                                            <td class="align-middle">@recepcionista.Apellido</td>
-                                            <td class="align-middle">
-                                                <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
-                                            </td>
-                                            <td class="align-middle">@recepcionista.FechaNacimiento.Date</td>
-                                            <td>
-                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
-                                                        item-id="@recepcionista.Dni">
-                                                    Modificar
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger btn-sm item-delete-selection"
-                                                        item-id="@recepcionista.Dni">
-                                                    Borrar
-                                                </button>
-                                            </td>
+                                            <th scope="col">DNI</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Apellido</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Fecha de Nacimiento</th>
+                                            <th scope="col">Estado acceso sistema</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var recepcionista in Model.lstRecepcionista)
+                                        {
+                                            <tr>
+                                                <td class="align-middle">@recepcionista.Dni</td>
+                                                <td class="align-middle">@recepcionista.Nombre</td>
+                                                <td class="align-middle">@recepcionista.Apellido</td>
+                                                <td class="align-middle">
+                                                    <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
+                                                </td>
+                                                <td class="align-middle">@recepcionista.FechaNacimiento.Date</td>
+                                                @if (recepcionista.Activo)
+                                                {
+                                                    <td class="align-middle">Habilitado</td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="align-middle">Deshabilitado</td>
+                                                }
+                                                <td>
+                                                    <button type="button" class="btn btn-success btn-sm item-update-selection"
+                                                            item-id="@recepcionista.Dni">
+                                                        Modificar
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-sm item-enable-selection"
+                                                            item-id="@recepcionista.Dni">
+                                                        Habilitar
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-sm item-disable-selection"
+                                                            item-id="@recepcionista.Dni">
+                                                        Deshabilitar
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
 
 @section scripts
 {
@@ -164,11 +209,19 @@
     {
         <script>
             $(function () {
-                $(".item-delete-selection").click(function () {
+                $(".item-disable-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
                     $("#inRecepcionista").val(id);
-                    $("#deleteModal").modal("show");
+                    $("#disableModal").modal("show");
+                });
+            });
+            $(function () {
+                $(".item-enable-selection").click(function () {
+                    var $itemClicked = $(this);
+                    var id = $itemClicked.attr('item-id');
+                    $("#inRecepcionista").val(id);
+                    $("#enableModal").modal("show");
                 });
             });
             $(function () {
