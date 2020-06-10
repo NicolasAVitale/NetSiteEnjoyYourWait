@@ -339,6 +339,12 @@ h4 {
     }
 }
 
+@media(max-width: 936px) and (min-width: 768px) {
+    .navbar-nav {
+        padding-top: 2vw;
+    }
+}
+
 @media(max-width: 991px) {
     .col-juegos {
         margin-top: 10px;
@@ -347,7 +353,7 @@ h4 {
 
 @media(max-width: 991px) and (min-width: 768px) {
     .body-content {
-        padding-top: 7vw;
+        padding-top: 9vw;
     }
     
     .titulo-secundario {
@@ -400,6 +406,19 @@ h4 {
         padding-right: 5px;
         padding-left: 5px;
     }
+
+    .col-recep {
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 5px;
+    }    
+}
+
+/*.table-recepcion {
+        
+    }*/
+
+@media(max-width: 708px) {
 }
 
 @media(max-width: 425px) {
@@ -426,10 +445,6 @@ h4 {
 
     .carta-juego {
         font-size: 4.5vw;
-    }
-
-    .col-recep {
-        padding-left: 25px;
     }
 }
 

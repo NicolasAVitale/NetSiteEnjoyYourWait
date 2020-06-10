@@ -130,40 +130,40 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col">
+                        <div class="col-md-12 col-recep">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">DNI</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Estado acceso sistema</th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
+                                            <th scope="col" class="table-recepcion">DNI</th>
+                                            <th scope="col" class="table-recepcion">Nombre</th>
+                                            <th scope="col" class="table-recepcion">Apellido</th>
+                                            <th scope="col" class="table-recepcion">Email</th>
+                                            <th scope="col" class="table-recepcion">Estado acceso sistema</th>
+                                            <th scope="col" class="table-recepcion"></th>
+                                            <th scope="col" class="table-recepcion"></th>
+                                            <th scope="col" class="table-recepcion"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var recepcionista in Model.lstRecepcionista)
                                         {
                                         <tr>
-                                            <td class="align-middle">@recepcionista.Dni</td>
-                                            <td class="align-middle">@recepcionista.Nombre</td>
-                                            <td class="align-middle">@recepcionista.Apellido</td>
-                                            <td class="align-middle">
+                                            <td class="align-middle table-recepcion">@recepcionista.Dni</td>
+                                            <td class="align-middle table-recepcion">@recepcionista.Nombre</td>
+                                            <td class="align-middle table-recepcion">@recepcionista.Apellido</td>
+                                            <td class="align-middle table-recepcion">
                                                 <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
                                             </td>
                                             @if (recepcionista.Activo)
                                             {
-                                                <td class="align-middle">Habilitado</td>
+                                                <td class="align-middle table-recepcion">Habilitado</td>
                                             }
                                             else
                                             {
-                                                <td class="align-middle">Deshabilitado</td>
+                                                <td class="align-middle table-recepcion">Deshabilitado</td>
                                             }
-                                            <td>
+                                            <td class="table-recepcion">
                                                 <button type="button" class="btn btn-success btn-sm item-update-selection btn-grill-style"
                                                         item-id="@recepcionista.Dni">
                                                     Modificar
@@ -171,7 +171,7 @@
                                             </td>
                                             @if (recepcionista.Activo)
                                             {
-                                                <td>
+                                                <td class="table-recepcion">
                                                     <button type="button" class="btn btn-primary btn-sm item-enable-selection btn-grill-style"
                                                             item-id="@recepcionista.Dni">
                                                         Habilitar
@@ -180,7 +180,7 @@
                                             }
                                             else
                                             {
-                                                <td>
+                                                <td class="table-recepcion">
                                                     <button type = "button" class="btn btn-danger btn-sm item-disable-selection btn-grill-style"
                                                                     item-id="@recepcionista.Dni">
                                                         Deshabilitar
