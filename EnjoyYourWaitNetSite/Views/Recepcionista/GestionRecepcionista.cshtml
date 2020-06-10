@@ -66,7 +66,7 @@
                                 {
                                     <input id="inRecepcionistaId" name="dni" type="hidden">
                                     <input id="inRecepcionistaVal" name="email" type="hidden">
-                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-success" value="Modificar">
                                 }
                             </div>
@@ -89,7 +89,7 @@
                                 @using (Html.BeginForm("DisableRecepcionista", "Recepcionista", FormMethod.Post))
                                 {
                                     <input id="inRecepcionista" name="dni" type="hidden">
-                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
                                 }
                             </div>
@@ -112,7 +112,7 @@
                                 @using (Html.BeginForm("EnableRecepcionista", "Recepcionista", FormMethod.Post))
                                 {
                                     <input id="inRecepcionista" name="dni" type="hidden">
-                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
                                 }
                             </div>
@@ -126,7 +126,7 @@
                     <div class="row mt-3">
                         <div class="col">
                             <font class="float-left" size="5">Recepionistas</font>
-                            <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">Registrar</button>
+                            <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">Crear nuevo</button>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -166,7 +166,7 @@
                                                 <td class="align-middle">Deshabilitado</td>
                                             }
                                             <td>
-                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
+                                                <button type="button" class="btn btn-success btn-sm item-update-selection btn-grill-style"
                                                         item-id="@recepcionista.Dni">
                                                     Modificar
                                                 </button>
@@ -174,7 +174,7 @@
                                             @if (recepcionista.Activo)
                                             {
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-sm item-enable-selection"
+                                                    <button type="button" class="btn btn-primary btn-sm item-enable-selection btn-grill-style"
                                                             item-id="@recepcionista.Dni">
                                                         Habilitar
                                                     </button>
@@ -183,7 +183,7 @@
                                             else
                                             {
                                                 <td>
-                                                    <button type = "button" class="btn btn-danger btn-sm item-disable-selection"
+                                                    <button type = "button" class="btn btn-danger btn-sm item-disable-selection btn-grill-style"
                                                                     item-id="@recepcionista.Dni">
                                                         Deshabilitar
                                                     </button>

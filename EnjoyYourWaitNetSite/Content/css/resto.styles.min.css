@@ -295,6 +295,42 @@ h4 {
         margin-top: 5px;
         border-radius: 2px;
     }
+/*RECEPCIONISTA*/
+#btnRegistrarRecepcionista {
+    background-color: #3d94de;
+    border-color: #3d94de;
+    vertical-align: text-bottom;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 2vw;
+}
+
+#emailInput {
+    color: black;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+
+.modal-header, .modal-body {
+    color: #777777;
+}
+
+.btn-cancelar {
+    background-color: #ccc;
+}
+
+.btn-grill-style {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
 
 /*OTROS TAMAÑOS*/
 @media(min-width: 992px) {
