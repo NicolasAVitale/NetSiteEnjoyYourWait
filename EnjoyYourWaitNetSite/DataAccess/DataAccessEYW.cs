@@ -11,8 +11,6 @@ using EnjoyYourWaitNetSite.Exceptions;
 using java.net;
 using Newtonsoft.Json.Linq;
 using EnjoyYourWaitNetSite.Entities;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace EnjoyYourWaitNetSite.DataAccess
@@ -33,7 +31,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
             var content = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
-                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).Descripcion);
 
             var jObj = JObject.Parse(content);
 
@@ -46,7 +44,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
             var content = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
-                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).Descripcion);
 
             var jObj = JObject.Parse(content);
 
@@ -127,7 +125,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
             catch (JsonException)
             {
-                throw new DataAccessException(JsonConvert.DeserializeObject<ErrorModel>(content).ErrorMsg);
+                throw new DataAccessException(JsonConvert.DeserializeObject<ErrorModel>(content).Descripcion);
             }
 
             return result;

@@ -2,7 +2,8 @@
 {
     public class ErrorModel
     {
-        public int StatusCode { get; set; }
-        public string ErrorMsg { get; set; }
+        public int Estado { get; set; }
+        public string Descripcion { get; set; }
+        public object Detalles { get; set; }
     }
 }

@@ -319,6 +319,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogic\BSBase.cs" />
+    <Compile Include="BusinessLogic\BSFila.cs" />
     <Compile Include="BusinessLogic\BSLogin.cs" />
     <Compile Include="BusinessLogic\BSProducto.cs" />
     <Compile Include="BusinessLogic\BSRecepcionista.cs" />

@@ -1,30 +1,26 @@
 ﻿using EnjoyYourWaitNetSite.BusinessLogic;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace EnjoyYourWaitNetSite.Controllers
 {
     public class FilaController : Controller
     {
-        private BSHome bsHome = new BSHome();
+        private BSFila bsFila = new BSFila();
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult AgregarProducto()
-        {
-            return View();
-        }
+        //public void IngresarAFila()
+        //{
+        //    bsFila.IngresarAFila();
+        //}
 
-        public ActionResult ModificarProducto()
+        public ActionResult IngresarAFila()
         {
-            return View();
-        }
+            bsFila.IngresarAFila();
 
-        public ActionResult EliminarProducto()
-        {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

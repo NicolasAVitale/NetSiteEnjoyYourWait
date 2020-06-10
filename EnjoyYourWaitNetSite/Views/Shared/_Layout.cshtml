@@ -50,7 +50,7 @@
                         <li>@Html.ActionLink("Juegos", "Juegos", "Juego")</li>
                         <li>@Html.ActionLink("Mis Premios", "MisPremios", "Premio")</li>
                     }
-                    @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente != null)
+                    @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente == null)
                     {
                         <li>@Html.ActionLink("Ingresar a Fila", "IngresarAFila", "Fila")</li>
                     }
