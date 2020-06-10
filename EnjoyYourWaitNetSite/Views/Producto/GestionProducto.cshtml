@@ -126,41 +126,48 @@
                                     <tbody>
                                         @foreach (var producto in Model.lstProducto)
                                         {
-                                            <tr>
-                                                <td class="align-middle">@producto.Nombre</td>
-                                                <td class="align-middle">$@producto.Precio</td>
-                                                <td class="align-middle">
-                                                    <div style="display: inline-block" id="img_prod" class="col-sm-6 col-md-3 col-xl-5ths film-item, col-int-index">
-                                                        <img class="img-responsive center-block lazy" src="~/Content/img/@producto.Imagen" style="display: block;">
-                                                    </div>
-                                                </td>
-                                                @if (producto.Activo)
-                                                {
-                                                    <td class="align-middle">Habilitado</td>
-                                                }
-                                                else
-                                                {
-                                                    <td class="align-middle">Deshabilitado</td>
-                                                }
-                                                <td>
-                                                    <button type="button" class="btn btn-success btn-sm item-update-selection"
-                                                            onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">
-                                                        Modificar
-                                                    </button>
-                                                </td>
+                                        <tr>
+                                            <td class="align-middle">@producto.Nombre</td>
+                                            <td class="align-middle">$@producto.Precio</td>
+                                            <td class="align-middle">
+                                                <div style="display: inline-block" id="img_prod" class="col-sm-6 col-md-3 col-xl-5ths film-item, col-int-index">
+                                                    <img class="img-responsive center-block lazy" src="~/Content/img/@producto.Imagen" style="display: block;">
+                                                </div>
+                                            </td>
+                                            @if (producto.Activo)
+                                            {
+                                                <td class="align-middle">Habilitado</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="align-middle">Deshabilitado</td>
+                                            }
+                                            <td>
+                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
+                                                        onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">
+                                                    Modificar
+                                                </button>
+                                            </td>
+                                            @if (producto.Activo)
+                                            {
                                                 <td>
                                                     <button type="button" class="btn btn-primary btn-sm item-enable-selection"
                                                             item-id="@producto.IdProducto">
                                                         Habilitar
                                                     </button>
                                                 </td>
+                                            }
+                                            else
+                                            {
                                                 <td>
                                                     <button type="button" class="btn btn-danger btn-sm item-disable-selection"
                                                             item-id="@producto.IdProducto">
                                                         Deshabilitar
                                                     </button>
                                                 </td>
-                                            </tr>
+
+                                            }
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>

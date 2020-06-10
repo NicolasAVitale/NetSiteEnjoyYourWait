@@ -149,40 +149,46 @@
                                     <tbody>
                                         @foreach (var recepcionista in Model.lstRecepcionista)
                                         {
-                                            <tr>
-                                                <td class="align-middle">@recepcionista.Dni</td>
-                                                <td class="align-middle">@recepcionista.Nombre</td>
-                                                <td class="align-middle">@recepcionista.Apellido</td>
-                                                <td class="align-middle">
-                                                    <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
-                                                </td>
-                                                <td class="align-middle">@recepcionista.FechaNacimiento.Date</td>
-                                                @if (recepcionista.Activo)
-                                                {
-                                                    <td class="align-middle">Habilitado</td>
-                                                }
-                                                else
-                                                {
-                                                    <td class="align-middle">Deshabilitado</td>
-                                                }
-                                                <td>
-                                                    <button type="button" class="btn btn-success btn-sm item-update-selection"
-                                                            item-id="@recepcionista.Dni">
-                                                        Modificar
-                                                    </button>
-                                                </td>
+                                        <tr>
+                                            <td class="align-middle">@recepcionista.Dni</td>
+                                            <td class="align-middle">@recepcionista.Nombre</td>
+                                            <td class="align-middle">@recepcionista.Apellido</td>
+                                            <td class="align-middle">
+                                                <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
+                                            </td>
+                                            <td class="align-middle">@recepcionista.FechaNacimiento.Date</td>
+                                            @if (recepcionista.Activo)
+                                            {
+                                                <td class="align-middle">Habilitado</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="align-middle">Deshabilitado</td>
+                                            }
+                                            <td>
+                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
+                                                        item-id="@recepcionista.Dni">
+                                                    Modificar
+                                                </button>
+                                            </td>
+                                            @if (recepcionista.Activo)
+                                            {
                                                 <td>
                                                     <button type="button" class="btn btn-primary btn-sm item-enable-selection"
                                                             item-id="@recepcionista.Dni">
                                                         Habilitar
                                                     </button>
                                                 </td>
+                                            }
+                                            else
+                                            {
                                                 <td>
-                                                    <button type="button" class="btn btn-danger btn-sm item-disable-selection"
-                                                            item-id="@recepcionista.Dni">
+                                                    <button type = "button" class="btn btn-danger btn-sm item-disable-selection"
+                                                                    item-id="@recepcionista.Dni">
                                                         Deshabilitar
                                                     </button>
-                                                </td>
+                                                </td>                
+                                            }   
                                             </tr>
                                         }
                                     </tbody>
