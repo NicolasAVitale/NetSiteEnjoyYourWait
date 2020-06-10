@@ -427,6 +427,10 @@ h4 {
     .carta-juego {
         font-size: 4.5vw;
     }
+
+    .col-recep {
+        padding-left: 25px;
+    }
 }
 
 @media(max-width: 320px) {
