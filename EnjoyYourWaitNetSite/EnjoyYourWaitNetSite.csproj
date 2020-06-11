@@ -407,6 +407,7 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
     <Content Include="Content\img\carne2.png" />
+    <Content Include="Content\img\cocacola1lt.jpg" />
     <Content Include="Content\img\comida1.png" />
     <Content Include="Content\img\fondo-madera.jpg" />
     <Content Include="Content\img\hamburguesa.jpg" />

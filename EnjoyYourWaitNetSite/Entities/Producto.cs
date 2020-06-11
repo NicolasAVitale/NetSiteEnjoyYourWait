@@ -4,11 +4,11 @@ namespace EnjoyYourWaitNetSite.Entities
 {
     public class Producto
     {
-        public int IdProducto { get; set; }
-        public string Nombre { get; set; }
-        public double Precio { get; set; }
-        public int IdTipo { get; set; }
-        public string Imagen { get; set; }
-        public bool Activo { get; set; }
+        public int idProducto { get; set; }
+        public string nombre { get; set; }
+        public double precio { get; set; }
+        public int idTipo { get; set; }
+        public string imagen { get; set; }
+        public int activo { get; set; }
     }
 }

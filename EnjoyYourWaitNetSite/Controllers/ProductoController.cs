@@ -17,6 +17,7 @@ namespace EnjoyYourWaitNetSite.Controllers
         public async Task<ActionResult> GestionProducto()
         {
             ProductoViewModel model = new ProductoViewModel();
+            model.lstProducto = new List<Producto>();
             try
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
@@ -47,8 +48,8 @@ namespace EnjoyYourWaitNetSite.Controllers
         {
             UpdateProductoViewModel model = new UpdateProductoViewModel
             {
-                Nombre = producto.Nombre,
-                Precio = producto.Precio,
+                Nombre = producto.nombre,
+                Precio = producto.precio,
                 Imagen = null
             };
             return View("ModificarProducto", model);
@@ -64,10 +65,10 @@ namespace EnjoyYourWaitNetSite.Controllers
                     ViewBag.Success = false;
                     bool result = await bsProducto.CreateProducto(new Producto()
                     {
-                        Nombre = producto.Nombre,
-                        Precio = producto.Precio,
-                        Imagen = producto.Imagen.FileName,
-                        IdTipo = producto.IdTipo,
+                        nombre = producto.Nombre,
+                        precio = producto.Precio,
+                        imagen = producto.Imagen.FileName,
+                        idTipo = producto.IdTipo
                     });
                     if (result)
                     {
