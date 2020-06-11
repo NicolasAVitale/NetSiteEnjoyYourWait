@@ -35,10 +35,10 @@ namespace EnjoyYourWaitNetSite.Controllers
                 RecepcionistaViewModel model = new RecepcionistaViewModel();
                 model.lstRecepcionista = new List<Usuario>();
                 //Usuario recepcionista = new Usuario();
-                recepcionista.Dni = 123;
+                recepcionista.Dni = 12345678;
                 recepcionista.Nombre = "Nico";
                 recepcionista.Apellido = "Vitale";
-                recepcionista.Email = "EmailBienPiola";
+                recepcionista.Email = "enjoyyourwait@eyw.com";
                 recepcionista.FechaNacimiento = DateTime.Now;
                 model.lstRecepcionista.Add(recepcionista);
                 return View("GestionRecepcionista", model);

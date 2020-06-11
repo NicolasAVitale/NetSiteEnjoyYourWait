@@ -492,6 +492,39 @@ h4 {
     }
 }
 
+@media(min-width: 506px) {
+    .check-visible {
+        display:none;
+    }
+}
+
+@media(max-width: 505px) {
+    .txt-modif-visible {
+    display:none;
+    }
+
+    .item-update-selection {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
+
+@media(min-width: 454px) {
+    .txt-acceso {
+        display:none;
+    }
+}
+
+@media(max-width: 453px) {
+    .txt-acceso-sist {
+        display: none;
+    }
+
+    .img-dis-ena {
+        vertical-align: baseline;
+    }
+}
+
 @media(max-width: 425px) {
     .titulo {
         font-size: 7.5vw;

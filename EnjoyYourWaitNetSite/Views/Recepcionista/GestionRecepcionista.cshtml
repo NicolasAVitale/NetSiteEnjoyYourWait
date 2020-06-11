@@ -140,7 +140,7 @@
                                             <th scope="col" class="table-recepcion">Apellido</th>
                                             <th scope="col" class="table-recepcion">Email</th>
                                             <th scope="col" class="table-recepcion"></th>
-                                            <th scope="col" class="table-recepcion"><span>Estado acceso sistema</span><span>Acceso sistema</span></th>
+                                            <th scope="col" class="table-recepcion"><span class="txt-acceso-sist">Acceso sistema</span><span class="txt-acceso">Acceso</span></th>
                                             <th scope="col" class="table-recepcion txt-btn-visibilidad"></th>
                                         </tr>
                                     </thead>
@@ -157,8 +157,8 @@
                                             <td class="table-recepcion">
                                                 <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
                                                         item-id="@recepcionista.Dni">
-                                                    <!--<img src="~/Content/img/icon-modif.png" class="img-visibilidad img-modif" />-->
-                                                    <span>Modificar</span>
+                                                    <i class="fas fa-check-square check-visible"></i>
+                                                    <span class="txt-modif-visible">Modificar</span>
                                                 </button>
                                             </td>
                                             @if (recepcionista.Activo)
