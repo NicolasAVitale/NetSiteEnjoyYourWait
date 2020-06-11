@@ -113,7 +113,7 @@
                                 {
                                     <input id="inRecepcionista" name="dni" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
-                                    <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
+                                    <input type="submit" class="btn btn-sm btn-success" value="Habilitar">
                                 }
                             </div>
                         </div>
@@ -139,10 +139,9 @@
                                             <th scope="col" class="table-recepcion">Nombre</th>
                                             <th scope="col" class="table-recepcion">Apellido</th>
                                             <th scope="col" class="table-recepcion">Email</th>
+                                            <th scope="col" class="table-recepcion"></th>
                                             <th scope="col" class="table-recepcion">Estado acceso sistema</th>
-                                            <th scope="col" class="table-recepcion"></th>
-                                            <th scope="col" class="table-recepcion"></th>
-                                            <th scope="col" class="table-recepcion"></th>
+                                            <th scope="col" class="table-recepcion txt-btn-visibilidad"></th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -152,42 +151,52 @@
                                             <td class="align-middle table-recepcion">@recepcionista.Dni</td>
                                             <td class="align-middle table-recepcion">@recepcionista.Nombre</td>
                                             <td class="align-middle table-recepcion">@recepcionista.Apellido</td>
-                                            <td class="align-middle table-recepcion">
+                                            <td class="align-middle table-recepcion mail-size">
                                                 <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
                                             </td>
-                                            @if (recepcionista.Activo)
-                                            {
-                                                <td class="align-middle table-recepcion">Habilitado</td>
-                                            }
-                                            else
-                                            {
-                                                <td class="align-middle table-recepcion">Deshabilitado</td>
-                                            }
                                             <td class="table-recepcion">
                                                 <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
                                                         item-id="@recepcionista.Dni">
-                                                    <img src="~/Content/img/icon-modif.png" class="img-visibilidad img-modif"/>
-                                                    <span class="txt-btn-visibilidad">Modificar</span>
+                                                    <!--<img src="~/Content/img/icon-modif.png" class="img-visibilidad img-modif" />-->
+                                                    <span>Modificar</span>
                                                 </button>
                                             </td>
                                             @if (recepcionista.Activo)
                                             {
-                                                <td class="table-recepcion">
+                                        <td class="align-middle table-recepcion estado-size">
+                                            <span class="txt-btn-visibilidad">Habilitado</span>
+                                            <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad"
+                                                    item-id="@recepcionista.Dni">                                                
+                                                <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena" />
+                                            </button>
+                                        </td>
+                                            }
+                                            else
+                                            {
+                                        <td class="align-middle table-recepcion estado-size">
+                                            <span class="txt-btn-visibilidad">Deshabilitado</span>
+                                            <button type="button" class="btn btn-sm item-enable-selection btn-grill-style img-visibilidad"
+                                                    item-id="@recepcionista.Dni">                                                
+                                                <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena" />
+                                            </button>
+                                        </td>
+                                            }
+
+                                            @if (recepcionista.Activo)
+                                            {
+                                                <td class="table-recepcion txt-btn-visibilidad">
                                                     <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
                                                             item-id="@recepcionista.Dni">
-                                                        <span  class="txt-btn-visibilidad">Deshabilitar</span>
-                                                        <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena"/>
+                                                        <span class="">Deshabilitar</span>                                                        
                                                     </button>
-                                                    
                                                 </td>
                                             }
                                             else
                                             {
-                                                <td class="table-recepcion">
+                                                <td class="table-recepcion txt-btn-visibilidad">
                                                     <button type="button" class="btn btn-sm item-enable-selection btn-grill-style"
                                                             item-id="@recepcionista.Dni">
-                                                        <span class="txt-btn-visibilidad">Habilitar</span>
-                                                        <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena"/>
+                                                        <span class="">Habilitar</span>                                                        
                                                     </button>
                                                 </td>
                                             }

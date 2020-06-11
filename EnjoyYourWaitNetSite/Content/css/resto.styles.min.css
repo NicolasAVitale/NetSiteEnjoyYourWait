@@ -335,6 +335,7 @@ h4 {
 .item-update-selection {
     background-color: #3d94de;
     border-color: #3d94de;
+    vertical-align: top;
 }
 
 .item-enable-selection {
@@ -443,6 +444,16 @@ h4 {
     }    
 }
 
+@media(min-width: 709px) {
+    .mail-size {
+        width: 167px;
+    }
+
+    .estado-size {
+        width: 142px;
+    }
+}
+
 @media(max-width: 708px) {
 
     .img-visibilidad {
@@ -450,10 +461,10 @@ h4 {
     }
 
     .txt-btn-visibilidad {
-        display:none;
+        display: none;
     }
 
-    .item-update-selection, .item-enable-selection, .item-disable-selection {
+    /*.item-update-selection,*/ .item-enable-selection, .item-disable-selection {
         background-color: rgba(255, 255, 255, 0);
         border-color: rgba(255, 255, 255, 0);
         padding-top: 0px;
@@ -468,14 +479,13 @@ h4 {
         padding-top: 5px !important;
         padding-bottom: 5px !important;
     }
+
+    .estado-size {
+        text-align: center;
+    }
 }
 
 @media(max-width: 683px) {
-    .item-enable-selection, .item-disable-selection, .item-update-selection {
-        padding-right: 0px;
-        padding-left: 0px;
-    }
-
     .table-recepcion {
         padding-right: 2px;
         padding-left: 2px;        
