@@ -5,10 +5,8 @@ using EnjoyYourWaitNetSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EnjoyYourWaitNetSite.Controllers
@@ -61,28 +59,24 @@ namespace EnjoyYourWaitNetSite.Controllers
             try
             {
                 ViewBag.Success = null;
-                if (ModelState.IsValid)
+                if (ModelState.IsValid && producto.IdTipo > 0)
                 {
                     ViewBag.Success = false;
-                    //bool result = await bsProducto.CreateProducto(new Producto()
-                    //{
-                    //    Nombre = producto.Nombre,
-                    //    Precio = producto.Precio,
-                    //    Imagen = producto.Imagen.FileName,
-                    //    IdTipo = producto.IdTipo
-                    //});
-                    //if (result)
-                    //{
+                    bool result = await bsProducto.CreateProducto(new Producto()
+                    {
+                        Nombre = producto.Nombre,
+                        Precio = producto.Precio,
+                        Imagen = producto.Imagen.FileName,
+                        IdTipo = producto.IdTipo,
+                    });
+                    if (result)
+                    {
                         string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings.Get("ImagesFolder"), Path.GetFileName(producto.Imagen.FileName));
                         producto.Imagen.SaveAs(fullPath);
                         TempData["Success"] = true;
                         return RedirectToAction("GestionProducto");
-                    //}
+                    }
                 }
-                //if (!difEdad)
-                //{
-                //    ViewBag.InvalidAge = "La edad minima requerida debe ser al menos 17 años";
-                //}
 
                 return View("RegistroProducto", producto);
             }

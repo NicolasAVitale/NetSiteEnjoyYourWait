@@ -68,9 +68,17 @@
                             <td>
                                 <div class="form-group row">
                                     <label>Tipo:</label>
-                                    <select class="btn btn-primary" id="tipos">
-                                        <option>Seleccione Tipo</option>
+                                    <select class="btn btn-primary" id="tipos" onchange="AsignarTipo()">
+                                        <option value="0">Seleccione Tipo</option>
                                     </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row" hidden="hidden">
+                                    @Html.TextBoxFor(model => model.IdTipo, new { @class = "form-control mt-1 shadow", @id = "inTipo"})
+                                    @Html.ValidationMessageFor(model => model.IdTipo, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>
@@ -107,6 +115,9 @@
                     alert(errorThrown);
                 }
             });
+        }
+        function AsignarTipo() {
+            $("#inTipo").val($("#tipos").val());
         }
     </script>
     @if (ViewBag.Success != null)
