@@ -126,7 +126,7 @@
                     <div class="row mt-3">
                         <div class="col-md-12 col-recep">
                             <font class="float-left" size="5">Recepionistas</font>
-                            <button type="button" id="btnRegistrarRecepcionista" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">Crear nuevo</button>
+                            <button type="button" id="btnRegistrarRecepcionista" class="btn btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroRecepcionista", "Recepcionista")'">Crear nuevo</button>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -164,30 +164,34 @@
                                                 <td class="align-middle table-recepcion">Deshabilitado</td>
                                             }
                                             <td class="table-recepcion">
-                                                <button type="button" class="btn btn-success btn-sm item-update-selection btn-grill-style"
+                                                <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
                                                         item-id="@recepcionista.Dni">
-                                                    Modificar
+                                                    <img src="~/Content/img/icon-modif.png" class="img-visibilidad img-modif"/>
+                                                    <span class="txt-btn-visibilidad">Modificar</span>
                                                 </button>
                                             </td>
                                             @if (recepcionista.Activo)
                                             {
                                                 <td class="table-recepcion">
-                                                    <button type="button" class="btn btn-primary btn-sm item-enable-selection btn-grill-style"
+                                                    <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
                                                             item-id="@recepcionista.Dni">
-                                                        Habilitar
+                                                        <span  class="txt-btn-visibilidad">Deshabilitar</span>
+                                                        <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena"/>
                                                     </button>
+                                                    
                                                 </td>
                                             }
                                             else
                                             {
                                                 <td class="table-recepcion">
-                                                    <button type = "button" class="btn btn-danger btn-sm item-disable-selection btn-grill-style"
-                                                                    item-id="@recepcionista.Dni">
-                                                        Deshabilitar
+                                                    <button type="button" class="btn btn-sm item-enable-selection btn-grill-style"
+                                                            item-id="@recepcionista.Dni">
+                                                        <span class="txt-btn-visibilidad">Habilitar</span>
+                                                        <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena"/>
                                                     </button>
-                                                </td>                
-                                            }   
-                                            </tr>
+                                                </td>
+                                            }
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>

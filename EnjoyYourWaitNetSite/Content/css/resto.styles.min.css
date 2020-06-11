@@ -332,6 +332,35 @@ h4 {
     padding-bottom: 2px;
 }
 
+.item-update-selection {
+    background-color: #3d94de;
+    border-color: #3d94de;
+}
+
+.item-enable-selection {
+    background-color: green;
+}
+
+.item-disable-selection {
+    background-color: red;
+}
+
+.img-visibilidad {
+    display:none;
+}
+
+.img-modif {
+    max-width: 4vw;
+}
+
+.table-recepcion {
+    vertical-align: middle !important;
+}
+
+.img-dis-ena {
+    max-width: 8vw;
+}
+
 /*OTROS TAMAÑOS*/
 @media(min-width: 992px) {
     .carta-juego {
@@ -414,11 +443,43 @@ h4 {
     }    
 }
 
-/*.table-recepcion {
-        
-    }*/
-
 @media(max-width: 708px) {
+
+    .img-visibilidad {
+        display: inline;
+    }
+
+    .txt-btn-visibilidad {
+        display:none;
+    }
+
+    .item-update-selection, .item-enable-selection, .item-disable-selection {
+        background-color: rgba(255, 255, 255, 0);
+        border-color: rgba(255, 255, 255, 0);
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+        border-right-width: 0px;
+        border-left-width: 0px;
+    }
+
+    .table-recepcion {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+}
+
+@media(max-width: 683px) {
+    .item-enable-selection, .item-disable-selection, .item-update-selection {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .table-recepcion {
+        padding-right: 2px;
+        padding-left: 2px;        
+    }
 }
 
 @media(max-width: 425px) {

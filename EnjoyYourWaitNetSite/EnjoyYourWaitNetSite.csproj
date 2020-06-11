@@ -410,6 +410,12 @@
     <Content Include="Content\img\comida1.png" />
     <Content Include="Content\img\fondo-madera.jpg" />
     <Content Include="Content\img\hamburguesa.jpg" />
+    <Content Include="Content\img\icon-disable.png" />
+    <Content Include="Content\img\icon-disable2.png" />
+    <Content Include="Content\img\icon-enable.png" />
+    <Content Include="Content\img\icon-enable2.png" />
+    <Content Include="Content\img\icon-modif.png" />
+    <Content Include="Content\img\icon-modif2.png" />
     <Content Include="Content\img\memotest2.png" />
     <Content Include="Content\img\pinches co.ico" />
     <Content Include="Content\img\pinches red.svg" />
