@@ -352,6 +352,7 @@
     </Compile>
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="DataAccess\DataAccessEYW.cs" />
+    <Compile Include="Models\UpdateProductoApiModel.cs" />
     <Compile Include="Models\UpdateProductoViewModel.cs" />
     <Compile Include="Models\ProductoViewModel.cs" />
     <Compile Include="Models\AddProductoViewModel.cs" />

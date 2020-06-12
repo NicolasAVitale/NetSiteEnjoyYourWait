@@ -1,4 +1,5 @@
 ﻿using EnjoyYourWaitNetSite.Entities;
+using EnjoyYourWaitNetSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -25,9 +26,9 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             return await dataAccess.EnableProducto(idProducto);
         }
 
-        public async Task<bool> UpdateProducto(int idProducto)
+        public async Task<bool> UpdateProducto(int idProducto, UpdateProductoApiModel productoApi)
         {
-            return await dataAccess.UpdateProducto(idProducto);
+            return await dataAccess.UpdateProducto(idProducto, productoApi);
         }
 
         public async Task<List<Producto>> GetAllProductos()

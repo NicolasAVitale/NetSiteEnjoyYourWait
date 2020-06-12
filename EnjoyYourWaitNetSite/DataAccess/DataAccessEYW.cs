@@ -12,6 +12,7 @@ using java.net;
 using Newtonsoft.Json.Linq;
 using EnjoyYourWaitNetSite.Entities;
 using System.Collections.Generic;
+using EnjoyYourWaitNetSite.Models;
 
 namespace EnjoyYourWaitNetSite.DataAccess
 {
@@ -101,9 +102,9 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return await Request(HttpMethod.Put, $"productos/{idProducto}", false);
         }
 
-        public async Task<bool> UpdateProducto(int idProducto)
+        public async Task<bool> UpdateProducto(int idProducto, UpdateProductoApiModel productoApi)
         {
-            return await Request(HttpMethod.Put, $"productos/{idProducto}", false);
+            return await Request(HttpMethod.Put, $"productos/{idProducto}", false, productoApi);
         }
 
         private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)

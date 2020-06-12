@@ -32,7 +32,7 @@
         <font size="6">Ingresar los datos del producto</font>
     </div>
 
-    @using (Html.BeginForm("ModificarProducto", "Producto", FormMethod.Post))
+    @using (Html.BeginForm("ModificarProducto", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="card shadow-lg">
             <div class="card-body">
@@ -60,7 +60,23 @@
                             <td>
                                 <div class="form-group row">
                                     <label>Imagen:</label>
-                                    <input class="form-control" type="file" id="Imagen" name="Imagen" value="@Model.Imagen" required />
+                                    <input class="form-control" type="file" id="Imagen" name="Imagen"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row" hidden="hidden">
+                                    @Html.TextBoxFor(model => model.IdProducto, new { @class = "form-control mt-1 shadow"})
+                                    @Html.ValidationMessageFor(model => model.IdProducto, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row" hidden="hidden">
+                                    @Html.TextBoxFor(model => model.ImagenName, new { @class = "form-control mt-1 shadow"})
+                                    @Html.ValidationMessageFor(model => model.ImagenName, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>

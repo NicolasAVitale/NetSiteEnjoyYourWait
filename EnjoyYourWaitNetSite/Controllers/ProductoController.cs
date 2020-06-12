@@ -50,7 +50,9 @@ namespace EnjoyYourWaitNetSite.Controllers
             {
                 Nombre = producto.nombre,
                 Precio = producto.precio,
-                Imagen = null
+                Imagen = null,
+                ImagenName = producto.imagen,
+                IdProducto = producto.idProducto
             };
             return View("ModificarProducto", model);
         }
@@ -88,7 +90,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> ModificarProducto(int idProducto)
+        public async Task<ActionResult> ModificarProducto(UpdateProductoViewModel producto)
         {
             //string token = HttpContext.Session.GetString("AuthToken");
             //if (token == null)
@@ -103,12 +105,23 @@ namespace EnjoyYourWaitNetSite.Controllers
                 //bool isValid = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
                 //if (isValid)
                 //{
-                bool result = await bsProducto.UpdateProducto(idProducto);
+                UpdateProductoApiModel productoApi = new UpdateProductoApiModel()
+                {
+                    nombre = producto.Nombre,
+                    precio = producto.Precio,
+                    imagen = producto.Imagen == null ? producto.ImagenName : producto.Imagen.FileName
+                };
+                bool result = await bsProducto.UpdateProducto(producto.IdProducto, productoApi);
                 if (result)
                 {
+                    if(producto.Imagen != null)
+                    {
+                        string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings.Get("ImagesFolder"), Path.GetFileName(producto.Imagen.FileName));
+                        producto.Imagen.SaveAs(fullPath);
+                    }
                     TempData["SuccessState"] = "UPDATE_SUCCESS";
+                    return RedirectToAction("GestionProducto");
                 }
-                //}
 
                 return RedirectToAction("GestionProducto");
             }
