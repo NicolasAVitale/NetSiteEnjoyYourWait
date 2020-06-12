@@ -525,6 +525,18 @@ h4 {
     }
 }
 
+@media(max-width: 434px) {
+    .item-update-selection {
+        background-color: rgba(61, 148, 222, 0);
+        border-color: rgba(61, 148, 222, 0);
+        padding: 0px;
+    }
+
+    #emailInput {
+        width: 142px;
+    }
+}
+
 @media(max-width: 425px) {
     .titulo {
         font-size: 7.5vw;
@@ -549,6 +561,17 @@ h4 {
 
     .carta-juego {
         font-size: 4.5vw;
+    }
+}
+
+@media(max-width:413px) {
+    #emailInput {
+        width: 70px;
+    }
+
+    .btn-grill-style {
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
