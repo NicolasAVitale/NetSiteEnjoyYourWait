@@ -367,6 +367,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\ruleta.css" />
     <Content Include="Content\css\memotest.css" />
     <Content Include="Content\css\resto.styles.min.css" />
     <Content Include="Content\css\sb-admin-2.min.css" />
@@ -422,6 +423,9 @@
     <Content Include="Content\img\memotest2.png" />
     <Content Include="Content\img\pinches co.ico" />
     <Content Include="Content\img\pinches red.svg" />
+    <Content Include="Content\img\ruleta\spin_off.png" />
+    <Content Include="Content\img\ruleta\spin_on.png" />
+    <Content Include="Content\img\ruleta\wheel_back.png" />
     <Content Include="Content\img\tabla-madera.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -497,6 +501,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sb-admin-2.min.js" />
+    <Content Include="Scripts\TweenMax.min.js" />
+    <Content Include="Scripts\Winwheel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
