@@ -7,32 +7,32 @@
 <script type="text/javascript" src="~/Scripts/Winwheel.js"></script>
 <script type="text/javascript" src="~/Scripts/TweenMax.min.js"></script>
 
-<h2>@ViewBag.Title.</h2>
-
-<p>Bienvenido, ¿jugamos?</p>
-
 <div class="row">
-    <div class="col-sm-4 power_controls"> 
-         <table class="power" cellpadding="10" cellspacing="0">
-                        <tr>
-                            <th align="center">Poder</th>
-                        </tr>
-                        <tr>
-                            <td width="78" align="center" id="pw3" onClick="powerSelected(3);">Alto</td>
-                        </tr>
-                        <tr>
-                            <td align="center" id="pw2" onClick="powerSelected(2);">Medio</td>
-                        </tr>
-                        <tr>
-                            <td align="center" id="pw1" onClick="powerSelected(1);">Bajo</td>
-                        </tr>
-         </table>
-         <br />
-         <img id="spin_button" src="~/Content/img/ruleta/spin_off.png" alt="Spin" onClick="startSpin();" />
-         <br /><br />
-         <a href="#" onClick="resetWheel(); return false;">Jugar de nuevo</a>
+    <div class="col-sm-6">
+        <h2>Bienvenido a nuestra @ViewBag.Title</h2>
+        <p>Gira la ruleta y obtén un premio</p>
+    <div class="power_controls">
+        <table class="power" cellpadding="10" cellspacing="0">
+            <tr>
+                <th align="center">Poder</th>
+            </tr>
+            <tr>
+                <td width="78" align="center" id="pw3" onClick="powerSelected(3);">Alto</td>
+            </tr>
+            <tr>
+                <td align="center" id="pw2" onClick="powerSelected(2);">Medio</td>
+            </tr>
+            <tr>
+                <td align="center" id="pw1" onClick="powerSelected(1);">Bajo</td>
+            </tr>
+        </table>
+        <br />
+        <img id="spin_button" src="~/Content/img/ruleta/spin_off.png" alt="Spin" onClick="startSpin();" />
+        <br /><br />
+        <a id="jugardenuevo" href="#" onClick="resetWheel(); return false;">Jugar de nuevo</a>
     </div>
-    <div width="438" height="582" class="col-sm-8 the_wheel" align="center" valign="center">
+</div>
+    <div width="438" height="582" class="col-sm-6 the_wheel" align="center" valign="center">
          <canvas id="canvas" width="434" height="434">
               <p style="{color: white}" align="center">Lo sentimos, tu navegador no soporta canvas. Proba ingresando desde otro.</p>
          </canvas>

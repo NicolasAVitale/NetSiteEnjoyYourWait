@@ -64,3 +64,24 @@ td.pw3
     margin-bottom: 5px;
 }
 
+.power_controls {
+    padding-top: 3vw;
+    padding-left: 67%;
+}
+
+#spin_button {
+    margin-left: 20%;
+}
+
+.power {
+    margin-left: 25%;
+    color: black;
+}
+
+#jugardenuevo {
+    margin-left: 25%;
+}
+
+.power tbody tr th {
+    text-align: center;
+}
