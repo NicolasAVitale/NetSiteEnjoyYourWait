@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             mail.Subject = "On The Grill - Confirmar ingreso a la fila";
             var builder = new StringBuilder();
             builder.Append("<head><h4>Confirmar ingreso a la fila</h4><hr /><p><font face='Calibri'>Hola, para confirmar tu ingreso a la fila debes hacer click en el siguiente Link. Si recibiste este correo por error, simplemente puedes borrarlo.</font></p></head><body><a href=\"" +
-                "https://localhost:44391/Fila/ConfirmarIngreso" +
+                ConfigurationManager.AppSettings.Get("ConfirmUrl") +
                 "\" class=\"" + "button" + "\">Confirmar Ingreso</a></body><header> <hr /><p><font face='Calibri'>Muchas gracias, On The Grill.</font></p></header></html>");
             mail.Body = builder.ToString();
             smtpClient.Send(mail);
