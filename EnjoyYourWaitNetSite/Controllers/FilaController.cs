@@ -1,4 +1,5 @@
 ﻿using EnjoyYourWaitNetSite.BusinessLogic;
+using EnjoyYourWaitNetSite.Helper;
 using System;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
@@ -22,8 +23,9 @@ namespace EnjoyYourWaitNetSite.Controllers
                 if (isValid)
                 {
                     bsFila.EnviarCorreoConfirmacion(email);
+                    SessionHelper.Email = email;
                     TempData["SuccessState"] = "SEND_SUCCESS";
-                } 
+                }
                 else
                 {
                     TempData["SuccessState"] = "MAIL_INCORRECT";
@@ -36,6 +38,16 @@ namespace EnjoyYourWaitNetSite.Controllers
                 TempData["SuccessState"] = "SEND_FAILED";
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        public ActionResult ConfirmarIngreso()
+        {
+            string email = SessionHelper.Email;
+            if(email != null)
+            {
+
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

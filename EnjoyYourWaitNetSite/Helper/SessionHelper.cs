@@ -41,5 +41,17 @@ namespace EnjoyYourWaitNetSite.Helper
                 HttpContext.Current.Session["Administrador"] = value;
             }
         }
+
+        public static string Email
+        {
+            get
+            {
+                return (string)HttpContext.Current.Session["Email"];
+            }
+            set
+            {
+                HttpContext.Current.Session["Email"] = value;
+            }
+        }
     }
 }
