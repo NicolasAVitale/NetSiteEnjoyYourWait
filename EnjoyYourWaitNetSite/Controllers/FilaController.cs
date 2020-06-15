@@ -1,4 +1,6 @@
 ﻿using EnjoyYourWaitNetSite.BusinessLogic;
+using System;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace EnjoyYourWaitNetSite.Controllers
@@ -11,16 +13,29 @@ namespace EnjoyYourWaitNetSite.Controllers
             return View();
         }
 
-        //public void IngresarAFila()
-        //{
-        //    bsFila.IngresarAFila();
-        //}
-
-        public ActionResult IngresarAFila()
+        public ActionResult EnviarCorreoConfirmacion(string email)
         {
-            bsFila.IngresarAFila();
+            try
+            {
+                TempData["SuccessState"] = "SEND_FAILED";
+                bool isValid = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+                if (isValid)
+                {
+                    bsFila.EnviarCorreoConfirmacion(email);
+                    TempData["SuccessState"] = "SEND_SUCCESS";
+                } 
+                else
+                {
+                    TempData["SuccessState"] = "MAIL_INCORRECT";
+                }
 
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "SEND_FAILED";
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

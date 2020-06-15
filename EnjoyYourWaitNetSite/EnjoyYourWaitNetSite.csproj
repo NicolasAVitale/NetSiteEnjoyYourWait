@@ -343,6 +343,7 @@
     <Compile Include="Entities\Recepcionista.cs" />
     <Compile Include="Entities\Reporte.cs" />
     <Compile Include="Entities\TipoProducto.cs" />
+    <Compile Include="Entities\UserAuthEntity.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Exceptions\DataAccessException.cs" />
     <Compile Include="Exceptions\AuthException.cs" />

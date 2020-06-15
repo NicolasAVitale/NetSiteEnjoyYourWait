@@ -8,10 +8,5 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         public BSLogin()
         {
         }
-
-        public async Task<object[]> GetAuthToken(Usuario user)
-        {
-            return await dataAccess.GetAuthToken(user);
-        }
     }
 }
