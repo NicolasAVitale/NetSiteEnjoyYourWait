@@ -1,21 +1,9 @@
-/*
-Description:
-    Contains all the styles for the winning wheel page.
-    
-Verison History:
-    2012-01-28, Douglas McKechie
-    - Created based off earlier version.
-    
-    2015-09-26, Douglas McKechie
-    - Minor updates for the 2.0 winwheel example.
-*/
-
 /* Sets the background image for the wheel */
-.the_wheel {
+/*.the_wheel {
     background-image: url(../img/ruleta/wheel_back.png);
     background-position: center;
     background-repeat: no-repeat;
-}
+}*/
 
 /* Do some css reset on selected elements */
 h1, p
@@ -24,7 +12,7 @@ h1, p
 }
 
 /* Styles for the power selection controls */
-table.power
+/*table.power
 {
     background-color: #cccccc;
     cursor: pointer;
@@ -50,16 +38,16 @@ td.pw2
 td.pw3
 {
     background-color: #ef6f6f;
-}
+}*/
 
 /* Style applied to the spin button once a power has been selected */
-.clickable
+/*.clickable
 {
     cursor: pointer;
-}
+}*/
 
 /* Other misc styles */
-.margin_bottom
+/*.margin_bottom
 {
     margin-bottom: 5px;
 }
@@ -84,4 +72,30 @@ td.pw3
 
 .power tbody tr th {
     text-align: center;
+}*/
+
+/*@media(max-width: 991px) {
+    .the_wheel {
+        width: 464px;
+    }
+
+    .power_controls {
+        padding-left: 30%;
+    }
+}*/
+
+@media(max-width: 815px) and (min-width: 768px) {
+    .the_wheel {
+        padding: 0px;
+    }
+
+    .txt-ruleta {
+        padding: 0px;
+    }
+}
+
+@media(max-width: 767px) {
+    .txt-ruleta {
+        padding-bottom: 30px;
+    }
 }
