@@ -101,13 +101,6 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> DeshabilitarRecepcionista(int dni)
         {
-            //string token = HttpContext.Session.GetString("AuthToken");
-            //if (token == null)
-            //{
-            //    return RedirectToAction("Index",
-            //        "Authentication");
-            //}
-
             try
             {
                 TempData["SuccessState"] = "DISABLE_FAILED";
@@ -127,13 +120,6 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> HabilitarRecepcionista(int dni)
         {
-            //string token = HttpContext.Session.GetString("AuthToken");
-            //if (token == null)
-            //{
-            //    return RedirectToAction("Index",
-            //        "Authentication");
-            //}
-
             try
             {
                 TempData["SuccessState"] = "ENABLE_FAILED";
@@ -153,13 +139,6 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> ModificarRecepcionista(int dni, string email)
         {
-            //string token = HttpContext.Session.GetString("AuthToken");
-            //if (token == null)
-            //{
-            //    return RedirectToAction("Index",
-            //        "Authentication");
-            //}
-
             try
             {
                 TempData["SuccessState"] = "UPDATE_FAILED";

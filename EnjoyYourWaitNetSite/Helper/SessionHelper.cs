@@ -42,17 +42,16 @@ namespace EnjoyYourWaitNetSite.Helper
             }
         }
 
-        public static string Token
+        public static string Email
         {
             get
             {
-                return (string)HttpContext.Current.Session["Token"];
+                return (string)HttpContext.Current.Session["Email"];
             }
             set
             {
-                HttpContext.Current.Session["Token"] = value;
+                HttpContext.Current.Session["Email"] = value;
             }
         }
-
     }
 }

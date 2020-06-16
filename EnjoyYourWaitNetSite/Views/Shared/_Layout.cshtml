@@ -15,7 +15,7 @@
     <link href="~/Content/css/animate.css" rel="stylesheet">   
     <link href="~/Content/css/resto.styles.min.css" rel="stylesheet">
 </head>
-<body  class="fondo-madera">
+<body class="fondo-madera">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -52,7 +52,7 @@
                     }
                     @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente == null)
                     {
-                        <li>@Html.ActionLink("Ingresar a Fila", "IngresarAFila", "Fila")</li>
+                        <li><a data-toggle="modal" data-target="#mailConfirmationModal">Ingresar a Fila</a></li>
                     }
                     @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista != null && EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente == null)
                     {
@@ -62,9 +62,34 @@
             </div>
         </div>
     </div>
+    <div id="mailConfirmationModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ingresar a Fila</h5>
+                    </div>
+                    @using (Html.BeginForm("EnviarCorreoConfirmacion", "Fila", FormMethod.Post))
+                    {
+                        <div class="modal-body">
+                            <p>Ingresar el correo para recibir confirmación a la fila</p>
+                            <input type="text" id="email" name="email">
+                        </div>
+                        <div class="modal-footer">
+
+
+                            <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
+                            <input type="submit" class="btn btn-sm item-send-selection btn-success" value="Enviar">
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container body-content">
         @RenderBody()
-        
+
         <footer>
 
             <div id="social-icons">

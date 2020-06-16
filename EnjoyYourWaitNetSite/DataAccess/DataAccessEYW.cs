@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Net;
-using EnjoyYourWaitNetSite.Helper;
 using EnjoyYourWaitNetSite.Exceptions;
 using java.net;
 using Newtonsoft.Json.Linq;
 using EnjoyYourWaitNetSite.Entities;
 using System.Collections.Generic;
 using EnjoyYourWaitNetSite.Models;
+
 
 namespace EnjoyYourWaitNetSite.DataAccess
 {
@@ -22,89 +22,120 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
         private readonly HttpClient httpClient = new HttpClient();
 
+        private static string tokenMemory = string.Empty;
+
+        private static DateTime dateToken; 
+
         public DataAccessEYW()
         {
         }
 
-        public async Task<string> GetHolaMundo()
+        public async Task<string> GetAuthToken()
         {
-            var response = await BuildRequest(HttpMethod.Get, "productos", false);
-            var content = await response.Content.ReadAsStringAsync();
+            string token = VerificarToken();
+            if (token == "expire")
+            {
+                UserAuthEntity user = new UserAuthEntity();
+                user.nombre = ConfigurationManager.AppSettings.Get("UserService");
+                user.contrasena = ConfigurationManager.AppSettings.Get("ClaveService");
+                //var response = await BuildRequest(HttpMethod.Post, "auth", false, user);
 
-            if (!response.IsSuccessStatusCode)
-                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).Descripcion);
+                HttpRequestMessage requestMessage = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(appSettings + "usuarios/login")
+                };
+                requestMessage.Headers.Add("accept", "application/json");
+                requestMessage.Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+                var response = await httpClient.SendAsync(requestMessage);
 
-            var jObj = JObject.Parse(content);
+                var content = await response.Content.ReadAsStringAsync();
 
-            return jObj["Mensaje"].ToString();
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).Descripcion);
+
+                var jObj = JObject.Parse(content);
+
+                //Guardo fecha del token
+                dateToken = DateTime.Now;
+                //Guardo el token
+                tokenMemory = jObj["token"].ToString();
+
+                return jObj["token"].ToString();
+            }
+            return token;  
         }
 
-        public async Task<object[]> GetAuthToken(Usuario userModel)
+        public static string VerificarToken()
         {
-            var response = await BuildRequest(HttpMethod.Post, "auth", false, userModel);
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
-                throw new Exception(JsonConvert.DeserializeObject<ErrorModel>(content).Descripcion);
-
-            var jObj = JObject.Parse(content);
-
-            return new List<object>() { jObj["token"].ToString(), JsonConvert.DeserializeObject<Usuario>(jObj["userModel"].ToString()) }.ToArray();
+            if (tokenMemory == string.Empty)
+            {
+                return "expire";
+            }
+            TimeSpan diff = DateTime.Now - dateToken;
+            if (diff.TotalHours < Int16.Parse(ConfigurationManager.AppSettings.Get("ExpirationTime")))
+            {
+                return tokenMemory;
+            }
+            else
+            {
+                return "expire";
+            }
         }
 
         public async Task<List<Usuario>> GetAllRecepcionistas()
         {
-            return await Request<List<Usuario>>(HttpMethod.Get, "recepcionistas", false);
+            return await Request<List<Usuario>>(HttpMethod.Get, "recepcionistas", true);
         }
 
         public async Task<bool> CreateRecepcionista(Usuario recepcionista)
         {
-            return await Request(HttpMethod.Post, "recepcionistas", false, recepcionista);
+            return await Request(HttpMethod.Post, "recepcionistas", true, recepcionista);
         }
 
         public async Task<bool> DisableRecepcionista(int dni)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/{dni}", false);
+            return await Request(HttpMethod.Put, $"recepcionistas/{dni}", true);
         }
 
         public async Task<bool> EnableRecepcionista(int dni)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/{dni}", false);
+            return await Request(HttpMethod.Put, $"recepcionistas/{dni}", true);
         }
 
         public async Task<bool> UpdateRecepcionista(int dni, string email)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/{dni}/{email}", false);
+            return await Request(HttpMethod.Put, $"recepcionistas/{dni}/{email}", true);
         }
 
         public async Task<bool> CreateProducto(Producto producto)
         {
-            return await Request(HttpMethod.Post, "productos", false, producto);
+            return await Request(HttpMethod.Post, "productos", true, producto);
         }
 
         public async Task<List<TipoProducto>> GetAllTiposProducto()
         {
-            return await Request<List<TipoProducto>>(HttpMethod.Get, "productos", false);
+            return await Request<List<TipoProducto>>(HttpMethod.Get, "productos", true);
         }
 
         public async Task<List<Producto>> GetAllProductos()
         {
-            return await Request<List<Producto>>(HttpMethod.Get, "productos", false);
+            return await Request<List<Producto>>(HttpMethod.Get, "productos", true);
         }
 
         public async Task<bool> DisableProducto(int idProducto)
         {
-            return await Request(HttpMethod.Put, $"productos/{idProducto}", false);
+            return await Request(HttpMethod.Put, $"productos/{idProducto}", true);
         }
 
         public async Task<bool> EnableProducto(int idProducto)
         {
-            return await Request(HttpMethod.Put, $"productos/{idProducto}", false);
+            return await Request(HttpMethod.Put, $"productos/{idProducto}", true);
         }
 
         public async Task<bool> UpdateProducto(int idProducto, UpdateProductoApiModel productoApi)
         {
-            return await Request(HttpMethod.Put, $"productos/{idProducto}", false, productoApi);
+            return await Request(HttpMethod.Put, $"productos/{idProducto}", true, productoApi);
         }
 
         private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)
@@ -150,7 +181,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
                     requestMessage.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
                 //Valido si precisa autenticación
                 if (auth)
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", SessionHelper.Token);
+                {
+                    string token = await GetAuthToken();
+                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                }
+                    
 
                 response = await httpClient.SendAsync(requestMessage);
             }
@@ -165,6 +200,5 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
             return response;
         }
-
     }
 }

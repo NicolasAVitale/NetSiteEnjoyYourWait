@@ -7,10 +7,5 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         public BSHome()
         {
         }
-
-        public async Task<string> GetHolaMundoAsync()
-        {
-            return await dataAccess.GetHolaMundo();
-        }
     }
 }
