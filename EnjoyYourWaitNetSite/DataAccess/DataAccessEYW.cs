@@ -83,6 +83,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
         }
 
+        public async Task<Cliente> RegistrarCliente(Cliente cliente)
+        {
+            return await Request<Cliente>(HttpMethod.Post, "clientes", true, cliente);
+        }
+
         public async Task<List<Usuario>> GetAllRecepcionistas()
         {
             return await Request<List<Usuario>>(HttpMethod.Get, "recepcionistas", true);

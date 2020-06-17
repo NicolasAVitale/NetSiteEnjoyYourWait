@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnjoyYourWaitNetSite.Entities;
+using System;
 using System.Configuration;
 using System.Net.Mail;
 using System.Text;
@@ -35,7 +36,14 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             smtpClient.Send(mail);
         }
 
-
+        public async Task<bool> IngresarAFila(Cliente cliente, int cantComentsales)
+        {
+            Cliente clienteRegistrado = await dataAccess.RegistrarCliente(cliente);
+            //Si no existe lo ingresamos en la tabla clientes.
+            //Si no lo insertamos en la tabla cliente fila
+            //Calculamos el tiempo de 
+            return true;
+        }
         
     }
 }

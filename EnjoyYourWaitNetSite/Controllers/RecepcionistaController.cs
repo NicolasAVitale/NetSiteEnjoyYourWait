@@ -64,9 +64,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             {
                 ViewBag.Success = null;
                 int difDateYear = DateTime.Today.Year - recepcionista.FechaNacimiento.Year;
-                int difDateMonth = DateTime.Today.Month - recepcionista.FechaNacimiento.Month;
-                int difDateDay = DateTime.Today.Day - recepcionista.FechaNacimiento.Day;
-                bool difEdad = difDateYear >= 17 && difDateMonth >= 0 && difDateDay >= 0;
+                bool difEdad = difDateYear >= 17;
                 if (ModelState.IsValid && difEdad)
                 {
                     ViewBag.Success = false;

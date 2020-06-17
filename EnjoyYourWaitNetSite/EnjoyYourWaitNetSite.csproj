@@ -353,6 +353,7 @@
     </Compile>
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="DataAccess\DataAccessEYW.cs" />
+    <Compile Include="Models\ClienteViewModel.cs" />
     <Compile Include="Models\UpdateProductoApiModel.cs" />
     <Compile Include="Models\UpdateProductoViewModel.cs" />
     <Compile Include="Models\ProductoViewModel.cs" />
@@ -533,6 +534,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Producto\ModificarProducto.cshtml" />
+    <Content Include="Views\Fila\ConfirmarIngreso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

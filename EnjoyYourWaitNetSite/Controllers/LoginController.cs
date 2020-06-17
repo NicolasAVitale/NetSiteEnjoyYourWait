@@ -14,11 +14,8 @@ namespace EnjoyYourWaitNetSite.Controllers
         private BSLogin bsLogin = new BSLogin();
         public ActionResult Index()
         {
-                //UserAuthenticationViewModel user = new UserAuthenticationViewModel();
-                //return View("Login", user);
-
-            return RedirectToAction("Index",
-                "Home");
+            UserAuthenticationViewModel user = new UserAuthenticationViewModel();
+            return View("Login", user);
         }
 
         //public async Task<ActionResult> LoginAuth(UserAuthenticationViewModel userModel)

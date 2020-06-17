@@ -1,0 +1,116 @@
+﻿@model EnjoyYourWaitNetSite.Models.ClienteViewModel
+@{
+    ViewBag.Title = "Confirmar Ingreso";
+}
+<div>
+    @if (ViewBag.Success != null)
+    {
+        <div id="messageModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            @if (!ViewBag.Success)
+                            {
+                                <p>Falló el ingreso a la fila</p>
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="mb-3">
+        <font size="6">Ingresar los datos personales y la cantidad de comensales</font>
+    </div>
+
+    @using (Html.BeginForm("AñadirClienteAFila", "Fila", FormMethod.Post))
+    {
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <label>DNI:</label>
+                                    @Html.TextBoxFor(model => model.Dni, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Dni, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <label>Nombre:</label>
+                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <label>Apellido:</label>
+                                    @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <label>Email:</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <label>Fecha de Nacimiento:</label>
+                                    @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "datefield", type = "date" })
+                                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                                    @if (ViewBag.InvalidAge != null)
+                                    {
+                                        <span class="field-validation-error text-danger" data-valmsg-for="FechaNacimiento" data-valmsg-replace="true">@ViewBag.InvalidAge</span>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <label>Cantidad de comensales:</label>
+                                    @Html.TextBoxFor(model => model.CantComensales, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.CantComensales, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Ingresar" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    @if (ViewBag.Success != null)
+    {
+        <script>
+            $(function () {
+                $('#messageModal').modal('show');
+            });
+        </script>
+    }
+}
