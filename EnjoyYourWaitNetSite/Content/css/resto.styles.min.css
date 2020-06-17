@@ -74,11 +74,11 @@ html, body {
 }
 
 .pinchos {
-    position: absolute;
+    /*position: absolute;
+    height: 41vw;
     right: 0px;
-    height: 110%;
-    bottom: -60px;
-    z-index: -1;
+    top: -30px;
+    z-index: -1;*/
 }
 
 .slideInUp {

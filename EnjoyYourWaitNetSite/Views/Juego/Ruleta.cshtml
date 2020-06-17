@@ -8,10 +8,10 @@
 <script type="text/javascript" src="~/Scripts/TweenMax.min.js"></script>
 
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4 txt-ruleta">
         <h2>Bienvenido a nuestra @ViewBag.Title</h2>
         <p>Gira la ruleta y obtén un premio</p>
-    <div class="power_controls">
+    <!--<div class="power_controls">
         <table class="power" cellpadding="10" cellspacing="0">
             <tr>
                 <th align="center">Poder</th>
@@ -30,16 +30,17 @@
         <img id="spin_button" src="~/Content/img/ruleta/spin_off.png" alt="Spin" onClick="startSpin();" />
         <br /><br />
         <a id="jugardenuevo" href="#" onClick="resetWheel(); return false;">Jugar de nuevo</a>
+    </div>-->
     </div>
-</div>
-    <div width="438" height="582" class="col-sm-6 the_wheel" align="center" valign="center">
-         <canvas id="canvas" width="434" height="434">
-              <p style="{color: white}" align="center">Lo sentimos, tu navegador no soporta canvas. Proba ingresando desde otro.</p>
-         </canvas>
+    <div width="438" height="582" class="col-sm-8 the_wheel" align="center" valign="center">
+        <canvas id="canvas" width="500" height="500" data-responsiveMinWidth="180" data-responsiveScaleHeight="true" onClick="startSpin();">
+            <!-- width="434" height="434"-->
+            <p style="{color: white}" align="center">Lo sentimos, tu navegador no soporta canvas. Proba ingresando desde otro.</p>
+        </canvas>
     </div>    
    
 </div>
-<script>
+<!--<script>
         // Create new wheel object specifying the parameters at creation time.
     let theWheel = new Winwheel({
         'numSegments': 14,   // Specify number of segments.
@@ -161,4 +162,54 @@
     function alertPrize(indicatedSegment) {
         // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
         alert("Ganaste " + indicatedSegment.text);
-    }</script>
+    }</script>-->
+<script>
+    // Create winwheel as per normal.
+    let theWheel = new Winwheel({
+        'numSegments': 8,     // Specify number of segments.
+        'textFontSize': 28,    // Set font size as desired.
+        'responsive': true,  // This wheel is responsive!
+        'segments':        // Define segments including colour and text.
+            [
+               { 'fillStyle': 'blue', 'text': 'sonrisa' },
+                { 'fillStyle': 'lightblue', 'text': 'descuento' },
+                { 'fillStyle': 'green', 'text': 'osito' },
+                { 'fillStyle': 'yellow', 'text': 'bebida' },
+                { 'fillStyle': 'orange', 'text': 'helado' },
+                { 'fillStyle': 'red', 'text': 'nada' },
+                { 'fillStyle': 'brown', 'text': 'cubiertos' },
+                { 'fillStyle': 'violet', 'text': 'cafe' }
+            ],
+        'pins':
+        {
+            'outerRadius': 6,
+            'responsive': true, // This must be set to true if pin size is to be responsive, if not just location is.
+        },
+        'animation':           // Specify the animation to use.
+        {
+            'type': 'spinToStop',
+            'duration': 5,     // Duration in seconds.
+            'spins': 8,     // Number of complete spins.
+            'callbackFinished': alertPrize,
+        }
+    });
+
+    // -----------------------------------------------------------------
+    // Called by the onClick of the canvas, starts the spinning.
+    function startSpin() {
+        // Stop any current animation.
+        theWheel.stopAnimation(false);
+
+        // Reset the rotation angle to less than or equal to 360 so spinning again
+        // works as expected. Setting to modulus (%) 360 keeps the current position.
+        theWheel.rotationAngle = theWheel.rotationAngle % 360;
+
+        // Start animation.
+        theWheel.startAnimation();
+        }
+
+    function alertPrize(indicatedSegment) {
+        // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
+        alert("Ganaste " + indicatedSegment.text);
+    }
+</script>

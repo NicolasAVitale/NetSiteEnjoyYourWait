@@ -3,51 +3,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
-        @if (ViewBag.SuccessState != null)
-        {
-            <div id="messageModal" class="modal">
-                <div class="modal-dialog">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                @switch (ViewBag.SuccessState)
-                                {
-                                    case "MAIL_INCORRECT":
-                                        <p>El correo ingresado no es válido. Por favor, revise los datos ingresados.</p>
-                                        break;
-                                    case "SEND_SUCCESS":
-                                        <p>Se envió exitosamente un correo a su casilla de mail para confirmar el ingreso a la fila.</p>
-                                        break;
-                                    case "SEND_FAILED":
-                                        <p>Se produjo un error al intentar enviar el correo. Por favor, intente nuevamente</p>
-                                        break;
-                                }
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
+@if (ViewBag.SuccessState != null)
+{
+    <div id="messageModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        @switch (ViewBag.SuccessState)
+                        {
+                            case "MAIL_INCORRECT":
+                                <p>El correo ingresado no es válido. Por favor, revise los datos ingresados.</p>
+                                break;
+                            case "SEND_SUCCESS":
+                                <p>Se envió exitosamente un correo a su casilla de mail para confirmar el ingreso a la fila.</p>
+                                break;
+                            case "SEND_FAILED":
+                                <p>Se produjo un error al intentar enviar el correo. Por favor, intente nuevamente</p>
+                                break;
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-        }
+        </div>
     </div>
-    <div class="col-md-4">
+}
 
+<div class="row">
+    <div class="col-sm-5">
     </div>
+    <div class="col-sm-7">
+        <img src="~/Content/img/pinchos1.png" alt="pinchos" class="pinchos animated slideInUp" />
+    </div>    
 </div>
 @section scripts
     {
     @if (ViewBag.SuccessState != null)
     {
         <script>
-                $(function () {
-                    $('#messageModal').modal('show');
-                });
+            $(function () {
+                $('#messageModal').modal('show');
+            });
         </script>
     }
 }
+
+<script>
+    
+
+</script>
