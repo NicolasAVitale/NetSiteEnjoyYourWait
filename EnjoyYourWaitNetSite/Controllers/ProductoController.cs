@@ -92,19 +92,9 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> ModificarProducto(UpdateProductoViewModel producto)
         {
-            //string token = HttpContext.Session.GetString("AuthToken");
-            //if (token == null)
-            //{
-            //    return RedirectToAction("Index",
-            //        "Authentication");
-            //}
-
             try
             {
                 TempData["SuccessState"] = "UPDATE_FAILED";
-                //bool isValid = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-                //if (isValid)
-                //{
                 UpdateProductoApiModel productoApi = new UpdateProductoApiModel()
                 {
                     nombre = producto.Nombre,
@@ -134,13 +124,6 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> DeshabilitarProducto(int idProducto)
         {
-            //string token = HttpContext.Session.GetString("AuthToken");
-            //if (token == null)
-            //{
-            //    return RedirectToAction("Index",
-            //        "Authentication");
-            //}
-
             try
             {
                 TempData["SuccessState"] = "DISABLE_FAILED";
@@ -160,13 +143,6 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> HabilitarProducto(int idProducto)
         {
-            //string token = HttpContext.Session.GetString("AuthToken");
-            //if (token == null)
-            //{
-            //    return RedirectToAction("Index",
-            //        "Authentication");
-            //}
-
             try
             {
                 TempData["SuccessState"] = "ENABLE_FAILED";
@@ -184,9 +160,8 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> ObtenerTiposProducto()
+        public ActionResult ObtenerTiposProducto()
         {
-            //List<TipoProducto> lista = await bsProducto.ObtenerTiposProducto();
             List<TipoProducto> lista = new List<TipoProducto>();
             lista.Add(new TipoProducto { IdTipo = 1, Descripcion = "Comida" });
             lista.Add(new TipoProducto { IdTipo = 2, Descripcion = "Bebida" });
