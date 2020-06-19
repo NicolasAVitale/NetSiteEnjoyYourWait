@@ -12,6 +12,9 @@
                             <div class="modal-body">
                                 @switch (ViewBag.SuccessState)
                                 {
+                                    case "LOAD_NOUSERS":
+                                        <p>No hay recepcionistas cargados en el sistema aún.</p>
+                                        break;
                                     case "LOAD_FAILED":
                                         <p>Error al cargar los recepcionistas.</p>
                                         break;
@@ -148,25 +151,25 @@
                                         @foreach (var recepcionista in Model.lstRecepcionista)
                                         {
                                         <tr>
-                                            <td class="align-middle table-recepcion">@recepcionista.Dni</td>
-                                            <td class="align-middle table-recepcion">@recepcionista.Nombre</td>
-                                            <td class="align-middle table-recepcion">@recepcionista.Apellido</td>
+                                            <td class="align-middle table-recepcion">@recepcionista.dni</td>
+                                            <td class="align-middle table-recepcion">@recepcionista.nombre</td>
+                                            <td class="align-middle table-recepcion">@recepcionista.apellido</td>
                                             <td class="align-middle table-recepcion mail-size">
-                                                <input type="text" id="emailInput" name="email" value="@recepcionista.Email">
+                                                <input type="text" id="emailInput" name="email" value="@recepcionista.email">
                                             </td>
                                             <td class="table-recepcion">
                                                 <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
-                                                        item-id="@recepcionista.Dni">
+                                                        item-id="@recepcionista.dni">
                                                     <i class="fas fa-check-square check-visible"></i>
                                                     <span class="txt-modif-visible">Modificar</span>
                                                 </button>
                                             </td>
-                                            @if (recepcionista.Activo)
+                                            @if (recepcionista.activo == 1)
                                             {
                                         <td class="align-middle table-recepcion estado-size">
                                             <span class="txt-btn-visibilidad">Habilitado</span>
                                             <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad"
-                                                    item-id="@recepcionista.Dni">                                                
+                                                    item-id="@recepcionista.dni">                                                
                                                 <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena" />
                                             </button>
                                         </td>
@@ -176,17 +179,17 @@
                                         <td class="align-middle table-recepcion estado-size">
                                             <span class="txt-btn-visibilidad">Deshabilitado</span>
                                             <button type="button" class="btn btn-sm item-enable-selection btn-grill-style img-visibilidad"
-                                                    item-id="@recepcionista.Dni">                                                
+                                                    item-id="@recepcionista.dni">                                                
                                                 <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena" />
                                             </button>
                                         </td>
                                             }
 
-                                            @if (recepcionista.Activo)
+                                            @if (recepcionista.activo == 1)
                                             {
                                                 <td class="table-recepcion txt-btn-visibilidad">
                                                     <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
-                                                            item-id="@recepcionista.Dni">
+                                                            item-id="@recepcionista.dni">
                                                         <span class="">Deshabilitar</span>                                                        
                                                     </button>
                                                 </td>
@@ -195,7 +198,7 @@
                                             {
                                                 <td class="table-recepcion txt-btn-visibilidad">
                                                     <button type="button" class="btn btn-sm item-enable-selection btn-grill-style"
-                                                            item-id="@recepcionista.Dni">
+                                                            item-id="@recepcionista.dni">
                                                         <span class="">Habilitar</span>                                                        
                                                     </button>
                                                 </td>

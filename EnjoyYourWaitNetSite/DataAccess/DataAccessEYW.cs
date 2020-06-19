@@ -90,12 +90,12 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
         public async Task<List<Usuario>> GetAllRecepcionistas()
         {
-            return await Request<List<Usuario>>(HttpMethod.Get, "recepcionistas", true);
+            return await Request<List<Usuario>>(HttpMethod.Get, "usuarios?rol=2", true);
         }
 
         public async Task<bool> CreateRecepcionista(Usuario recepcionista)
         {
-            return await Request(HttpMethod.Post, "recepcionistas", true, recepcionista);
+            return await Request(HttpMethod.Post, "usuarios", true, recepcionista);
         }
 
         public async Task<bool> DisableRecepcionista(int dni)

@@ -1,6 +1,5 @@
 ﻿using EnjoyYourWaitNetSite.BusinessLogic;
 using EnjoyYourWaitNetSite.Entities;
-using EnjoyYourWaitNetSite.Helper;
 using EnjoyYourWaitNetSite.Models;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             catch (Exception)
             {
                 TempData["SuccessState"] = "LOAD_FAILED";
-                return View("RegistroProducto", model);
+                return View("GestionProducto", model);
             }
         }
 

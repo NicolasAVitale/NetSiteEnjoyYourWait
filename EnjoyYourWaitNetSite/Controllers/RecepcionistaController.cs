@@ -15,38 +15,34 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> GestionRecepcionista()
         {
-            Usuario recepcionista = new Usuario();
+            RecepcionistaViewModel model = new RecepcionistaViewModel();
+            model.lstRecepcionista = new List<Usuario>();
             try
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
                 //Cargo lista de recepcionistas
-                //List<Usuario> recepcionistas = await bsRecepcionista.GetAllRecepcionistas();
-                //return View("GestionRecepcionista", new RecepcionistaViewModel()
-                //{
-                //    lstRecepcionista = recepcionistas.ConvertAll(r => new Usuario
-                //    {
-                //        Dni = r.Dni,
-                //        Nombre = r.Nombre,
-                //        Apellido = r.Apellido,
-                //        Email = r.Email,
-                //        FechaNacimiento = r.FechaNacimiento
-                //    })
-                //});
-                RecepcionistaViewModel model = new RecepcionistaViewModel();
-                model.lstRecepcionista = new List<Usuario>();
-                //Usuario recepcionista = new Usuario();
-                recepcionista.Dni = 12345678;
-                recepcionista.Nombre = "Nico";
-                recepcionista.Apellido = "Vitale";
-                recepcionista.Email = "enjoyyourwait@eyw.com";
-                recepcionista.FechaNacimiento = DateTime.Now;
-                model.lstRecepcionista.Add(recepcionista);
+                List<Usuario> recepcionistas = await bsRecepcionista.GetAllRecepcionistas();
+                model.lstRecepcionista = recepcionistas;
+                if (recepcionistas.Count == 0)
+                {
+                    TempData["SuccessState"] = "LOAD_NOUSERS";
+                }
                 return View("GestionRecepcionista", model);
+                //RecepcionistaViewModel model = new RecepcionistaViewModel();
+                //model.lstRecepcionista = new List<Usuario>();
+                ////Usuario recepcionista = new Usuario();
+                //recepcionista.Dni = 12345678;
+                //recepcionista.Nombre = "Nico";
+                //recepcionista.Apellido = "Vitale";
+                //recepcionista.Email = "enjoyyourwait@eyw.com";
+                //recepcionista.FechaNacimiento = DateTime.Now;
+                //model.lstRecepcionista.Add(recepcionista);
+                //return View("GestionRecepcionista", model);
             }
             catch (Exception)
             {
                 TempData["SuccessState"] = "LOAD_FAILED";
-                return View("RegistroRecepcionista", recepcionista);
+                return View("GestionRecepcionista", model);
             }
         }
 
@@ -70,12 +66,12 @@ namespace EnjoyYourWaitNetSite.Controllers
                     ViewBag.Success = false;
                     bool result = await bsRecepcionista.CreateRecepcionista(new Usuario()
                     {
-                        Dni = int.Parse(recepcionista.Dni),
-                        Nombre = recepcionista.Nombre,
-                        Apellido = recepcionista.Apellido,
-                        Email = recepcionista.Email,
-                        FechaNacimiento = recepcionista.FechaNacimiento,
-                        Contrasena = recepcionista.Dni.ToString()
+                        dni = int.Parse(recepcionista.Dni),
+                        nombre = recepcionista.Nombre,
+                        apellido = recepcionista.Apellido,
+                        email = recepcionista.Email,
+                        fechaNacimiento = recepcionista.FechaNacimiento.ToString("yyyy-MM-dd"),
+                        contrasena = recepcionista.Dni.ToString()
                     });
                     if (result)
                     {
