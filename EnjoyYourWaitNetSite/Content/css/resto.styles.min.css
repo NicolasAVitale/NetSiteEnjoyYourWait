@@ -296,7 +296,7 @@ h4 {
         border-radius: 2px;
     }
 /*RECEPCIONISTA*/
-#btnRegistrarRecepcionista {
+#btnRegistrarRecepcionista, #btnRegistrarProducto {
     background-color: #3d94de;
     border-color: #3d94de;
     vertical-align: text-bottom;

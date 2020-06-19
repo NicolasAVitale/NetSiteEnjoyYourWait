@@ -68,7 +68,7 @@
                                 @using (Html.BeginForm("DeshabilitarProducto", "Producto", FormMethod.Post))
                                 {
                                     <input id="inProducto" name="idProducto" type="hidden">
-                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
                                 }
                             </div>
@@ -91,8 +91,8 @@
                                 @using (Html.BeginForm("HabilitarProducto", "Producto", FormMethod.Post))
                                 {
                                     <input id="inProducto" name="idProducto" type="hidden">
-                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Habilitar">
+                                    <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-success" value="Habilitar">
                                 }
                             </div>
                         </div>
@@ -103,24 +103,23 @@
             <div class="row mt-3">
                 <div class="col justify-content-center">
                     <div class="row mt-3">
-                        <div class="col">
+                        <div class="col-md-12 col-recep">
                             <font class="float-left" size="5">Productos</font>
-                            <button type="button" id="btnRegistrarProducto" class="btn btn-success btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroProducto", "Producto")'">Registrar</button>
+                            <button type="button" id="btnRegistrarProducto" class="btn btn-sm float-right" onclick="location.href='@Url.Action("AbrirRegistroProducto", "Producto")'">Crear nuevo</button>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col">
+                        <div class="col-md-12 col-recep">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Imagen</th>
-                                            <th scope="col">Estado Producto</th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
+                                            <th scope="col" class="table-recepcion">Nombre</th>
+                                            <th scope="col" class="table-recepcion">Precio</th>
+                                            <th scope="col" class="table-recepcion">Imagen</th>
+                                            <th scope="col" class="table-recepcion"></th>
+                                            <th scope="col" class="table-recepcion"><span class="txt-acceso-sist">Estado</span><span class="txt-acceso">Estado</span></th>
+                                            <th scope="col" class="table-recepcion txt-btn-visibilidad"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -134,38 +133,51 @@
                                                     <img class="img-responsive center-block lazy" src="~/Content/img/@producto.imagen" style="display: block;">
                                                 </div>
                                             </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
+                                                        onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">
+                                                    <i class="fas fa-check-square check-visible"></i>
+                                                    <span class="txt-modif-visible">Modificar</span>
+                                                </button>
+                                            </td>
+
                                             @if (producto.activo == 1)
                                             {
-                                                <td class="align-middle">Habilitado</td>
+                                        <td class="align-middle table-recepcion estado-size">
+                                            <span class="txt-btn-visibilidad">Habilitado</span>
+                                            <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad">
+                                                <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena" />
+                                            </button>
+                                        </td>
                                             }
                                             else
                                             {
-                                                <td class="align-middle">Deshabilitado</td>
-                                            }
-                                            <td>
-                                                <button type="button" class="btn btn-success btn-sm item-update-selection"
-                                                        onclick="location.href='@Url.Action("AbrirModificarProducto", "Producto", producto)'">
-                                                    Modificar
-                                                </button>
-                                            </td>
-                                            @if (producto.activo == 1)
-                                            {
-                                                <td>
-                                                    <button type="button" class="btn btn-primary btn-sm item-enable-selection"
-                                                            item-id="@producto.idProducto">
-                                                        Habilitar
+                                                
+                                                <td class="align-middle table-recepcion estado-size">
+                                                    <span class="txt-btn-visibilidad">Deshabilitado</span>
+                                                    <button type="button" class="btn btn-sm item-enable-selection btn-grill-style img-visibilidad">
+                                                        <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena" />
                                                     </button>
                                                 </td>
                                             }
-                                            else
+
+                                            @if (producto.activo == 1)
                                             {
-                                                <td>
-                                                    <button type="button" class="btn btn-danger btn-sm item-disable-selection"
+                                                <td class="table-recepcion txt-btn-visibilidad">
+                                                    <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
                                                             item-id="@producto.idProducto">
                                                         Deshabilitar
                                                     </button>
                                                 </td>
-
+                                            }
+                                            else
+                                            {
+                                                <td class="table-recepcion txt-btn-visibilidad">
+                                                    <button type="button" class="btn btn-sm item-enable-selection btn-grill-style"
+                                                            item-id="@producto.idProducto">
+                                                        Habilitar
+                                                    </button>
+                                                </td>
                                             }
                                         </tr>
                                         }
