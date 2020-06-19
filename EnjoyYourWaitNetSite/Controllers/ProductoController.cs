@@ -13,6 +13,12 @@ namespace EnjoyYourWaitNetSite.Controllers
     public class ProductoController : Controller
     {
         private BSProducto bsProducto = new BSProducto();
+
+        public ActionResult Menu()
+        {
+            return View();
+        }
+
         public async Task<ActionResult> GestionProducto()
         {
             ProductoViewModel model = new ProductoViewModel();

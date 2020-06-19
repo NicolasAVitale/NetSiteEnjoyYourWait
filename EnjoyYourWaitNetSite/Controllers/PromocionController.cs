@@ -7,6 +7,12 @@ namespace EnjoyYourWaitNetSite.Controllers
     public class PromocionController : Controller
     {
         private BSHome bsHome = new BSHome();
+
+        public ActionResult Promociones()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();
