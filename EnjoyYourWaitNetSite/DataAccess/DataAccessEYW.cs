@@ -83,22 +83,14 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
         }
 
-        public async Task<List<int>> CalcularTiempoYPersonasEsperaCliente(int idCliente, int capacidad, int tiempo)
+        public async Task<EsperaResponse> CalcularTiempoYPersonasEsperaCliente(int idCliente, int capacidad, int tiempo)
         {
-            EsperaResponse response = await Request<EsperaResponse>(HttpMethod.Get, $"filaclientes/{idCliente}/{capacidad}/{tiempo}", true);
-            List<int> espera = new List<int>();
-            espera.Add(response.tiempoEspera);
-            espera.Add(response.cantPersonasAdelante);
-            return espera;
+            return await Request<EsperaResponse>(HttpMethod.Get, $"filaclientes/{idCliente}/{capacidad}/{tiempo}", true);
         }
 
-        public async Task<List<int>> CalcularTiempoYPersonasEsperaGeneral(int capacidad, int tiempo)
+        public async Task<EsperaResponse> CalcularTiempoYPersonasEsperaGeneral(int capacidad, int tiempo)
         {
-            EsperaResponse response = await Request<EsperaResponse>(HttpMethod.Get, $"filaclientes/{capacidad}/{tiempo}", true);
-            List<int> espera = new List<int>();
-            espera.Add(response.tiempoEspera);
-            espera.Add(response.cantPersonasAdelante);
-            return espera;
+            return await Request<EsperaResponse>(HttpMethod.Get, $"filaclientes/{capacidad}/{tiempo}", true);
         }
 
         public async Task<Cliente> RegistrarCliente(Cliente cliente)

@@ -104,9 +104,9 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<List<int>> CalcularTiempoYPersonasEspera()
+        public async Task<ActionResult> CalcularTiempoYPersonasEspera()
         {
-            List<int> espera = new List<int>();
+            EsperaResponse espera = null;
             int capacidad = int.Parse(ConfigurationManager.AppSettings.Get("CapacidadRestaurante"));
             int tiempo = int.Parse(ConfigurationManager.AppSettings.Get("TiempoEstimado"));
 
@@ -118,7 +118,7 @@ namespace EnjoyYourWaitNetSite.Controllers
                 espera = await bsFila.CalcularTiempoYPersonasEsperaGeneral(capacidad, tiempo);
             }
 
-            return espera;
+            return Json(espera);
         }
     }
 }

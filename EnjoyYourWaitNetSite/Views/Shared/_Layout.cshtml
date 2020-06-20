@@ -135,8 +135,10 @@
                 data: {},
                 dataType: "json",
                 success: function (data) {
-                    document.getElementById("tiempoEspera").innerHTML = data[0];
-                    document.getElementById("personasAdelante").innerHTML = data[1];
+                    debugger
+                    console.log(data);
+                    document.getElementById("tiempoEspera").innerHTML = data.tiempoEspera;
+                    document.getElementById("personasAdelante").innerHTML = data.cantPersonasAdelante;
                 },
                 error: function (errorThrown) {
                     alert(errorThrown);

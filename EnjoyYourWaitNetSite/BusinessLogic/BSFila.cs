@@ -49,16 +49,14 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             return true;
         }
 
-        public async Task<List<int>> CalcularTiempoYPersonasEsperaCliente(int idCliente, int capacidad, int tiempo)
+        public async Task<EsperaResponse> CalcularTiempoYPersonasEsperaCliente(int idCliente, int capacidad, int tiempo)
         {
-            List<int> espera = await dataAccess.CalcularTiempoYPersonasEsperaCliente(idCliente, capacidad, tiempo);
-            return espera;
+            return await dataAccess.CalcularTiempoYPersonasEsperaCliente(idCliente, capacidad, tiempo);
         }
 
-        public async Task<List<int>> CalcularTiempoYPersonasEsperaGeneral(int capacidad, int tiempo)
+        public async Task<EsperaResponse> CalcularTiempoYPersonasEsperaGeneral(int capacidad, int tiempo)
         {
-            List<int> espera = await dataAccess.CalcularTiempoYPersonasEsperaGeneral(capacidad, tiempo);
-            return espera;
+            return await dataAccess.CalcularTiempoYPersonasEsperaGeneral(capacidad, tiempo);
         }
     }
 }
