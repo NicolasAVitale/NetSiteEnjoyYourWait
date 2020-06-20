@@ -89,6 +89,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
         }
 
+        public async Task<Usuario> Login(UserLoginEntity userCredentials)
+        {
+            return await Request<Usuario>(HttpMethod.Post, "usuarios/login", true, userCredentials);
+        }
+
         public async Task<bool> ActualizarEstadoClientesEnRestaurante(int tiempo)
         {
             return await Request(HttpMethod.Put, $"filaclientes/{tiempo}", true);
@@ -226,5 +231,6 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
             return response;
         }
+
     }
 }

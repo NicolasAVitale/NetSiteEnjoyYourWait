@@ -1,4 +1,4 @@
-﻿@model EnjoyYourWaitNetSite.Models.UserAuthenticationViewModel
+﻿@model EnjoyYourWaitNetSite.Models.UserLoginViewModel
 @{
     Layout = null;
 }
@@ -28,39 +28,32 @@
 </head>
 <body class="fondo-madera">
 
-    <div class="container">
-        <div>
-            @if (ViewBag.SuccessState != null)
-            {
-                <div id="messageModal" class="modal">
-                    <div class="modal-dialog">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    @switch (ViewBag.SuccessState)
-                                    {
-                                        case "LOGIN_FAILED":
-                                            <p>El nombre de usuario o la contraseña son invalidos.</p>
-                                            break;
-                                        case "TOKEN_FAILED":
-                                            <p>Se produjo un error inesperado al iniciar sesión.</p>
-                                            break;
-                                    }
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
+    @if (ViewBag.SuccessState != null)
+    {
+        <div id="messageModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            @switch (ViewBag.SuccessState)
+                            {
+                                case "LOGIN_FAILED":
+                                    <p>El nombre de usuario o la contraseña son invalidos.</p>
+                                    break;
+                                case "UNEXPECTED_ERROR":
+                                    <p>Se produjo un error inesperado al iniciar sesión.</p>
+                                    break;
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
-                <script>
-                    $(function () {
-                        $('#messageModal').modal('show');
-                    });
-                </script>
-            }
+            </div>
         </div>
+    }
+    <div class="container">
 
         <div class="row justify-content-center">
 
@@ -85,7 +78,7 @@
                                             </div>
 
                                             <div class="form-group form-center">
-                                               <label class="txt-login">Contraseña</label>
+                                                <label class="txt-login">Contraseña</label>
                                                 @Html.PasswordFor(model => model.Contrasena, new { @class = "form-control form-control-user centrar-bloques" })
                                                 @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
                                             </div>
@@ -96,20 +89,31 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 }
-                </div>
+            </div>
         </div>
-                
-    </div>
 
-     <script src="~/Scripts/jquery.min.js"></script>
-     <script src="~/Scripts/bootstrap.bundle.min.js"></script>                   
+    </div>
+    @section scripts {
+
+        @if (ViewBag.SuccessState != null)
+        {
+            <script>
+                $(function () {
+                    $('#messageModal').modal('show');
+                });
+            </script>
+        }
+    }
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/jquery.easing.min.js"></script>
     <script src="~/Scripts/sb-admin-2.min.js"></script>
-    
+
 </body>
 
 </html>

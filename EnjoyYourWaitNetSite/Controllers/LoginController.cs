@@ -14,70 +14,75 @@ namespace EnjoyYourWaitNetSite.Controllers
         private BSLogin bsLogin = new BSLogin();
         public ActionResult Index()
         {
-            UserAuthenticationViewModel user = new UserAuthenticationViewModel();
+            UserLoginViewModel user = new UserLoginViewModel();
             return View("Login", user);
         }
 
-        //public async Task<ActionResult> LoginAuth(UserAuthenticationViewModel userModel)
-        //{
-        //    try
-        //    {
-        //        ViewBag.SuccessState = null;
-        //        if (ModelState.IsValid)
-        //        {
-        //            ViewBag.SuccessState = "LOGIN_FAILED";
+        public async Task<ActionResult> LoginAuth(UserLoginViewModel userModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    TempData["SuccessState"] = "LOGIN_FAILED";
+                    ViewBag.SuccessState = TempData["SuccessState"];
 
-        //            Usuario user = new Usuario
-        //            {
-        //                Email = userModel.Email,
-        //                Contrasena = userModel.Contrasena
-        //            };
+                    UserLoginEntity userCredentials = new UserLoginEntity
+                    {
+                        email = userModel.Email,
+                        contrasena = userModel.Contrasena
+                    };
 
-        //            if (!(await bsLogin.GetAuthToken(user) is object[] dataConnection) || dataConnection.Length != 2 || dataConnection[0] == null)
-        //                throw new AuthException("Ha ocurrido un error con sus credenciales");
+                    Usuario userLogin = await bsLogin.Login(userCredentials);
+                    if(userLogin != null)
+                    {
+                        if (userLogin.idRol == 1)
+                        {
+                            SessionHelper.Administrador = new Administrador
+                            {
+                                idUsuario = userLogin.idUsuario,
+                                dni = userLogin.dni,
+                                nombre = userLogin.nombre,
+                                apellido = userLogin.apellido,
+                                email = userLogin.email,
+                                fechaNacimiento = userLogin.fechaNacimiento,
+                                contrasena = userLogin.contrasena,
+                                idRol = userLogin.idRol
+                            };
+                        }
+                        else
+                        {
+                            SessionHelper.Recepcionista = new Recepcionista
+                            {
+                                idUsuario = userLogin.idUsuario,
+                                dni = userLogin.dni,
+                                nombre = userLogin.nombre,
+                                apellido = userLogin.apellido,
+                                email = userLogin.email,
+                                fechaNacimiento = userLogin.fechaNacimiento,
+                                contrasena = userLogin.contrasena,
+                                idRol = userLogin.idRol
+                            };
+                        }
 
-        //            Usuario userAuth = (Usuario)dataConnection[1];
-        //            if (userAuth.IdRol == 1)
-        //            {
-        //                SessionHelper.Administrador = new Administrador
-        //                {
-        //                    IdUsuario = userAuth.IdUsuario,
-        //                    Dni = userAuth.Dni,
-        //                    Nombre = userAuth.Nombre,
-        //                    Apellido = userAuth.Apellido,
-        //                    Email = userAuth.Email,
-        //                    FechaNacimiento = userAuth.FechaNacimiento,
-        //                    Contrasena = userAuth.Contrasena,
-        //                    IdRol = userAuth.IdRol
-        //                };
-        //            } 
-        //            else
-        //            {
-        //                SessionHelper.Recepcionista = new Recepcionista
-        //                {
-        //                    IdUsuario = userAuth.IdUsuario,
-        //                    Dni = userAuth.Dni,
-        //                    Nombre = userAuth.Nombre,
-        //                    Apellido = userAuth.Apellido,
-        //                    Email = userAuth.Email,
-        //                    FechaNacimiento = userAuth.FechaNacimiento,
-        //                    Contrasena = userAuth.Contrasena,
-        //                    IdRol = userAuth.IdRol
-        //                };
-        //            }
-        //            return RedirectToAction("Index",
-        //                "Home");
-        //        }
-        //        return View("Login",
-        //            userModel);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        ViewBag.SuccessState = "TOKEN_FAILED";
-        //        return View("Login",
-        //            userModel);
-        //    }
-        //}
+                        TempData["SuccessState"] = "LOGIN_SUCCESS";
+                        ViewBag.SuccessState = TempData["SuccessState"];
+
+                        return RedirectToAction("Index",
+                            "Home");
+                    }
+                }
+                return View("Login",
+                    userModel);
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "UNEXPECTED_ERROR";
+                ViewBag.SuccessState = TempData["SuccessState"];
+                return View("Login",
+                    userModel);
+            }
+        }
 
         public ActionResult LogOut()
         {

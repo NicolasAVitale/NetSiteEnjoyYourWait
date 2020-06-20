@@ -12,6 +12,16 @@
                     <div class="modal-body">
                         @switch (ViewBag.SuccessState)
                         {
+                            case "LOGIN_SUCCESS":
+                                if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador != null)
+                                {
+                                    <p>Hola @EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador.nombre , nos alegra tenerte nuevamente por aquí.</p>
+                                }
+                                if (EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista != null)
+                                {
+                                    <p>Hola @EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista.nombre , nos alegra tenerte nuevamente por aquí.</p>
+                                }
+                                break;
                             case "MAIL_INCORRECT":
                                 <p>El correo ingresado no es válido. Por favor, revise los datos ingresados.</p>
                                 break;

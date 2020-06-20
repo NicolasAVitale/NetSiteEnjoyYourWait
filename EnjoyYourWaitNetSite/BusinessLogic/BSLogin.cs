@@ -1,4 +1,5 @@
 ﻿using EnjoyYourWaitNetSite.Entities;
+using System;
 using System.Threading.Tasks;
 
 namespace EnjoyYourWaitNetSite.BusinessLogic
@@ -7,6 +8,11 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
     {
         public BSLogin()
         {
+        }
+
+        public async Task<Usuario> Login(UserLoginEntity userCredentials)
+        {
+            return await dataAccess.Login(userCredentials);
         }
     }
 }
