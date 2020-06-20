@@ -362,6 +362,15 @@ h4 {
     max-width: 8vw;
 }
 
+.table-prod > thead > tr > th,
+.table-prod > tbody > tr > th,
+.table-prod > tfoot > tr > th,
+.table-prod > thead > tr > td,
+.table-prod > tbody > tr > td,
+.table-prod > tfoot > tr > td {
+    vertical-align: middle;
+}
+
 /*OTROS TAMAÑOS*/
 @media(min-width: 992px) {
     .carta-juego {
