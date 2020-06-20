@@ -1,8 +1,11 @@
-﻿using EnjoyYourWaitNetSite.BusinessLogic;
+﻿using com.sun.tools.javac.util;
+using EnjoyYourWaitNetSite.BusinessLogic;
 using EnjoyYourWaitNetSite.Entities;
 using EnjoyYourWaitNetSite.Helper;
 using EnjoyYourWaitNetSite.Models;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -46,7 +49,7 @@ namespace EnjoyYourWaitNetSite.Controllers
         public ActionResult ConfirmarIngreso()
         {
             string email = SessionHelper.Email;
-            if(email != null)
+            if (email != null)
             {
                 ClienteViewModel model = new ClienteViewModel();
                 return View(model);
@@ -75,11 +78,16 @@ namespace EnjoyYourWaitNetSite.Controllers
                         activo = 1
                     };
 
-                    bool result = await bsFila.IngresarAFila(entidadCliente, int.Parse(cliente.CantComensales));
-                    if (result)
+                    Cliente clienteRegistrado = await bsFila.RegistrarCliente(entidadCliente);
+                    if (clienteRegistrado != null)
                     {
-                        TempData["Success"] = true;
-                        return RedirectToAction("Index", "Home");
+                        SessionHelper.Cliente = clienteRegistrado;
+                        bool result = await bsFila.IngresarAFila(clienteRegistrado.idCliente, int.Parse(cliente.CantComensales));
+                        if (result)
+                        {
+                            TempData["SuccessState"] = "ENTRY_SUCCESS";
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                 }
                 if (!difEdad)
@@ -91,9 +99,26 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
             catch (Exception)
             {
-                TempData["Success"] = false;
+                TempData["SuccessState"] = "ENTRY_INCORRECT";
                 return View("ConfirmarIngreso", cliente);
             }
+        }
+
+        public async Task<List<int>> CalcularTiempoYPersonasEspera()
+        {
+            List<int> espera = new List<int>();
+            int capacidad = int.Parse(ConfigurationManager.AppSettings.Get("CapacidadRestaurante"));
+            int tiempo = int.Parse(ConfigurationManager.AppSettings.Get("TiempoEstimado"));
+
+            if (SessionHelper.Cliente != null)
+            {
+                espera = await bsFila.CalcularTiempoYPersonasEsperaCliente(SessionHelper.Cliente.idCliente, capacidad, tiempo);
+            } else
+            {
+                espera = await bsFila.CalcularTiempoYPersonasEsperaGeneral(capacidad, tiempo);
+            }
+
+            return espera;
         }
     }
 }

@@ -91,7 +91,6 @@
         @RenderBody()
 
         <footer>
-
             <div id="social-icons">
                 <ul class="list-inline">
                     <li>
@@ -106,7 +105,15 @@
                 </ul>
             </div>
 
+            <div id="tablaTiempoPersona">
+                <label>Tiempo mínimo de espera estimado</label>
+                <p id="tiempoEspera"></p>
+                <label>Cantidad de personas adelante</label>
+                <p id="personasAdelante"></p>
+            </div>
+
             <p id="power-by">&copy; @DateTime.Now.Year - Powered by Enjoy Your Wait</p>
+
         </footer>
     </div>
 
@@ -114,5 +121,28 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+    <script>
+        $(document).ready(function () {
+            CalcularTiempoEspera();
+        });
+
+        var waitTime = setInterval(CalcularTiempoEspera, 500000);
+
+        function CalcularTiempoEspera() {
+            $.ajax({
+                type: "POST",
+                url: "/Fila/CalcularTiempoYPersonasEspera",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    document.getElementById("tiempoEspera").innerHTML = data[0];
+                    document.getElementById("personasAdelante").innerHTML = data[1];
+                },
+                error: function (errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+    </script>    
 </body>
 </html>

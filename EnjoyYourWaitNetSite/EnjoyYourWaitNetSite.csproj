@@ -337,6 +337,7 @@
     <Compile Include="Entities\ClienteFila.cs" />
     <Compile Include="Entities\Encuesta.cs" />
     <Compile Include="Entities\ErrorModel.cs" />
+    <Compile Include="Entities\EsperaResponse.cs" />
     <Compile Include="Entities\Premio.cs" />
     <Compile Include="Entities\Producto.cs" />
     <Compile Include="Entities\Promocion.cs" />

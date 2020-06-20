@@ -1,5 +1,6 @@
 ﻿using EnjoyYourWaitNetSite.Entities;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Mail;
 using System.Text;
@@ -36,14 +37,28 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             smtpClient.Send(mail);
         }
 
-        public async Task<bool> IngresarAFila(Cliente cliente, int cantComentsales)
+        public async Task<Cliente> RegistrarCliente(Cliente cliente)
         {
             Cliente clienteRegistrado = await dataAccess.RegistrarCliente(cliente);
-            //Si no existe lo ingresamos en la tabla clientes.
-            //Si no lo insertamos en la tabla cliente fila
-            //Calculamos el tiempo de 
+            return clienteRegistrado;
+        }
+
+        public async Task<bool> IngresarAFila(int idCliente, int cantComentsales)
+        {
+            //Cliente clienteRegistrado = await dataAccess.RegistrarCliente(cliente);
             return true;
         }
-        
+
+        public async Task<List<int>> CalcularTiempoYPersonasEsperaCliente(int idCliente, int capacidad, int tiempo)
+        {
+            List<int> espera = await dataAccess.CalcularTiempoYPersonasEsperaCliente(idCliente, capacidad, tiempo);
+            return espera;
+        }
+
+        public async Task<List<int>> CalcularTiempoYPersonasEsperaGeneral(int capacidad, int tiempo)
+        {
+            List<int> espera = await dataAccess.CalcularTiempoYPersonasEsperaGeneral(capacidad, tiempo);
+            return espera;
+        }
     }
 }
