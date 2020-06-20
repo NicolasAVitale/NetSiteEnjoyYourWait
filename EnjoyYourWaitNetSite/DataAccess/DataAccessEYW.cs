@@ -43,7 +43,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
                 HttpRequestMessage requestMessage = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(appSettings + "usuarios/login")
+                    RequestUri = new Uri(appSettings + "usuarios/auth")
                 };
                 requestMessage.Headers.Add("accept", "application/json");
                 requestMessage.Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
@@ -81,6 +81,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             {
                 return "expire";
             }
+        }
+
+        public async Task<bool> ActualizarEstadoClientesEnRestaurante(int tiempo)
+        {
+            return await Request(HttpMethod.Put, $"filaclientes/{tiempo}", true);
         }
 
         public async Task<EsperaResponse> CalcularTiempoYPersonasEsperaCliente(int idCliente, int capacidad, int tiempo)

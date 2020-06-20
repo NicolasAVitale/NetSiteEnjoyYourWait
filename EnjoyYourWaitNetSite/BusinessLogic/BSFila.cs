@@ -58,5 +58,10 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         {
             return await dataAccess.CalcularTiempoYPersonasEsperaGeneral(capacidad, tiempo);
         }
+
+        public async Task<bool> ActualizarEstadoClientesEnRestaurante(int tiempo)
+        {
+            return await dataAccess.ActualizarEstadoClientesEnRestaurante(tiempo);
+        }
     }
 }

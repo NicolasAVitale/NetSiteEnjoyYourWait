@@ -110,6 +110,9 @@ namespace EnjoyYourWaitNetSite.Controllers
             int capacidad = int.Parse(ConfigurationManager.AppSettings.Get("CapacidadRestaurante"));
             int tiempo = int.Parse(ConfigurationManager.AppSettings.Get("TiempoEstimado"));
 
+            //Actualizar estados
+            await bsFila.ActualizarEstadoClientesEnRestaurante(tiempo);
+
             if (SessionHelper.Cliente != null)
             {
                 espera = await bsFila.CalcularTiempoYPersonasEsperaCliente(SessionHelper.Cliente.idCliente, capacidad, tiempo);
