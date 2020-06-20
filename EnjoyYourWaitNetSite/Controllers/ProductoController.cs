@@ -14,9 +14,41 @@ namespace EnjoyYourWaitNetSite.Controllers
     {
         private BSProducto bsProducto = new BSProducto();
 
-        public ActionResult Menu()
+        public async Task<ActionResult> Menu()
         {
-            return View();
+            MenuViewModel model = new MenuViewModel();
+            try
+            {
+                model.ProductosMenu = new List<Producto>();
+
+                List<Producto> productosActivos = await bsProducto.ObtenerProductosActivos();
+
+                if (productosActivos.Count == 0)
+                {
+                    TempData["SuccessState"] = "LOAD_NOPRODUCTS";
+                    ViewBag.SuccessState = TempData["SuccessState"];
+                }
+                else
+                {
+                    foreach (var productoActivo in productosActivos)
+                    {
+                        model.ProductosMenu.Add(new Producto()
+                        {
+                            nombre = productoActivo.nombre,
+                            imagen = productoActivo.imagen,
+                            precio = productoActivo.precio
+                        });
+                    }
+                }
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "LOAD_FAILED";
+                ViewBag.SuccessState = TempData["SuccessState"];
+                return View(model);
+            }
         }
 
         public async Task<ActionResult> GestionProducto()

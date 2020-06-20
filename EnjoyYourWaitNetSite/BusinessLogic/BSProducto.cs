@@ -40,5 +40,10 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         {
             return await dataAccess.GetAllTiposProducto();
         }
+
+        public async Task<List<Producto>> ObtenerProductosActivos()
+        {
+            return await dataAccess.GetAllProductosActivos();
+        }
     }
 }

@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 using EnjoyYourWaitNetSite.Entities;
 using System.Collections.Generic;
 using EnjoyYourWaitNetSite.Models;
-
+using System.Linq;
 
 namespace EnjoyYourWaitNetSite.DataAccess
 {
@@ -64,6 +64,12 @@ namespace EnjoyYourWaitNetSite.DataAccess
                 return jObj["token"].ToString();
             }
             return token;  
+        }
+
+        public async Task<List<Producto>> GetAllProductosActivos()
+        {
+            List<Producto> productos = await Request<List<Producto>>(HttpMethod.Get, "productos", true);
+            return productos.Where(x => x.activo == 1).ToList();
         }
 
         public static string VerificarToken()

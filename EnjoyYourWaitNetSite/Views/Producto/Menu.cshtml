@@ -1,8 +1,87 @@
-﻿@{
-    ViewBag.Title = "Menu";
+﻿@model EnjoyYourWaitNetSite.Models.MenuViewModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
+<div>
+    @if (ViewBag.SuccessState != null)
+    {
+        <div id="messageModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            @switch (ViewBag.SuccessState)
+                            {
+                                case "LOAD_NOPRODUCTS":
+                                    <p>No hay productos cargados en el sistema aún.</p>
+                                    break;
+                                case "LOAD_FAILED":
+                                    <p>Error al cargar los productos.</p>
+                                    break;
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 
-<p>Aquí van a estar los productos del menú.</p>
+    @if (Model != null)
+    {
+        <div class="row mt-3">
+            <div class="col justify-content-center">
+                <div class="row mt-3">
+                    <div class="col-md-12 col-recep">
+                        <font class="float-left" size="5">Menu</font>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12 col-recep">
+                        <div class="table-responsive">
+                            <table class="table table-prod">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="table-recepcion">Nombre</th>
+                                        <th scope="col" class="table-recepcion">Precio</th>
+                                        <th scope="col" class="table-recepcion">Imagen</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var producto in Model.ProductosMenu)
+                                    {
+                                        <tr>
+                                            <td class="align-middle">@producto.nombre</td>
+                                            <td class="align-middle">$@producto.precio</td>
+                                            <td class="align-middle">
+                                                <div style="display: inline-block" id="img_prod" class="col-sm-6 col-md-3 col-xl-5ths film-item, col-int-index">
+                                                    <img class="img-responsive center-block lazy" src="~/Content/img/@producto.imagen" style="display: block;">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    @if (ViewBag.SuccessState != null)
+    {
+        <script>
+            $(function () {
+                $('#messageModal').modal('show');
+            });
+        </script>
+    }
+}
