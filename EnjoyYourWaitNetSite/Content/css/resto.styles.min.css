@@ -186,7 +186,8 @@ a:link, a:hover, a:visited {
 }
 
 .timePerson-celda {
-        padding-left: 0.5vw;
+    padding-left: 0.5vw;
+    margin-bottom: 2px;
 }
 
 .timePerson-detalle {
@@ -356,6 +357,8 @@ a:link, a:hover, a:visited {
     max-width: 8vw;
 }
 
+/*PRODUCTOS*/
+
 .table-prod > thead > tr > th,
 .table-prod > tbody > tr > th,
 .table-prod > tfoot > tr > th,
@@ -365,246 +368,283 @@ a:link, a:hover, a:visited {
     vertical-align: middle;
 }
 
-/*OTROS TAMAÑOS*/
-@media(min-width: 992px) {
-    .carta-juego {
-        min-height: 90px;        
-    }
+#divTablaProductos {
+    overflow-y: scroll;
+    max-height: 325px;
 }
 
-@media(max-width: 936px) and (min-width: 768px) {
-    .navbar-nav {
-        padding-top: 2vw;
-    }
+.table-prod {
+    margin-bottom: 0px;
 }
 
-@media(max-width: 991px) {
-    .col-juegos {
-        margin-top: 10px;
-    }
+#divTablaProductos::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-@media(max-width: 991px) and (min-width: 768px) {
-    .body-content {
-        padding-top: 9vw;
-    }
-    
-    .titulo-secundario {
-        margin-bottom: 2vw;
-    }    
-
-    .nav {
-        margin-top: 0vw;
-    }
+#divTablaProductos::-webkit-scrollbar-thumb {
+    background: #777;
+    border-radius: 4px;
 }
 
-@media(max-width: 767px) {
-
-    .body-content {
-        padding-top: 0.5vw;
+    #divTablaProductos::-webkit-scrollbar-thumb:active {
+        background-color: #616161;
     }
 
-    #barra-cliente {
-        padding-left: 1vw;
+    #divTablaProductos::-webkit-scrollbar-thumb:hover {
+        background: #757575;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
     }
 
-    .titulo {
-        margin-top: 10px;
-        vertical-align: baseline;
-    }
-
-    .titulo-secundario {
-        font-size: 8vw;
-    }
-
-    .nav li {
-        font-size: large;
-    }
-
-    .navbar-nav > li > a {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        line-height: 20px;
-    }
-
-    .navbar-collapse {
-        background-color: rgba(29, 28, 34, 1);
-    }
-
-    .carta-juego {
-        font-size: 3vw;
-    }
-
-    .col-juegos {
-        padding-right: 5px;
-        padding-left: 5px;
-    }
-
-    .col-recep {
-        padding-left: 25px;
-        padding-right: 25px;
-        padding-bottom: 5px;
-    }
-
-    .timePerson-celda {
-        padding-left: 2vw;
-    }
-
+#divTablaProductos::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
 }
 
-@media(min-width: 709px) {
-    .mail-size {
-        width: 167px;
+    #divTablaProductos::-webkit-scrollbar-track:hover,
+    #divTablaProductos::-webkit-scrollbar-track:active {
+        background: #d4d4d4;
     }
 
-    .estado-size {
-        width: 142px;
-    }
-}
-
-@media(max-width: 708px) {
-
-    .img-visibilidad {
-        display: inline;
+/*OTRAS DIMENCIONES*/
+    @media(min-width: 992px) {
+        .carta-juego {
+            min-height: 90px;
+        }
     }
 
-    .txt-btn-visibilidad {
-        display: none;
+    @media(max-width: 936px) and (min-width: 768px) {
+        .navbar-nav {
+            padding-top: 2vw;
+        }
     }
 
-    /*.item-update-selection,*/ .item-enable-selection, .item-disable-selection {
-        background-color: rgba(255, 255, 255, 0);
-        border-color: rgba(255, 255, 255, 0);
-        padding-top: 0px;
-        padding-bottom: 0px;
-        border-top-width: 0px;
-        border-bottom-width: 0px;
-        border-right-width: 0px;
-        border-left-width: 0px;
+    @media(max-width: 991px) {
+        .col-juegos {
+            margin-top: 10px;
+        }
     }
 
-    .table-recepcion {
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+    @media(max-width: 991px) and (min-width: 768px) {
+        .body-content {
+            padding-top: 9vw;
+        }
+
+        .titulo-secundario {
+            margin-bottom: 2vw;
+        }
+
+        .nav {
+            margin-top: 0vw;
+        }
     }
 
-    .estado-size {
-        text-align: center;
-    }
-}
+    @media(max-width: 767px) {
 
-@media(max-width: 683px) {
-    .table-recepcion {
-        padding-right: 2px !important;
-        padding-left: 2px !important;
-    }
-}
+        .body-content {
+            padding-top: 0.5vw;
+        }
 
-@media(min-width: 506px) {
-    .check-visible {
-        display:none;
-    }
-}
+        #barra-cliente {
+            padding-left: 1vw;
+        }
 
-@media(max-width: 505px) {
-    .txt-modif-visible {
-    display:none;
-    }
+        .titulo {
+            margin-top: 10px;
+            vertical-align: baseline;
+        }
 
-    .item-update-selection {
-        padding-left: 6px;
-        padding-right: 6px;
-    }
-}
+        .titulo-secundario {
+            font-size: 8vw;
+        }
 
-@media(min-width: 454px) {
-    .txt-acceso {
-        display:none;
-    }
-}
+        .nav li {
+            font-size: large;
+        }
 
-@media(max-width: 453px) {
-    .txt-acceso-sist {
-        display: none;
-    }
+        .navbar-nav > li > a {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            line-height: 20px;
+        }
 
-    .img-dis-ena {
-        vertical-align: baseline;
-    }
-}
+        .navbar-collapse {
+            background-color: rgba(29, 28, 34, 1);
+        }
 
-@media(max-width: 434px) {
-    .item-update-selection {
-        background-color: rgba(61, 148, 222, 0);
-        border-color: rgba(61, 148, 222, 0);
-        padding: 0px;
-    }
+        .carta-juego {
+            font-size: 3vw;
+        }
 
-    #emailInput {
-        width: 142px;
-    }
-}
+        .col-juegos {
+            padding-right: 5px;
+            padding-left: 5px;
+        }
 
-@media(max-width: 425px) {
-    .titulo {
-        font-size: 7.5vw;
+        .col-recep {
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-bottom: 5px;
+        }
+
+        .timePerson-celda {
+            padding-left: 2vw;
+        }
     }
 
-    .titulo-secundario {
-        font-size: 12vw;
+    @media(min-width: 709px) {
+        .mail-size {
+            width: 167px;
+        }
+
+        .estado-size {
+            width: 142px;
+        }
     }
 
-    .logo-grill-1 {
-        height: 7vw;
+    @media(max-width: 708px) {
+
+        .img-visibilidad {
+            display: inline;
+        }
+
+        .txt-btn-visibilidad {
+            display: none;
+        }
+
+        /*.item-update-selection,*/ .item-enable-selection, .item-disable-selection {
+            background-color: rgba(255, 255, 255, 0);
+            border-color: rgba(255, 255, 255, 0);
+            padding-top: 0px;
+            padding-bottom: 0px;
+            border-top-width: 0px;
+            border-bottom-width: 0px;
+            border-right-width: 0px;
+            border-left-width: 0px;
+        }
+
+        .table-recepcion {
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+        }
+
+        .estado-size {
+            text-align: center;
+        }
     }
 
-    #social-icons {
-        font-size: 10px;
+    @media(max-width: 683px) {
+        .table-recepcion {
+            padding-right: 2px !important;
+            padding-left: 2px !important;
+        }
     }
 
-    .list-inline > li {
-        padding-right: 0px;
-        padding-left: 0px;
+    @media(min-width: 506px) {
+        .check-visible {
+            display: none;
+        }
     }
 
-    .carta-juego {
-        font-size: 4.5vw;
+    @media(max-width: 505px) {
+        .txt-modif-visible {
+            display: none;
+        }
+
+        .item-update-selection {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
     }
 
-    .timePerson-detalle {
-        padding-left: 3vw;
-    }
-}
-
-@media(max-width:413px) {
-    #emailInput {
-        width: 70px;
+    @media(min-width: 454px) {
+        .txt-acceso {
+            display: none;
+        }
     }
 
-    .btn-grill-style {
-        padding-left: 0px;
-        padding-right: 0px;
+    @media(max-width: 453px) {
+        .txt-acceso-sist {
+            display: none;
+        }
+
+        .img-dis-ena {
+            vertical-align: baseline;
+        }
     }
 
-    #tablaTiempoPersona {
-        bottom: 50px;
-    }
-}
+    @media(max-width: 434px) {
+        .item-update-selection {
+            background-color: rgba(61, 148, 222, 0);
+            border-color: rgba(61, 148, 222, 0);
+            padding: 0px;
+        }
 
-@media(max-width: 320px) {
-    .titulo {
-        font-size: 9.5vw;
-    }
-
-    .logo-grill-1 {
-        height: 8vw;
+        #emailInput {
+            width: 142px;
+        }
     }
 
-    #social-icons {
-        bottom: 15px;
+    @media(max-width: 425px) {
+        .titulo {
+            font-size: 7.5vw;
+        }
+
+        .titulo-secundario {
+            font-size: 12vw;
+        }
+
+        .logo-grill-1 {
+            height: 7vw;
+        }
+
+        #social-icons {
+            font-size: 10px;
+        }
+
+        .list-inline > li {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        .carta-juego {
+            font-size: 4.5vw;
+        }
+
+        .timePerson-detalle {
+            padding-left: 3vw;
+        }
     }
 
-    #tablaTiempoPersona {
-        background-color: rgba(29, 28, 34, 0.4);
+    @media(max-width:413px) {
+        #emailInput {
+            width: 70px;
+        }
+
+        .btn-grill-style {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        #tablaTiempoPersona {
+            bottom: 50px;
+        }
     }
-}
+
+    @media(max-width: 320px) {
+        .titulo {
+            font-size: 9.5vw;
+        }
+
+        .logo-grill-1 {
+            height: 8vw;
+        }
+
+        #social-icons {
+            bottom: 15px;
+        }
+
+        #tablaTiempoPersona {
+            background-color: rgba(29, 28, 34, 0.4);
+        }
+    }
