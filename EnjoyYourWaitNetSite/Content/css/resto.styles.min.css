@@ -172,35 +172,12 @@ a:link, a:hover, a:visited {
 }
 
 /*PANEL de TIEMPO*/
-#panel-tiempo {
-    width: max-content;
-    padding-left: 3vw;
-    padding-right: 3vw;
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    position: relative;
-    background-color: rgba(177, 49, 43, 0.6);
-    color: white;
-    background-size: cover;
-}
-
-    #panel-tiempo i {
-        padding-top: 1vw;
-        padding-bottom: 1vw;
-    }
-
-h3 {
-    font-family: 'Acme', sans-serif;
-}
-
-h4 {
-    display: inline-block;
-    margin-left: 1vw;
-    vertical-align: text-bottom;
+#tablaTiempoPersona {
+    position: absolute;
+    bottom: 30px;
 }
 
 /*ICONOS SOCIALES*/
-
 #social-icons {
     position: absolute;
     right: 0px;
