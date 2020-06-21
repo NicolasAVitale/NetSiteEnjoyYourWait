@@ -408,7 +408,7 @@ a:link, a:hover, a:visited {
 
 /*IMAGENES*/
 #pollo {
-    max-height: 435px;
+    max-height: 34vw;
     transform: rotate(-45deg);
 }
 
@@ -444,6 +444,8 @@ a:link, a:hover, a:visited {
             margin-top: 0vw;
         }
     }
+
+
 
     @media(max-width: 767px) {
 
@@ -493,10 +495,22 @@ a:link, a:hover, a:visited {
             padding-bottom: 5px;
         }
 
+        .col-menu {
+            padding-left: 25px;
+            padding-right: 2px;
+            padding-bottom: 5px;
+        }
+
         .timePerson-celda {
             padding-left: 2vw;
         }
+
+        #pollo {
+            max-height: 50vw;
+        }
     }
+
+
 
     @media(min-width: 709px) {
         .mail-size {
@@ -509,6 +523,8 @@ a:link, a:hover, a:visited {
     }
 
     @media(max-width: 708px) {
+
+       
 
         .img-visibilidad {
             display: inline;
@@ -544,6 +560,8 @@ a:link, a:hover, a:visited {
             padding-right: 2px !important;
             padding-left: 2px !important;
         }
+
+       
     }
 
     @media(min-width: 506px) {
@@ -635,22 +653,42 @@ a:link, a:hover, a:visited {
         #tablaTiempoPersona {
             bottom: 50px;
         }
-    }
 
-    @media(max-width: 320px) {
-        .titulo {
-            font-size: 9.5vw;
-        }
-
-        .logo-grill-1 {
-            height: 8vw;
-        }
-
-        #social-icons {
-            bottom: 15px;
-        }
-
-        #tablaTiempoPersona {
-            background-color: rgba(29, 28, 34, 0.4);
+        #pollo {
+            max-height: 48vw;
         }
     }
+
+@media(max-width:329px) {
+    .col-menu {
+        width: 53%;
+    }
+
+    .col-pollo {
+        width: 47%;
+    }
+
+    #pollo {
+        max-height: 45vw;
+        margin-top: 20px;
+    }
+
+}
+
+@media(max-width: 320px) {
+    .titulo {
+        font-size: 9.5vw;
+    }
+
+    .logo-grill-1 {
+        height: 8vw;
+    }
+
+    #social-icons {
+        bottom: 15px;
+    }
+
+    #tablaTiempoPersona {
+        background-color: rgba(29, 28, 34, 0.4);
+    }
+}
