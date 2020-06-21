@@ -410,6 +410,8 @@
     <Content Include="Content\fontawesome-free\svgs\brands\facebook.svg" />
     <Content Include="Content\fontawesome-free\svgs\brands\instagram.svg" />
     <Content Include="Content\fontawesome-free\svgs\brands\twitter.svg" />
+    <Content Include="Content\fontawesome-free\svgs\regular\clock.svg" />
+    <Content Include="Content\fontawesome-free\svgs\solid\users.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />

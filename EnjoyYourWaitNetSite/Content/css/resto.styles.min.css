@@ -178,7 +178,20 @@ a:link, a:hover, a:visited {
 /*PANEL de TIEMPO*/
 #tablaTiempoPersona {
     position: absolute;
-    bottom: 30px;
+    bottom: 30px;    
+}
+
+#tablaTiempoPersona label {
+    font-weight: 500;
+}
+
+.timePerson-celda {
+        padding-left: 0.5vw;
+}
+
+.timePerson-detalle {
+    vertical-align: super;
+    padding-left: 1vw;
 }
 
 /*ICONOS SOCIALES*/
@@ -431,7 +444,12 @@ a:link, a:hover, a:visited {
         padding-left: 25px;
         padding-right: 25px;
         padding-bottom: 5px;
-    }    
+    }
+
+    .timePerson-celda {
+        padding-left: 2vw;
+    }
+
 }
 
 @media(min-width: 709px) {
@@ -552,6 +570,10 @@ a:link, a:hover, a:visited {
     .carta-juego {
         font-size: 4.5vw;
     }
+
+    .timePerson-detalle {
+        padding-left: 3vw;
+    }
 }
 
 @media(max-width:413px) {
@@ -580,5 +602,9 @@ a:link, a:hover, a:visited {
 
     #social-icons {
         bottom: 15px;
+    }
+
+    #tablaTiempoPersona {
+        background-color: rgba(29, 28, 34, 0.4);
     }
 }
