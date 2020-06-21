@@ -406,6 +406,12 @@ a:link, a:hover, a:visited {
         background: #d4d4d4;
     }
 
+/*IMAGENES*/
+#pollo {
+    max-height: 435px;
+    transform: rotate(-45deg);
+}
+
 /*OTRAS DIMENCIONES*/
     @media(min-width: 992px) {
         .carta-juego {

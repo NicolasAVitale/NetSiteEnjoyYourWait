@@ -35,20 +35,17 @@
     {
         <div class="row mt-3">
             <div class="col justify-content-center">
+                
                 <div class="row mt-3">
-                    <div class="col-md-12 col-recep">
-                        <font class="float-left" size="5">Menu</font>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12 col-recep">
+                    <div class="col-md-6 col-recep">
+                        <font class="float-left" size="5">Menú</font>
                         <div class="table-responsive">
                             <table class="table table-prod">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="table-recepcion">Nombre</th>
                                         <th scope="col" class="table-recepcion">Precio</th>
-                                        <th scope="col" class="table-recepcion">Imagen</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,16 +54,14 @@
                                         <tr>
                                             <td class="align-middle">@producto.nombre</td>
                                             <td class="align-middle">$@producto.precio</td>
-                                            <td class="align-middle">
-                                                <div style="display: inline-block" id="img_prod" class="col-sm-6 col-md-3 col-xl-5ths film-item, col-int-index">
-                                                    <img class="img-responsive center-block lazy" src="~/Content/img/@producto.imagen" style="display: block;">
-                                                </div>
-                                            </td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Content/img/pollo.png" alt="pollo" id="pollo"/>
                     </div>
                 </div>
             </div>
