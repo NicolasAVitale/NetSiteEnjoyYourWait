@@ -36,11 +36,11 @@
     {
         <div class="card shadow-lg">
             <div class="card-body">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center sin-margin">
                     <table>
                         <tr>
                             <td>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <label>Nombre:</label>
                                     @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
                                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
@@ -49,7 +49,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <label>Precio:</label>
                                     @Html.TextBoxFor(model => model.Precio, new { @class = "form-control mt-1 shadow" })
                                     @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <label>Imagen:</label>
                                     <input class="form-control" type="file" id="Imagen" name="Imagen" required />
                                 </div>
@@ -66,9 +66,9 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <label>Tipo:</label>
-                                    <select class="btn btn-primary" id="tipos" onchange="AsignarTipo()">
+                                    <select class="btn" id="tipos" onchange="AsignarTipo()">
                                         <option value="0">Seleccione Tipo</option>
                                     </select>
                                 </div>
@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row" hidden="hidden">
+                                <div class="form-group" hidden="hidden">
                                     @Html.TextBoxFor(model => model.IdTipo, new { @class = "form-control mt-1 shadow", @id = "inTipo"})
                                     @Html.ValidationMessageFor(model => model.IdTipo, "", new { @class = "text-danger" })
                                 </div>

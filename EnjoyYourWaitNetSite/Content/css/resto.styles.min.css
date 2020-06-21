@@ -142,6 +142,10 @@ a:hover {
     margin: 0.5vw;
 }
 
+.sin-margin {
+    margin: 0px;
+}
+
 /*NAV*/
 
 .nav {
@@ -273,7 +277,7 @@ a:link, a:hover, a:visited {
         border-radius: 2px;
     }
 /*RECEPCIONISTA*/
-#btnRegistrarRecepcionista, #btnRegistrarProducto {
+#btnRegistrarRecepcionista, #btnRegistrarProducto, #tipos {
     background-color: #3d94de;
     border-color: #3d94de;
     vertical-align: text-bottom;
@@ -558,6 +562,10 @@ a:link, a:hover, a:visited {
     .btn-grill-style {
         padding-left: 0px;
         padding-right: 0px;
+    }
+
+    #tablaTiempoPersona {
+        bottom: 50px;
     }
 }
 
