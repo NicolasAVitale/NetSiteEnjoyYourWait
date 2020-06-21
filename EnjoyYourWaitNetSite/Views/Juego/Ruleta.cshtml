@@ -11,6 +11,7 @@
     <div class="col-sm-4 txt-ruleta">
         <h2>Bienvenido a nuestra @ViewBag.Title</h2>
         <p>Gira la ruleta y obtén un premio</p>
+        <div id="premios-obtenidos"></div>
     <!--<div class="power_controls">
         <table class="power" cellpadding="10" cellspacing="0">
             <tr>
@@ -167,18 +168,18 @@
     // Create winwheel as per normal.
     let theWheel = new Winwheel({
         'numSegments': 8,     // Specify number of segments.
-        'textFontSize': 28,    // Set font size as desired.
+        'textFontSize': 21,    // Set font size as desired.
         'responsive': true,  // This wheel is responsive!
         'segments':        // Define segments including colour and text.
             [
-               { 'fillStyle': 'blue', 'text': 'sonrisa' },
-                { 'fillStyle': 'lightblue', 'text': 'descuento' },
-                { 'fillStyle': 'green', 'text': 'osito' },
-                { 'fillStyle': 'yellow', 'text': 'bebida' },
-                { 'fillStyle': 'orange', 'text': 'helado' },
-                { 'fillStyle': 'red', 'text': 'nada' },
-                { 'fillStyle': 'brown', 'text': 'cubiertos' },
-                { 'fillStyle': 'violet', 'text': 'cafe' }
+                { 'fillStyle': 'blue', 'text': 'segui participando' },
+                { 'fillStyle': 'lightblue', 'text': '10% de descuento' },
+                { 'fillStyle': 'green', 'text': 'papas gratis' },
+                { 'fillStyle': 'yellow', 'text': 'jugo gratis' },
+                { 'fillStyle': 'orange', 'text': 'segui participando' },
+                { 'fillStyle': 'red', 'text': '2x1 en helado' },
+                { 'fillStyle': 'brown', 'text': 'cubiertos libres' },
+                { 'fillStyle': 'violet', 'text': 'cafe gratis' }
             ],
         'pins':
         {
@@ -210,6 +211,7 @@
 
     function alertPrize(indicatedSegment) {
         // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
-        alert("Ganaste " + indicatedSegment.text);
+        //alert("Ganaste " + indicatedSegment.text);
+        document.getElementById('premios-obtenidos').innerHTML = "Resultado: " + indicatedSegment.text;
     }
 </script>

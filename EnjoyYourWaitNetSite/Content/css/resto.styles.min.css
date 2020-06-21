@@ -290,6 +290,13 @@ a:link, a:hover, a:visited {
         margin-top: 5px;
         border-radius: 2px;
     }
+
+#premios-obtenidos {
+    font-size: x-large;
+    padding-top: 10px;
+    font-variant-caps: small-caps;
+    color: yellow;
+}
 /*RECEPCIONISTA*/
 #btnRegistrarRecepcionista, #btnRegistrarProducto, #tipos {
     background-color: #3d94de;
