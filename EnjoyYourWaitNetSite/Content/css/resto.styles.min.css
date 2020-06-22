@@ -364,8 +364,22 @@ a:link, a:hover, a:visited {
     max-width: 8vw;
 }
 
-/*PRODUCTOS*/
+#crearRecep, #confirIngre {
+    margin-left: 15px;
+    background-color: #3d94de;
+    border-color: #3d94de;
+    vertical-align: text-bottom;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
+#FechaNacimiento {
+    margin-left: 16px;
+}
+
+/*PRODUCTOS*/
 .table-prod > thead > tr > th,
 .table-prod > tbody > tr > th,
 .table-prod > tfoot > tr > th,
