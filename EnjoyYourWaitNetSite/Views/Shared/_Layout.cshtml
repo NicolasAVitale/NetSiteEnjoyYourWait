@@ -33,16 +33,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Menú", "Menu", "Producto")</li>
-                    <li>@Html.ActionLink("Promociones", "Promociones", "Promocion")</li>
+
+                    @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null)
+                    {
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Menú", "Menu", "Producto")</li>
+                        <li>@Html.ActionLink("Promociones", "Promociones", "Promocion")</li>
+                    }
                     @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador != null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente == null)
                     {
-                        <li>@Html.ActionLink("Gestión Recepcionistas", "GestionRecepcionista", "Recepcionista")</li>
-                        <li>@Html.ActionLink("Gestión Productos", "GestionProducto", "Producto")</li>
-                        <li>@Html.ActionLink("Gestión Promociones", "GestionPromocion", "Promocion")</li>
-                        <li>@Html.ActionLink("Gestión Premios", "GestionPremio", "Premio")</li>
-                        <li>@Html.ActionLink("Gestión Encuestas", "GestionEncuesta", "Encuesta")</li>
+                        <li>@Html.ActionLink("Recepcionistas", "GestionRecepcionista", "Recepcionista")</li>
+                        <li>@Html.ActionLink("Productos", "GestionProducto", "Producto")</li>
+                        <li>@Html.ActionLink("Promociones", "GestionPromocion", "Promocion")</li>
+                        <li>@Html.ActionLink("Premios", "GestionPremio", "Premio")</li>
+                        //<li>@Html.ActionLink("Encuestas", "GestionEncuesta", "Encuesta")</li>
                         <li>@Html.ActionLink("Reportes", "Reportes", "Reporte")</li>
                     }
                     @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente != null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null)
