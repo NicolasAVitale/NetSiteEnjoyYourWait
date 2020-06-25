@@ -433,12 +433,33 @@ a:link, a:hover, a:visited {
     transform: rotate(-45deg);
 }
 
+#choclo {
+    position: absolute;
+    max-width: 29vw;
+    right: -12vw;
+    top: -8vw;
+}
+
 /*OTRAS DIMENCIONES*/
-    @media(min-width: 992px) {
-        .carta-juego {
-            min-height: 90px;
-        }
+@media(max-width: 1100px) {
+
+    #choclo {
+        right: -9vw;
     }
+}
+
+@media(max-width: 1024px) {
+
+    #choclo {
+        right: -7vw;
+    }
+}
+
+@media(min-width: 992px) {
+    .carta-juego {
+        min-height: 90px;
+    }
+}
 
     @media(max-width: 936px) and (min-width: 768px) {
         .navbar-nav {
@@ -533,6 +554,7 @@ a:link, a:hover, a:visited {
 
         #pollo {
             max-height: 50vw;
+            margin-top: 8vw;
         }
     }
 
@@ -682,6 +704,7 @@ a:link, a:hover, a:visited {
 
         #pollo {
             max-height: 48vw;
+            margin-top: 10vw;
         }
     }
 
@@ -696,7 +719,7 @@ a:link, a:hover, a:visited {
 
     #pollo {
         max-height: 45vw;
-        margin-top: 20px;
+        margin-top: 40px;
     }
 
 }
