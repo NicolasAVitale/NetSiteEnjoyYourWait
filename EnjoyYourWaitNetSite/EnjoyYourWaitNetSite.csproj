@@ -322,6 +322,7 @@
     <Compile Include="BusinessLogic\BSFila.cs" />
     <Compile Include="BusinessLogic\BSLogin.cs" />
     <Compile Include="BusinessLogic\BSProducto.cs" />
+    <Compile Include="BusinessLogic\BSPromocion.cs" />
     <Compile Include="BusinessLogic\BSRecepcionista.cs" />
     <Compile Include="BusinessLogic\BSHome.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Controllers\JuegoController.cs" />
     <Compile Include="Controllers\FilaController.cs" />
     <Compile Include="Controllers\PromocionController.cs" />
+    <Compile Include="Models\PromocionesViewModel.cs" />
     <Compile Include="Controllers\RecepcionistaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -340,6 +342,7 @@
     <Compile Include="Entities\EsperaResponse.cs" />
     <Compile Include="Entities\Premio.cs" />
     <Compile Include="Entities\Producto.cs" />
+    <Compile Include="Entities\Productos.cs" />
     <Compile Include="Entities\Promocion.cs" />
     <Compile Include="Entities\Recepcionista.cs" />
     <Compile Include="Entities\Reporte.cs" />

@@ -174,6 +174,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return await Request(HttpMethod.Put, $"productos/{idProducto}", true, productoApi);
         }
 
+        public async Task<List<Promocion>> GetAllPromociones()
+        {
+            return await Request<List<Promocion>>(HttpMethod.Get, "promociones", true);
+        }
+
         private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)
         {
             var response = await BuildRequest(method, url, auth, body);
@@ -236,6 +241,5 @@ namespace EnjoyYourWaitNetSite.DataAccess
             }
             return response;
         }
-
     }
 }
