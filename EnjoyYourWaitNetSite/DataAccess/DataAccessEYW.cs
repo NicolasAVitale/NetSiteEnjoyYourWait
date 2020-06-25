@@ -94,6 +94,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return await Request<Usuario>(HttpMethod.Post, "usuarios/login", true, userCredentials);
         }
 
+        public async Task<bool> IngresarAFila(FilaCliente filaCliente)
+        {
+            return await Request(HttpMethod.Post, "filaclientes/agregarCliente", true, filaCliente);
+        }
+
         public async Task<bool> ActualizarEstadoClientesEnRestaurante(int tiempo)
         {
             return await Request(HttpMethod.Put, $"filaclientes/{tiempo}", true);

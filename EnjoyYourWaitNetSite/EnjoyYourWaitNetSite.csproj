@@ -334,7 +334,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Administrador.cs" />
     <Compile Include="Entities\Cliente.cs" />
-    <Compile Include="Entities\ClienteFila.cs" />
+    <Compile Include="Entities\FilaCliente.cs" />
     <Compile Include="Entities\Encuesta.cs" />
     <Compile Include="Entities\ErrorModel.cs" />
     <Compile Include="Entities\EsperaResponse.cs" />

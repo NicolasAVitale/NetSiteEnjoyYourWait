@@ -111,7 +111,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             int tiempo = int.Parse(ConfigurationManager.AppSettings.Get("TiempoEstimado"));
 
             //Actualizar estados
-            await bsFila.ActualizarEstadoClientesEnRestaurante(tiempo);
+            //await bsFila.ActualizarEstadoClientesEnRestaurante(tiempo);
 
             if (SessionHelper.Cliente != null)
             {

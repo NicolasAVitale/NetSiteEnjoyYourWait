@@ -43,10 +43,16 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             return clienteRegistrado;
         }
 
-        public async Task<bool> IngresarAFila(int idCliente, int cantComentsales)
+        public async Task<bool> IngresarAFila(int idCliente, int cantComensales)
         {
-            //Cliente clienteRegistrado = await dataAccess.RegistrarCliente(cliente);
-            return true;
+
+            return await dataAccess.IngresarAFila(new FilaCliente()
+            {
+                idCliente = idCliente,
+                cantComensales = cantComensales,
+                esConfirmado = 0,
+                activo = 1
+            });
         }
 
         public async Task<EsperaResponse> CalcularTiempoYPersonasEsperaCliente(int idCliente, int capacidad, int tiempo)
