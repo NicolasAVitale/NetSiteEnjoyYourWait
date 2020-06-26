@@ -48,11 +48,20 @@ namespace EnjoyYourWaitNetSite.Controllers
 
                 //Cargo lista de promociones
                 List<Promocion> promociones = await bsPromocion.GetAllPromociones();
+
+                foreach (var promocion in promociones)
+                {
+                    promocion.fechaInicio = DateTime.Parse(promocion.fechaInicio, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd-MM-yyyy");
+                    promocion.fechaBaja = DateTime.Parse(promocion.fechaBaja, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd-MM-yyyy");
+                }
+
                 model.lstPromociones = promociones;
+
                 if (promociones.Count == 0)
                 {
                     TempData["SuccessState"] = "LOAD_NOPROMO";
                 }
+                
                 return View("GestionPromocion", model);
             }
             catch (Exception)
