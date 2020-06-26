@@ -18,5 +18,15 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         {
             return await dataAccess.CreatePromocion(promocion);
         }
+
+        public async Task<bool> DisablePromocion(int idPromocion)
+        {
+            return await dataAccess.DisablePromocion(idPromocion);
+        }
+
+        public async Task<bool> EnablePromocion(int idPromocion)
+        {
+            return await dataAccess.EnablePromocion(idPromocion);
+        }
     }
 }

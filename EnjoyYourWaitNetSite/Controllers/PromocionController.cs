@@ -109,6 +109,44 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
+        public async Task<ActionResult> DeshabilitarPromocion(int idPromocion)
+        {
+            try
+            {
+                TempData["SuccessState"] = "DISABLE_FAILED";
+                bool result = await bsPromocion.DisablePromocion(idPromocion);
+                if (result)
+                {
+                    TempData["SuccessState"] = "DISABLE_SUCCESS";
+                }
+                return RedirectToAction("GestionPromocion");
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "DISABLE_FAILED";
+                return RedirectToAction("GestionPromocion");
+            }
+        }
+
+        public async Task<ActionResult> HabilitarPromocion(int idPromocion)
+        {
+            try
+            {
+                TempData["SuccessState"] = "ENABLE_FAILED";
+                bool result = await bsPromocion.EnablePromocion(idPromocion);
+                if (result)
+                {
+                    TempData["SuccessState"] = "ENABLE_SUCCESS";
+                }
+                return RedirectToAction("GestionPromocion");
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "ENABLE_FAILED";
+                return RedirectToAction("GestionPromocion");
+            }
+        }
+
         public ActionResult ObtenerTiposPromocion()
         {
             List<TipoProducto> lista = new List<TipoProducto>();
