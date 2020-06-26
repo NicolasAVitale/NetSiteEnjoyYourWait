@@ -47,7 +47,8 @@
                         <li>@Html.ActionLink("Promociones", "GestionPromocion", "Promocion")</li>
                         <li>@Html.ActionLink("Premios", "GestionPremio", "Premio")</li>
                         //<li>@Html.ActionLink("Encuestas", "GestionEncuesta", "Encuesta")</li>
-                        <li>@Html.ActionLink("Reportes", "Reportes", "Reporte")</li>
+                        //<li>@Html.ActionLink("Reportes", "Reportes", "Reporte")</li>
+                        <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Login")</li>
                     }
                     @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente != null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null)
                     {
@@ -61,6 +62,7 @@
                     @if (EnjoyYourWaitNetSite.Helper.SessionHelper.Administrador == null && EnjoyYourWaitNetSite.Helper.SessionHelper.Recepcionista != null && EnjoyYourWaitNetSite.Helper.SessionHelper.Cliente == null)
                     {
                         <li>@Html.ActionLink("Ingresar Cliente a Fila", "IngresarClienteAFila", "Fila")</li>
+                        <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Login")</li>
                     }
                 </ul>
             </div>
