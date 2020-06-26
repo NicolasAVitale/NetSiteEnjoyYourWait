@@ -66,6 +66,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return token;  
         }
 
+        public async Task<bool> RegistrarTokenEmail(GuidEmailRequest guidEmailRequest)
+        {
+            return await Request(HttpMethod.Post, "clientes/agregarEmail", true, guidEmailRequest);
+        }
+
         public async Task<List<Producto>> GetAllProductosActivos()
         {
             List<Producto> productos = await Request<List<Producto>>(HttpMethod.Get, "productos", true);
@@ -131,12 +136,12 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
         public async Task<bool> DisableRecepcionista(int dni)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/{dni}", true);
+            return await Request(HttpMethod.Put, $"recepcionistas/desactivar/{dni}", true);
         }
 
         public async Task<bool> EnableRecepcionista(int dni)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/{dni}", true);
+            return await Request(HttpMethod.Put, $"recepcionistas/activar/{dni}", true);
         }
 
         public async Task<bool> UpdateRecepcionista(int dni, string email)
@@ -161,12 +166,12 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
         public async Task<bool> DisableProducto(int idProducto)
         {
-            return await Request(HttpMethod.Put, $"productos/{idProducto}", true);
+            return await Request(HttpMethod.Put, $"productos/desactivar/{idProducto}", true);
         }
 
         public async Task<bool> EnableProducto(int idProducto)
         {
-            return await Request(HttpMethod.Put, $"productos/{idProducto}", true);
+            return await Request(HttpMethod.Put, $"productos/activar/{idProducto}", true);
         }
 
         public async Task<bool> UpdateProducto(int idProducto, UpdateProductoApiModel productoApi)

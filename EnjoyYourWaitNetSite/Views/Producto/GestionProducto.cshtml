@@ -67,7 +67,7 @@
                             <div class="modal-footer">
                                 @using (Html.BeginForm("DeshabilitarProducto", "Producto", FormMethod.Post))
                                 {
-                                    <input id="inProducto" name="idProducto" type="hidden">
+                                    <input id="inDisable" name="idProducto" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
                                 }
@@ -90,7 +90,7 @@
                             <div class="modal-footer">
                                 @using (Html.BeginForm("HabilitarProducto", "Producto", FormMethod.Post))
                                 {
-                                    <input id="inProducto" name="idProducto" type="hidden">
+                                    <input id="inEnable" name="idProducto" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-success" value="Habilitar">
                                 }
@@ -209,15 +209,16 @@
                 $(".item-disable-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
-                    $("#inProducto").val(id);
+                    $("#inDisable").val(id);
                     $("#disableModal").modal("show");
                 });
             });
             $(function () {
+                debugger
                 $(".item-enable-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
-                    $("#inProducto").val(id);
+                    $("#inEnable").val(id);
                     $("#enableModal").modal("show");
                 });
             });

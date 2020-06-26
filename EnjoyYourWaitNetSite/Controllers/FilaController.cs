@@ -20,7 +20,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             return View();
         }
 
-        public ActionResult EnviarCorreoConfirmacion(string email)
+        public async Task<ActionResult> EnviarCorreoConfirmacionAsync(string email)
         {
             try
             {
@@ -28,9 +28,14 @@ namespace EnjoyYourWaitNetSite.Controllers
                 bool isValid = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
                 if (isValid)
                 {
-                    bsFila.EnviarCorreoConfirmacion(email);
-                    SessionHelper.Email = email;
-                    TempData["SuccessState"] = "SEND_SUCCESS";
+                    var guid = Guid.NewGuid().ToString();
+                    bool result = await bsFila.RegistrarTokenEmail(guid, email);
+                    if (result)
+                    {
+                        bsFila.EnviarCorreoConfirmacion(email, guid);
+                        SessionHelper.Email = email;
+                        TempData["SuccessState"] = "SEND_SUCCESS";
+                    }                    
                 }
                 else
                 {
@@ -46,8 +51,9 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public ActionResult ConfirmarIngreso()
+        public ActionResult ConfirmarIngreso(string token)
         {
+            //Valido token contra la api
             string email = SessionHelper.Email;
             if (email != null)
             {

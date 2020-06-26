@@ -89,9 +89,9 @@
                                 <p>¿Desea deshabilitar el/la recepcionista seleccionado/a? De esta forma se eliminará el acceso al sistema.</p>
                             </div>
                             <div class="modal-footer">
-                                @using (Html.BeginForm("DisableRecepcionista", "Recepcionista", FormMethod.Post))
+                                @using (Html.BeginForm("DeshabilitarRecepcionista", "Recepcionista", FormMethod.Post))
                                 {
-                                    <input id="inRecepcionista" name="dni" type="hidden">
+                                    <input id="inDisable" name="dni" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
                                 }
@@ -112,9 +112,9 @@
                                 <p>¿Desea habilitar el/la recepcionista seleccionado/a?</p>
                             </div>
                             <div class="modal-footer">
-                                @using (Html.BeginForm("EnableRecepcionista", "Recepcionista", FormMethod.Post))
+                                @using (Html.BeginForm("HabilitarRecepcionista", "Recepcionista", FormMethod.Post))
                                 {
-                                    <input id="inRecepcionista" name="dni" type="hidden">
+                                    <input id="inEnable" name="dni" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-success" value="Habilitar">
                                 }
@@ -232,7 +232,7 @@
                 $(".item-disable-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
-                    $("#inRecepcionista").val(id);
+                    $("#inDisable").val(id);
                     $("#disableModal").modal("show");
                 });
             });
@@ -240,7 +240,7 @@
                 $(".item-enable-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
-                    $("#inRecepcionista").val(id);
+                    $("#inEnable").val(id);
                     $("#enableModal").modal("show");
                 });
             });

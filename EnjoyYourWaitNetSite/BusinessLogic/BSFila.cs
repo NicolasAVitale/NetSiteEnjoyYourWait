@@ -14,7 +14,7 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         {
         }
 
-        public void EnviarCorreoConfirmacion(string email)
+        public void EnviarCorreoConfirmacion(string email, string guid)
         {
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
 
@@ -37,10 +37,18 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             smtpClient.Send(mail);
         }
 
+        public async Task<bool> RegistrarTokenEmail(string guid, string email)
+        {
+            return await dataAccess.RegistrarTokenEmail(new GuidEmailRequest()
+            {
+                email =  email,
+                guid = guid
+            });
+        }
+
         public async Task<Cliente> RegistrarCliente(Cliente cliente)
         {
-            Cliente clienteRegistrado = await dataAccess.RegistrarCliente(cliente);
-            return clienteRegistrado;
+            return await dataAccess.RegistrarCliente(cliente);
         }
 
         public async Task<bool> IngresarAFila(int idCliente, int cantComensales)
