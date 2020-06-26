@@ -82,8 +82,13 @@ html, body {
 }
 
 .slideInUp {
-    animation-duration: 4s; 
+    animation-duration: 4s;
     animation-delay: 0s;
+}
+
+.slideInRight {
+    animation-duration: 4s;
+    animation-delay: 1s;
 }
 
 .btn-primary {
@@ -91,18 +96,18 @@ html, body {
     border-color: #a71b1b;
 }
 
-.btn-primary:hover {
+    .btn-primary:hover {
         background-color: #8c1c1c;
         border-color: #8c1c1c;
-}
+    }
 
 a {
     color: white;
 }
 
-a:hover {
-    color: yellow;
-}
+    a:hover {
+        color: yellow;
+    }
 
 .titulo-secundario {
     font-family: 'Dancing Script', cursive;
@@ -110,8 +115,34 @@ a:hover {
     font-size: 6vw;
 }
 
-/*TITULO*/
+.cartel-azul {
+    background-image: url(../img/cartel.png);
+    height: 12vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 4vw;
+    background-position: center;
+}
 
+#text-home {
+    font-weight: bold;
+    font-size: 6vw;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 0px;
+}
+
+#text-home-sub {
+    font-size: 3vw;
+    text-align: center;
+    padding-top: 0px;
+    font-style: italic;
+    position: relative;
+    top: -29px;
+    right: 68px;
+}
+
+/*TITULO*/
 .titulo {
     color: white;
     font-family: 'Dancing Script', cursive;
@@ -131,7 +162,7 @@ a:hover {
 }
 
 #grill {
-        color: yellow;
+    color: yellow;
 }
 
 .logo-grill-1 {
@@ -153,21 +184,21 @@ a:hover {
     font-family: 'Acme', sans-serif;
 }
 
-.nav li {
+    .nav li {
         list-style: none;
         font-size: x-large;
     }
 
-.nav a {
+    .nav a {
         color: rgb(248, 249, 252);
-}
+    }
 
-.nav a:hover {
-    color: yellow /*rgba(248, 249, 252, 0.7)*/;
-}
+        .nav a:hover {
+            color: yellow /*rgba(248, 249, 252, 0.7)*/;
+        }
 
 a:link, a:hover, a:visited {
-   text-decoration: none;
+    text-decoration: none;
 }
 
 .navbar-inverse {
@@ -178,12 +209,12 @@ a:link, a:hover, a:visited {
 /*PANEL de TIEMPO*/
 #tablaTiempoPersona {
     position: absolute;
-    bottom: 30px;    
+    bottom: 30px;
 }
 
-#tablaTiempoPersona label {
-    font-weight: 500;
-}
+    #tablaTiempoPersona label {
+        font-weight: 500;
+    }
 
 .timePerson-celda {
     padding-left: 0.5vw;
@@ -204,19 +235,19 @@ a:link, a:hover, a:visited {
     margin-right: 10px;
 }
 
-#social-icons li {
-    padding-top: 10px;
-    display: inline-block;
-    height: 50px;
-}
+    #social-icons li {
+        padding-top: 10px;
+        display: inline-block;
+        height: 50px;
+    }
 
-#social-icons a {
-    color: rgb(248, 249, 252);
-}
+    #social-icons a {
+        color: rgb(248, 249, 252);
+    }
 
-#social-icons a:hover {
-    color: yellow/*rgba(248, 249, 252, 0.7)*/;
-}
+        #social-icons a:hover {
+            color: yellow /*rgba(248, 249, 252, 0.7)*/;
+        }
 
 .social-img {
     height: 100%;
@@ -279,11 +310,11 @@ a:link, a:hover, a:visited {
         color: #ffff00;
     }
 
-.carta-juego:active {
-   color: yellow;
-   box-shadow: 0 5px #666;
-   transform: translateY(4px);
-}
+    .carta-juego:active {
+        color: yellow;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 
     .carta-juego img {
         max-width: -webkit-fill-available;
@@ -349,7 +380,7 @@ a:link, a:hover, a:visited {
 }
 
 .img-visibilidad {
-    display:none;
+    display: none;
 }
 
 .img-modif {
@@ -461,252 +492,291 @@ a:link, a:hover, a:visited {
     }
 }
 
-    @media(max-width: 936px) and (min-width: 768px) {
-        .navbar-nav {
-            padding-top: 2vw;
-        }
+@media(max-width: 936px) and (min-width: 768px) {
+    .navbar-nav {
+        padding-top: 2vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .col-juegos {
+        margin-top: 10px;
     }
 
-    @media(max-width: 991px) {
-        .col-juegos {
-            margin-top: 10px;
-        }
+    #text-home-sub {
+        top: -27px;
+        right: 60px;
+    }
+}
+
+@media(max-width: 991px) and (min-width: 768px) {
+    .body-content {
+        padding-top: 9vw;
     }
 
-    @media(max-width: 991px) and (min-width: 768px) {
-        .body-content {
-            padding-top: 9vw;
-        }
-
-        .titulo-secundario {
-            margin-bottom: 2vw;
-        }
-
-        .nav {
-            margin-top: 0vw;
-        }
-
-        .navbar-nav > li > a {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
+    .titulo-secundario {
+        margin-bottom: 2vw;
     }
 
-
-
-    @media(max-width: 767px) {
-
-        .body-content {
-            padding-top: 0.5vw;
-        }
-
-        #barra-cliente {
-            padding-left: 1vw;
-        }
-
-        .titulo {
-            margin-top: 10px;
-            vertical-align: baseline;
-        }
-
-        .titulo-secundario {
-            font-size: 8vw;
-        }
-
-        .nav li {
-            font-size: large;
-        }
-
-        .navbar-nav > li > a {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            line-height: 20px;
-        }
-
-        .navbar-collapse {
-            background-color: rgba(29, 28, 34, 1);
-        }
-
-        .carta-juego {
-            font-size: 3vw;
-        }
-
-        .col-juegos {
-            padding-right: 5px;
-            padding-left: 5px;
-        }
-
-        .col-recep {
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-bottom: 5px;
-        }
-
-        .col-menu {
-            padding-left: 25px;
-            padding-right: 2px;
-            padding-bottom: 5px;
-        }
-
-        .timePerson-celda {
-            padding-left: 2vw;
-        }
-
-        #pollo {
-            max-height: 50vw;
-            margin-top: 8vw;
-        }
+    .nav {
+        margin-top: 0vw;
     }
 
-
-
-    @media(min-width: 709px) {
-        .mail-size {
-            width: 167px;
-        }
-
-        .estado-size {
-            width: 142px;
-        }
+    .navbar-nav > li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
-    @media(max-width: 708px) {
+    .col-home {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
 
-       
+@media(max-width: 880px) {
+    #text-home-sub {
+        top: -21px;
+        right: 45px;
+    }
+}
 
-        .img-visibilidad {
-            display: inline;
-        }
+@media(max-width: 767px) {
 
-        .txt-btn-visibilidad {
-            display: none;
-        }
-
-        /*.item-update-selection,*/ .item-enable-selection, .item-disable-selection {
-            background-color: rgba(255, 255, 255, 0);
-            border-color: rgba(255, 255, 255, 0);
-            padding-top: 0px;
-            padding-bottom: 0px;
-            border-top-width: 0px;
-            border-bottom-width: 0px;
-            border-right-width: 0px;
-            border-left-width: 0px;
-        }
-
-        .table-recepcion {
-            padding-top: 5px !important;
-            padding-bottom: 5px !important;
-        }
-
-        .estado-size {
-            text-align: center;
-        }
+    .body-content {
+        padding-top: 0.5vw;
     }
 
-    @media(max-width: 683px) {
-        .table-recepcion {
-            padding-right: 2px !important;
-            padding-left: 2px !important;
-        }
-
-       
+    #barra-cliente {
+        padding-left: 1vw;
     }
 
-    @media(min-width: 506px) {
-        .check-visible {
-            display: none;
-        }
+    .titulo {
+        margin-top: 10px;
+        vertical-align: baseline;
     }
 
-    @media(max-width: 505px) {
-        .txt-modif-visible {
-            display: none;
-        }
-
-        .item-update-selection {
-            padding-left: 6px;
-            padding-right: 6px;
-        }
+    .titulo-secundario {
+        font-size: 8vw;
     }
 
-    @media(min-width: 454px) {
-        .txt-acceso {
-            display: none;
-        }
+    .nav li {
+        font-size: large;
     }
 
-    @media(max-width: 453px) {
-        .txt-acceso-sist {
-            display: none;
-        }
-
-        .img-dis-ena {
-            vertical-align: baseline;
-        }
+    .navbar-nav > li > a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        line-height: 20px;
     }
 
-    @media(max-width: 434px) {
-        .item-update-selection {
-            background-color: rgba(61, 148, 222, 0);
-            border-color: rgba(61, 148, 222, 0);
-            padding: 0px;
-        }
-
-        #emailInput {
-            width: 142px;
-        }
+    .navbar-collapse {
+        background-color: rgba(29, 28, 34, 1);
     }
 
-    @media(max-width: 425px) {
-        .titulo {
-            font-size: 7.5vw;
-        }
-
-        .titulo-secundario {
-            font-size: 12vw;
-        }
-
-        .logo-grill-1 {
-            height: 7vw;
-        }
-
-        #social-icons {
-            font-size: 10px;
-        }
-
-        .list-inline > li {
-            padding-right: 0px;
-            padding-left: 0px;
-        }
-
-        .carta-juego {
-            font-size: 4.5vw;
-        }
-
-        .timePerson-detalle {
-            padding-left: 3vw;
-        }
+    .carta-juego {
+        font-size: 3vw;
     }
 
-    @media(max-width:413px) {
-        #emailInput {
-            width: 70px;
-        }
-
-        .btn-grill-style {
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-
-        #tablaTiempoPersona {
-            bottom: 50px;
-        }
-
-        #pollo {
-            max-height: 48vw;
-            margin-top: 10vw;
-        }
+    .col-juegos {
+        padding-right: 5px;
+        padding-left: 5px;
     }
+
+    .col-recep {
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 5px;
+    }
+
+    .col-menu {
+        padding-left: 25px;
+        padding-right: 2px;
+        padding-bottom: 5px;
+    }
+
+    .timePerson-celda {
+        padding-left: 2vw;
+    }
+
+    #pollo {
+        max-height: 50vw;
+        margin-top: 8vw;
+    }
+}
+
+
+
+@media(min-width: 709px) {
+    .mail-size {
+        width: 167px;
+    }
+
+    .estado-size {
+        width: 142px;
+    }
+}
+
+@media(max-width: 708px) {
+
+
+
+    .img-visibilidad {
+        display: inline;
+    }
+
+    .txt-btn-visibilidad {
+        display: none;
+    }
+
+    /*.item-update-selection,*/ .item-enable-selection, .item-disable-selection {
+        background-color: rgba(255, 255, 255, 0);
+        border-color: rgba(255, 255, 255, 0);
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+        border-right-width: 0px;
+        border-left-width: 0px;
+    }
+
+    .table-recepcion {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .estado-size {
+        text-align: center;
+    }
+}
+
+@media(max-width: 683px) {
+    .table-recepcion {
+        padding-right: 2px !important;
+        padding-left: 2px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    #text-home-sub {
+        top: -17px;
+        right: 37px;
+    }
+}
+
+@media(min-width: 506px) {
+    .check-visible {
+        display: none;
+    }
+}
+
+@media(max-width: 505px) {
+    .txt-modif-visible {
+        display: none;
+    }
+
+    #text-home-sub {
+        top: -13px;
+        right: 31px;
+    }
+
+    .item-update-selection {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
+
+@media(min-width: 454px) {
+    .txt-acceso {
+        display: none;
+    }
+}
+
+@media(max-width: 453px) {
+    .txt-acceso-sist {
+        display: none;
+    }
+
+    .img-dis-ena {
+        vertical-align: baseline;
+    }
+}
+
+@media(max-width: 434px) {
+    .item-update-selection {
+        background-color: rgba(61, 148, 222, 0);
+        border-color: rgba(61, 148, 222, 0);
+        padding: 0px;
+    }
+
+    #emailInput {
+        width: 142px;
+    }
+}
+
+@media(max-width: 425px) {
+    .titulo {
+        font-size: 7.5vw;
+    }
+
+    .titulo-secundario {
+        font-size: 12vw;
+    }
+
+    .logo-grill-1 {
+        height: 7vw;
+    }
+
+    #social-icons {
+        font-size: 10px;
+    }
+
+    .list-inline > li {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .carta-juego {
+        font-size: 4.5vw;
+    }
+
+    .timePerson-detalle {
+        padding-left: 3vw;
+    }
+
+    .cartel-azul {
+        height: 26vw;
+    }
+
+    #text-home {
+        font-size: 14vw;
+    }
+
+    #text-home-sub {
+        font-size: 6vw;
+        top: -23px;
+        right: 53px;
+    }
+}
+
+@media(max-width:413px) {
+    #emailInput {
+        width: 70px;
+    }
+
+    .btn-grill-style {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #tablaTiempoPersona {
+        bottom: 50px;
+    }
+
+    #pollo {
+        max-height: 48vw;
+        margin-top: 10vw;
+    }
+}
 
 @media(max-width:329px) {
     .col-menu {
@@ -721,7 +791,6 @@ a:link, a:hover, a:visited {
         max-height: 45vw;
         margin-top: 40px;
     }
-
 }
 
 @media(max-width: 320px) {
@@ -739,5 +808,9 @@ a:link, a:hover, a:visited {
 
     #tablaTiempoPersona {
         background-color: rgba(29, 28, 34, 0.4);
+    }
+
+    #text-home-sub {
+        top: -16px;
     }
 }

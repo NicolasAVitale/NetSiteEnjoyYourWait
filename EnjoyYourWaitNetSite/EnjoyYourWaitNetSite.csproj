@@ -421,6 +421,7 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
     <Content Include="Content\img\agua.png" />
     <Content Include="Content\img\carne2.png" />
+    <Content Include="Content\img\cartel.png" />
     <Content Include="Content\img\check-square.svg" />
     <Content Include="Content\img\choclo.png" />
     <Content Include="Content\img\cocacola1lt.jpg" />
