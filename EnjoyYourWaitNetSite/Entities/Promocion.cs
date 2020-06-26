@@ -8,8 +8,8 @@ namespace EnjoyYourWaitNetSite.Entities
     {
         public int idPromocion { get; set; }
         public string descripcion { get; set; }
-        public DateTime fechaInicio { get; set; }
-        public DateTime fechaBaja { get; set; }
+        public string fechaInicio { get; set; }
+        public string fechaBaja { get; set; }
         public int esPremio { get; set; }
         public int activo { get; set; }
     }

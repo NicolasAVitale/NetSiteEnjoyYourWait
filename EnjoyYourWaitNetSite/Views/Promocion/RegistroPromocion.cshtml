@@ -1,6 +1,6 @@
-﻿@model EnjoyYourWaitNetSite.Models.AddRecepcionistaViewModel
+﻿@model EnjoyYourWaitNetSite.Models.AddPromocionViewModel
 @{
-    ViewBag.Title = "Registro de Recepcionista";
+    ViewBag.Title = "Registro de Promociones";
 }
 <div>
     @if (ViewBag.Success != null)
@@ -12,11 +12,11 @@
                         <div class="modal-body">
                             @if (ViewBag.Success)
                             {
-                                <p>El/La recepcionista se registro correctamente</p>
+                                <p>La promoción se registro correctamente</p>
                             }
                             else
                             {
-                                <p>Error al crear el/la recepcionista</p>
+                                <p>Error al crear la promoción</p>
                             }
                         </div>
                         <div class="modal-footer">
@@ -29,10 +29,10 @@
     }
 
     <div class="mb-3">
-        <font size="6">Ingresar los datos de el/la recepcionista</font>
+        <font size="6">Ingresar los datos de la promoción</font>
     </div>
 
-    @using (Html.BeginForm("AñadirRecepcionista", "Recepcionista", FormMethod.Post))
+    @using (Html.BeginForm("AñadirPromocion", "Promocion", FormMethod.Post))
     {
         <div class="card shadow-lg">
             <div class="card-body">
@@ -41,45 +41,53 @@
                         <tr>
                             <td>
                                 <div class="form-group row">
-                                    <label>DNI:</label>
-                                    @Html.TextBoxFor(model => model.Dni, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Dni, "", new { @class = "text-danger" })
+                                    <label>Descripción:</label>
+                                    @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="form-group row">
-                                    <label>Nombre:</label>
-                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                    <label>Inicio:</label>
+                                    @Html.TextBoxFor(model => model.FechaInicio, new { @class = "datefield", type = "date" })
+                                    @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+                                    @if (ViewBag.FechaInicioInvalida != null)
+                                    {
+                                        <span class="field-validation-error text-danger" data-valmsg-for="FechaInicio" data-valmsg-replace="true">@ViewBag.FechaInicioInvalida</span>
+                                    }
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="form-group row">
-                                    <label>Apellido:</label>
-                                    @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                                    <label>Vencimiento:</label>
+                                    @Html.TextBoxFor(model => model.FechaBaja, new { @class = "datefield", type = "date" })
+                                    @Html.ValidationMessageFor(model => model.FechaBaja, "", new { @class = "text-danger" })
+                                    @if (ViewBag.FechaBajaInvalida != null)
+                                    {
+                                        <span class="field-validation-error text-danger" data-valmsg-for="FechaInicio" data-valmsg-replace="true">@ViewBag.FechaBajaInvalida</span>
+                                    }
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row">
-                                    <label>Email:</label>
-                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label>Tipo:</label>
+                                    <select class="btn" id="tipos" onchange="AsignarTipo()">
+                                        <option value="0">Seleccione Tipo</option>
+                                    </select>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row">
-                                    <label>Fecha de Nacimiento:</label>
-                                    @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "datefield", type = "date" })
-                                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                                <div class="form-group" hidden="hidden">
+                                    @Html.TextBoxFor(model => model.EsPremio, new { @class = "form-control mt-1 shadow", @id = "inTipo" })
+                                    @Html.ValidationMessageFor(model => model.EsPremio, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>
@@ -96,6 +104,31 @@
 
 @section scripts
 {
+    <script>
+        $(document).ready(function () {
+            ObtenerTiposPromocion();
+        });
+        function ObtenerTiposPromocion() {
+            $.ajax({
+                type: "POST",
+                url: "/Promocion/ObtenerTiposPromocion",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    var select = $("#tipos");
+                    for (var i in data) {
+                        select.append($("<option></option>").attr("value", data[i].IdTipo).text(data[i].Descripcion));
+                    }
+                },
+                error: function (errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+        function AsignarTipo() {
+            $("#inTipo").val($("#tipos").val());
+        }
+    </script>
     @if (ViewBag.Success != null)
     {
         <script>

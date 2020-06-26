@@ -330,6 +330,7 @@
     <Compile Include="Controllers\JuegoController.cs" />
     <Compile Include="Controllers\FilaController.cs" />
     <Compile Include="Controllers\PromocionController.cs" />
+    <Compile Include="Models\AddPromocionViewModel.cs" />
     <Compile Include="Models\PromocionesViewModel.cs" />
     <Compile Include="Controllers\RecepcionistaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
