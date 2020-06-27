@@ -1,7 +1,83 @@
-﻿@{
+﻿@model EnjoyYourWaitNetSite.Models.PromocionesViewModel
+@{
     ViewBag.Title = "Promociones";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
+<div>
+    @if (ViewBag.SuccessState != null)
+    {
+        <div id="messageModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            @switch (ViewBag.SuccessState)
+                            {
+                                case "LOAD_NOPROMO":
+                                    <p>No hay promociones cargados en el sistema aún.</p>
+                                    break;
+                                case "LOAD_FAILED":
+                                    <p>Error al cargar las promociones.</p>
+                                    break;
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model != null)
+    {
+        <div class="row mt-3">
+            <div class="col justify-content-center">
+                <div class="row mt-3">
+                    <div class="col-md-12 col-recep">
+                        <div id="divTablaProductos" class="table-responsive">
+                            <table class="table table-prod">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="table-recepcion">Descripción</th>
+                                        <th scope="col" class="table-recepcion">Inicio</th>
+                                        <th scope="col" class="table-recepcion">Vencimiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var promocion in Model.lstPromociones)
+                                    {
+                                        <tr>
+                                            <td class="align-middle">@promocion.descripcion</td>
+                                            <td class="align-middle">@promocion.fechaInicio</td>
+                                            <td class="align-middle">@promocion.fechaBaja</td>
 
-<p>Aca van a aparecer todas las promociones vigentes del restaurante.</p>
+                                            <td>
+                                                @using (Html.BeginForm("VerDetallePromocion", "Promocion", FormMethod.Post))
+                                                {
+                                                    <input id="inPromocionId" name="idPromocion" value="@promocion.idPromocion" type="hidden">
+                                                    <input type="submit" class="btn btn-sm btn-success" value="Ver Productos">
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+                            {
+    @if (ViewBag.SuccessState != null)
+    {
+        <script>
+            $(function () {
+                $('#messageModal').modal('show');
+            });
+        </script>
+    }
+}

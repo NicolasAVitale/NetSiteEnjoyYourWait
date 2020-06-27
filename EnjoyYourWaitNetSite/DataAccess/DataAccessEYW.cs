@@ -219,6 +219,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return await Request(HttpMethod.Put, $"promociones/{idPromocion}", true, promocionApi);
         }
 
+        public async Task<List<Promocion>> GetAllPromocionesCliente()
+        {
+            return await Request<List<Promocion>>(HttpMethod.Get, "promociones/getPromocionesClientes", true);
+        }
+
         private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)
         {
             var response = await BuildRequest(method, url, auth, body);

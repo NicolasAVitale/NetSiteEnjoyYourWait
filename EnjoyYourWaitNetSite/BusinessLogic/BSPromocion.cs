@@ -44,5 +44,10 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         {
             return await dataAccess.UpdatePromocion(idPromocion, promocionApi);
         }
+
+        public async Task<List<Promocion>> GetAllPromocionesCliente()
+        {
+            return await dataAccess.GetAllPromocionesCliente();
+        }
     }
 }

@@ -13,14 +13,37 @@ namespace EnjoyYourWaitNetSite.Controllers
         private BSPromocion bsPromocion = new BSPromocion();
         private BSProducto bsProducto = new BSProducto();
 
-        public ActionResult Promociones()
+        public async Task<ActionResult> Promociones()
         {
-            return View();
-        }
+            PromocionesViewModel model = new PromocionesViewModel();
+            model.lstPromociones = new List<Promocion>();
+            try
+            {
+                ViewBag.SuccessState = TempData["SuccessState"];
 
-        public ActionResult Index()
-        {
-            return View();
+                //Cargo lista de promociones
+                List<Promocion> promociones = await bsPromocion.GetAllPromocionesCliente();
+
+                foreach (var promocion in promociones)
+                {
+                    promocion.fechaInicio = DateTime.Parse(promocion.fechaInicio, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd/MM/yyyy");
+                    promocion.fechaBaja = DateTime.Parse(promocion.fechaBaja, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd/MM/yyyy");
+                }
+
+                model.lstPromociones = promociones;
+
+                if (promociones.Count == 0)
+                {
+                    TempData["SuccessState"] = "LOAD_NOPROMO";
+                }
+
+                return View("Promociones", model);
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "LOAD_FAILED";
+                return View("Promociones", model);
+            }
         }
 
         public async Task<ActionResult> GestionPromocion()
@@ -141,17 +164,17 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> VerDetallePromocion(Promocion promocion)
+        public async Task<ActionResult> VerDetallePromocion(int idPromocion)
         {
             PromocionProductoViewModel model = new PromocionProductoViewModel();
-            model.IdPromocion = promocion.idPromocion;
+            model.IdPromocion = idPromocion;
             model.lstProducto = new List<Producto>();
             try
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
 
                 //Cargo lista de productos
-                List<Producto> productos = await bsPromocion.GetAllProductosPromocion(promocion.idPromocion);
+                List<Producto> productos = await bsPromocion.GetAllProductosPromocion(idPromocion);
                 model.lstProducto = productos;
                 if (productos.Count == 0)
                 {

@@ -172,11 +172,11 @@
                                             </td>
 
                                             <td>
-                                                <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
-                                                        onclick="location.href='@Url.Action("VerDetallePromocion", "Promocion", promocion)'">
-                                                    <i class="fas fa-check-square check-visible"></i>
-                                                    <span class="txt-modif-visible">Ver productos</span>
-                                                </button>
+                                                @using (Html.BeginForm("VerDetallePromocion", "Promocion", FormMethod.Post))
+                                                {
+                                                    <input id="inPromocionId" name="idPromocion" value="@promocion.idPromocion" type="hidden">
+                                                    <input type="submit" class="btn btn-sm btn-success" value="Ver Productos">
+                                                }
                                             </td>
 
 
