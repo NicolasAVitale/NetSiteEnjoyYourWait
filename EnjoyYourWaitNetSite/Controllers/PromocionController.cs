@@ -155,6 +155,60 @@ namespace EnjoyYourWaitNetSite.Controllers
                 return RedirectToAction("GestionPromocion");
             }
         }
+        
+        public async Task<ActionResult> VerDetallePromocion(Promocion promocion)
+        {
+            PromocionProductoViewModel model = new PromocionProductoViewModel();
+            model.IdPromocion = promocion.idPromocion;
+            model.lstProducto = new List<Producto>();
+            try
+            {
+                ViewBag.SuccessState = TempData["SuccessState"];
+
+                //Cargo lista de productos
+                List<Producto> productos = await bsPromocion.GetAllProductosPromocion(promocion.idPromocion);
+                model.lstProducto = productos;
+                if (productos.Count == 0)
+                {
+                    model.lstProducto = await bsProducto.ObtenerProductosActivos();
+                    TempData["SuccessState"] = "LOAD_NOPRODUCTS";
+                    ViewBag.SuccessState = TempData["SuccessState"];
+                }
+
+                return View("GestionProductosPromocion", model);
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "LOAD_FAILED";
+                return View("GestionPromocion", model);
+            }
+        }
+        public async Task<ActionResult> AsociarProductosPromocion(List<string> idProductos, int idPromocion)
+        {
+            try
+            {
+                ViewBag.SuccessState = TempData["SuccessState"];
+
+                
+                bool result = false;
+                foreach (var idProducto in idProductos)
+                {
+                    result = await bsPromocion.AsociarProductosPromocion(idPromocion, new ProductoId() { idProducto = idProducto });
+                }
+                
+                if (result)
+                {
+                    TempData["SuccessState"] = "LOAD_PRODUCTS_SUCCESSFULL";
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "LOAD_FAILED";
+                return null; 
+            }
+        }
+
 
         public ActionResult ObtenerTiposPromocion()
         {

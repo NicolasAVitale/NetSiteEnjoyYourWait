@@ -42,6 +42,9 @@
                                 case "UPDATE_FAILED":
                                     <p>Error al modificar la promoción.</p>
                                     break;
+                                case "LOAD_PRODUCTS_SUCCESSFULL":
+                                    <p>Los productos se asociaron correctamente a la promoción.</p>
+                                    break;
                             }
                         </div>
                         <div class="modal-footer">
@@ -52,8 +55,8 @@
             </div>
         </div>
     }
-    @if (Model != null)
-    {
+                                @if (Model != null)
+                                {
         <div id="disableModal" class="modal">
             <div class="modal-dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -116,6 +119,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" class="table-recepcion">Descripción</th>
+                                        <th scope="col" class="table-recepcion">Inicio</th>
                                         <th scope="col" class="table-recepcion">Vencimiento</th>
                                         <th scope="col" class="table-recepcion">Tipo</th>
                                         <th scope="col" class="table-recepcion"><span class="txt-acceso-sist">Estado</span><span class="txt-acceso">Estado</span></th>
@@ -125,12 +129,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach (var promocion in Model.lstPromociones)
-                                    {
+                            {
                                     <tr>
                                         <td class="align-middle">@promocion.descripcion</td>
+                                        <td class="align-middle">@promocion.fechaInicio</td>
                                         <td class="align-middle">@promocion.fechaBaja</td>
                                         @if (promocion.esPremio == 1)
-                                        {
+                            {
                                             <td class="align-middle">Premio</td>
                                         }
                                         else
@@ -139,7 +144,7 @@
                                         }
 
                                         @if (promocion.activo == 1)
-                                        {
+                            {
                                             <td class="align-middle table-recepcion estado-size">
                                                 <span class="txt-btn-visibilidad">Habilitado</span>
                                                 <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad">
@@ -177,7 +182,7 @@
 
 
                                         @if (promocion.activo == 1)
-                                        {
+                            {
                                             <td class="table-recepcion txt-btn-visibilidad">
                                                 <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
                                                         item-id="@promocion.idPromocion">
@@ -207,34 +212,34 @@
 </div>
 
 @section scripts
-{
-    @if (ViewBag.SuccessState != null)
+                            {
+                                @if (ViewBag.SuccessState != null)
     {
         <script>
             $(function () {
                 $('#messageModal').modal('show');
-            });
+                                    });
         </script>
     }
-    @if (Model != null)
+                                @if (Model != null)
     {
         <script>
             $(function () {
                 $(".item-disable-selection").click(function () {
-                    var $itemClicked = $(this);
-                    var id = $itemClicked.attr('item-id');
+                                            var $itemClicked = $(this);
+                                            var id = $itemClicked.attr('item-id');
                     $("#inDisable").val(id);
                     $("#disableModal").modal("show");
-                });
-            });
+                                        });
+                                    });
             $(function () {
                 $(".item-enable-selection").click(function () {
-                    var $itemClicked = $(this);
-                    var id = $itemClicked.attr('item-id');
+                                            var $itemClicked = $(this);
+                                            var id = $itemClicked.attr('item-id');
                     $("#inEnable").val(id);
                     $("#enableModal").modal("show");
-                });
-            });
+                                        });
+                                    });
         </script>
     }
-}
+                            }

@@ -1,4 +1,5 @@
 ﻿using EnjoyYourWaitNetSite.Entities;
+using EnjoyYourWaitNetSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,17 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
         public async Task<bool> EnablePromocion(int idPromocion)
         {
             return await dataAccess.EnablePromocion(idPromocion);
+        }
+
+        public async Task<List<Producto>> GetAllProductosPromocion(int idPromocion)
+        {
+            //return await dataAccess.GetAllProductosPromocion(idPromocion);
+            return new List<Producto>();
+        }
+
+        public async Task<bool> AsociarProductosPromocion(int idPromocion, ProductoId productoId)
+        {
+            return await dataAccess.AsociarProductosPromocion(idPromocion, productoId);
         }
     }
 }

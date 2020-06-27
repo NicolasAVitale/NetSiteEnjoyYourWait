@@ -199,6 +199,15 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return await Request(HttpMethod.Put, $"promociones/activar/{idPromocion}", true);
         }
 
+        public async Task<List<Producto>> GetAllProductosPromocion(int idPromocion)
+        {
+            return await Request<List<Producto>>(HttpMethod.Get, $"promociones/productos/{idPromocion}", true);
+        }
+
+        public async Task<bool> AsociarProductosPromocion(int idPromocion, ProductoId idProducto)
+        {
+            return await Request(HttpMethod.Post, $"promociones/agregarProducto/{idPromocion}", true, idProducto);
+        }
         private async Task<bool> Request(HttpMethod method, string url, bool auth = false, object body = null)
         {
             var response = await BuildRequest(method, url, auth, body);

@@ -1,0 +1,208 @@
+﻿@model EnjoyYourWaitNetSite.Models.PromocionProductoViewModel
+@{
+    ViewBag.Title = "Gestión de Productos de Promoción";
+}
+    <div>
+        @if (ViewBag.SuccessState != null)
+        {
+            <div id="messageModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                @switch (ViewBag.SuccessState)
+                                {
+                                    case "LOAD_NOPRODUCTS":
+                                        <p>No hay productos cargados en la promoción aún.</p>
+                                        break;
+                                    case "LOAD_FAILED":
+                                        <p>Error al cargar los productos de la promoción.</p>
+                                        break;
+                                    case "ADD_SUCCESS":
+                                        <p>El producto se agregó correctamente a la promoción.</p>
+                                        break;
+                                    case "ADD_FAILED":
+                                        <p>Error al agregar el producto.</p>
+                                        break;
+                                    case "DISABLE_SUCCESS":
+                                        <p>El producto se deshabilitó correctamente.</p>
+                                        break;
+                                    case "DISABLE_FAILED":
+                                        <p>Error al deshabilitar el producto.</p>
+                                        break;
+                                    case "ENABLE_SUCCESS":
+                                        <p>El producto se habilitó correctamente.</p>
+                                        break;
+                                    case "ENABLE_FAILED":
+                                        <p>Error al habilitar el producto.</p>
+                                        break;
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div id="noProductsModal" class="modal" hidden="hidden">
+            <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Error</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>No se han seleccionado productos</p>
+                        </div>
+                        <div class="modal-footer">
+                               <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model != null)
+        {
+
+            @*<div id="disableModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Deshabilitar</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea deshabilitar el producto seleccionado? De esta forma se eliminará el producto del menú.</p>
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("DeshabilitarProducto", "Producto", FormMethod.Post))
+                                {
+                                    <input id="inDisable" name="idProducto" type="hidden">
+                                    <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+            @*<div id="enableModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Habilitar</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea habilitar el producto seleccionado?</p>
+                            </div>
+                            <div class="modal-footer">
+                                @using (Html.BeginForm("HabilitarProducto", "Producto", FormMethod.Post))
+                                {
+                                    <input id="inEnable" name="idProducto" type="hidden">
+                                    <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
+                                    <input type="submit" class="btn btn-sm btn-success" value="Habilitar">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="row mt-3">
+                <div class="col justify-content-center">
+                    @if (ViewBag.SuccessState == "LOAD_NOPRODUCTS")
+                    {
+                        <div class="row mt-3">
+                            <div class="col-md-12 col-recep">
+                                <font class="float-left" size="5">Productos</font>
+                                <button type="button" id="btnRegistrarProducto" class="btn btn-sm float-right">Asociar productos</button>
+                            </div>
+                        </div>
+                    }
+                    <div class="row mt-3">
+                        <div class="col-md-12 col-recep">
+                            <div id="divTablaProductos" class="table-responsive">
+                                <table class="table table-prod">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="table-recepcion">Nombre</th>
+                                            <th scope="col" class="table-recepcion">Precio</th>
+                                            @if (ViewBag.SuccessState == "LOAD_NOPRODUCTS")
+                                            {
+                                                <th scope="col" class="tabla-recepcion">Agregar</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var producto in Model.lstProducto)
+                                        {
+                                            <tr>
+                                                <td class="align-middle">@producto.nombre</td>
+                                                <td class="align-middle">$@producto.precio</td>
+                                                @if (ViewBag.SuccessState == "LOAD_NOPRODUCTS")
+                                                {
+                                                    <td class="align-middle"><input type="checkbox" id="@producto.idProducto"></td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+@section scripts
+{
+    @if (ViewBag.SuccessState != null)
+    {
+        <script>
+            $(function () {
+                $('#messageModal').modal('show');
+            });
+        </script>
+    }
+    @if (Model != null)
+    {
+<script>
+            $(function () {
+                $("#btnRegistrarProducto").click(function () {
+                    var ids = [];
+                    $("input[type='checkbox']").each(function () {
+                        var $this = $(this);
+                        console.log($this)
+                        if ($this.is(":checked")) {
+                            console.log(this.id)
+                            ids.push(this.id);
+                        }
+
+                    });
+                    if (ids.length > 0) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("AsociarProductosPromocion", "Promocion")',
+                            data: ({ idProductos: ids, idPromocion: @Model.IdPromocion })
+                        }).done(function (r) {
+                            window.location.href = '@Url.Action("GestionPromocion","Promocion")';
+                        });
+                    }
+                    else {
+                        $('#noProductsModal').modal('show');
+                    }
+                });
+            });
+</script>
+    }
+}
+
+           
