@@ -66,6 +66,11 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return token;  
         }
 
+        public async Task<ValidGuidResponse> ValidarGuid(string guid)
+        {
+            return await Request<ValidGuidResponse>(HttpMethod.Get, $"clientes/validarGuid/{guid}", true);
+        }
+
         public async Task<bool> RegistrarTokenEmail(GuidEmailRequest guidEmailRequest)
         {
             return await Request(HttpMethod.Post, "clientes/agregarEmail", true, guidEmailRequest);
@@ -121,7 +126,7 @@ namespace EnjoyYourWaitNetSite.DataAccess
 
         public async Task<Cliente> RegistrarCliente(Cliente cliente)
         {
-            return await Request<Cliente>(HttpMethod.Post, "clientes", true, cliente);
+            return await Request<Cliente>(HttpMethod.Put, $"clientes/{cliente.idCliente}", true, cliente);
         }
 
         public async Task<List<Usuario>> GetAllRecepcionistas()

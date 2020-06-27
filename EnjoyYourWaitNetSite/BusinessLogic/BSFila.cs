@@ -1,6 +1,6 @@
 ﻿using EnjoyYourWaitNetSite.Entities;
+using javax.xml.crypto;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Mail;
 using System.Text;
@@ -31,7 +31,7 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             mail.Subject = "On The Grill - Confirmar ingreso a la fila";
             var builder = new StringBuilder();
             builder.Append("<head><h4>Confirmar ingreso a la fila</h4><hr /><p><font face='Calibri'>Hola, para confirmar tu ingreso a la fila debes hacer click en el siguiente Link. Si recibiste este correo por error, simplemente puedes borrarlo.</font></p></head><body><a href=\"" +
-                ConfigurationManager.AppSettings.Get("ConfirmUrl") +
+                ConfigurationManager.AppSettings.Get("ConfirmUrl") + guid +
                 "\" class=\"" + "button" + "\">Confirmar Ingreso</a></body><header> <hr /><p><font face='Calibri'>Muchas gracias, On The Grill.</font></p></header></html>");
             mail.Body = builder.ToString();
             smtpClient.Send(mail);
@@ -44,6 +44,11 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
                 email =  email,
                 guid = guid
             });
+        }
+
+        public async Task<ValidGuidResponse> ValidarGuid(string guid)
+        {
+            return await dataAccess.ValidarGuid(guid);
         }
 
         public async Task<Cliente> RegistrarCliente(Cliente cliente)

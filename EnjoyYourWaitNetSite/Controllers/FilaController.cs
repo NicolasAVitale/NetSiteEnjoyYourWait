@@ -4,7 +4,6 @@ using EnjoyYourWaitNetSite.Entities;
 using EnjoyYourWaitNetSite.Helper;
 using EnjoyYourWaitNetSite.Models;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,7 +19,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             return View();
         }
 
-        public async Task<ActionResult> EnviarCorreoConfirmacionAsync(string email)
+        public async Task<ActionResult> EnviarCorreoConfirmacion(string email)
         {
             try
             {
@@ -33,7 +32,6 @@ namespace EnjoyYourWaitNetSite.Controllers
                     if (result)
                     {
                         bsFila.EnviarCorreoConfirmacion(email, guid);
-                        SessionHelper.Email = email;
                         TempData["SuccessState"] = "SEND_SUCCESS";
                     }                    
                 }
@@ -51,16 +49,23 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public ActionResult ConfirmarIngreso(string token)
+        public async Task<ActionResult> ConfirmarIngreso(string guid)
         {
-            //Valido token contra la api
-            string email = SessionHelper.Email;
-            if (email != null)
+            try
             {
-                ClienteViewModel model = new ClienteViewModel();
+                ValidGuidResponse valid = await bsFila.ValidarGuid(guid);
+                ClienteViewModel model = new ClienteViewModel()
+                {
+                    IdCliente = valid.idCliente,
+                    Email = valid.email
+                };
                 return View(model);
             }
-            return RedirectToAction("Index", "Home");
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "GUID_FAILED";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public async Task<ActionResult> AñadirClienteAFila(ClienteViewModel cliente)
@@ -76,6 +81,7 @@ namespace EnjoyYourWaitNetSite.Controllers
 
                     Cliente entidadCliente = new Cliente()
                     {
+                        idCliente = cliente.IdCliente,
                         dni = int.Parse(cliente.Dni),
                         nombre = cliente.Nombre,
                         apellido = cliente.Apellido,
@@ -116,8 +122,8 @@ namespace EnjoyYourWaitNetSite.Controllers
             int capacidad = int.Parse(ConfigurationManager.AppSettings.Get("CapacidadRestaurante"));
             int tiempo = int.Parse(ConfigurationManager.AppSettings.Get("TiempoEstimado"));
 
-            //Actualizar estados
-            //await bsFila.ActualizarEstadoClientesEnRestaurante(tiempo);
+            //Actualizar estados comensales dentro del restaurante
+            await bsFila.ActualizarEstadoClientesEnRestaurante(tiempo);
 
             if (SessionHelper.Cliente != null)
             {
