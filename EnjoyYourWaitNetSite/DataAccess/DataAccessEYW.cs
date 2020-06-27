@@ -139,19 +139,19 @@ namespace EnjoyYourWaitNetSite.DataAccess
             return await Request(HttpMethod.Post, "usuarios", true, recepcionista);
         }
 
-        public async Task<bool> DisableRecepcionista(int dni)
+        public async Task<bool> DisableRecepcionista(int id)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/desactivar/{dni}", true);
+            return await Request(HttpMethod.Put, $"usuarios/desactivar/{id}", true);
         }
 
-        public async Task<bool> EnableRecepcionista(int dni)
+        public async Task<bool> EnableRecepcionista(int id)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/activar/{dni}", true);
+            return await Request(HttpMethod.Put, $"usuarios/activar/{id}", true);
         }
 
-        public async Task<bool> UpdateRecepcionista(int dni, string email)
+        public async Task<bool> UpdateRecepcionista(int id, Usuario user)
         {
-            return await Request(HttpMethod.Put, $"recepcionistas/{dni}/{email}", true);
+            return await Request(HttpMethod.Put, $"usuarios/{id}", true, user);
         }
 
         public async Task<bool> CreateProducto(Producto producto)

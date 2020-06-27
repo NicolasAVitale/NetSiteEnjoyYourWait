@@ -20,14 +20,14 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
             return await dataAccess.DisableRecepcionista(dni);
         }
 
-        public async Task<bool> EnableRecepcionista(int dni)
+        public async Task<bool> EnableRecepcionista(int id)
         {
-            return await dataAccess.EnableRecepcionista(dni);
+            return await dataAccess.EnableRecepcionista(id);
         }
 
-        public async Task<bool> UpdateRecepcionista(int dni, string email)
+        public async Task<bool> UpdateRecepcionista(int id, Usuario user)
         {
-            return await dataAccess.UpdateRecepcionista(dni, email);
+            return await dataAccess.UpdateRecepcionista(id, user);
         }
 
         public async Task<List<Usuario>> GetAllRecepcionistas()

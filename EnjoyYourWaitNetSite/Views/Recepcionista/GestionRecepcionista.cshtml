@@ -67,7 +67,7 @@
                             <div class="modal-footer">
                                 @using (Html.BeginForm("ModificarRecepcionista", "Recepcionista", FormMethod.Post))
                                 {
-                                    <input id="inRecepcionistaId" name="dni" type="hidden">
+                                    <input id="inRecepcionistaId" name="id" type="hidden">
                                     <input id="inRecepcionistaVal" name="email" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-success" value="Modificar">
@@ -91,7 +91,7 @@
                             <div class="modal-footer">
                                 @using (Html.BeginForm("DeshabilitarRecepcionista", "Recepcionista", FormMethod.Post))
                                 {
-                                    <input id="inDisable" name="dni" type="hidden">
+                                    <input id="inDisable" name="id" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-danger" value="Deshabilitar">
                                 }
@@ -114,7 +114,7 @@
                             <div class="modal-footer">
                                 @using (Html.BeginForm("HabilitarRecepcionista", "Recepcionista", FormMethod.Post))
                                 {
-                                    <input id="inEnable" name="dni" type="hidden">
+                                    <input id="inEnable" name="id" type="hidden">
                                     <button type="button" class="btn btn-sm btn-secondary btn-cancelar" data-dismiss="modal">Cancelar</button>
                                     <input type="submit" class="btn btn-sm btn-success" value="Habilitar">
                                 }
@@ -142,7 +142,6 @@
                                             <th scope="col" class="table-recepcion">Nombre</th>
                                             <th scope="col" class="table-recepcion">Apellido</th>
                                             <th scope="col" class="table-recepcion">Email</th>
-                                            <th scope="col" class="table-recepcion"></th>
                                             <th scope="col" class="table-recepcion"><span class="txt-acceso-sist">Acceso sistema</span><span class="txt-acceso">Acceso</span></th>
                                             <th scope="col" class="table-recepcion txt-btn-visibilidad"></th>
                                         </tr>
@@ -154,43 +153,44 @@
                                             <td class="align-middle table-recepcion">@recepcionista.dni</td>
                                             <td class="align-middle table-recepcion">@recepcionista.nombre</td>
                                             <td class="align-middle table-recepcion">@recepcionista.apellido</td>
-                                            <td class="align-middle table-recepcion mail-size">
+                                            @*<td class="align-middle table-recepcion mail-size">
                                                 <input type="text" id="emailInput" name="email" value="@recepcionista.email">
-                                            </td>
+                                            </td>*@
                                             <td class="table-recepcion">
+                                                <input type="text" id="emailInput" name="email" value="@recepcionista.email" class="mail-size">
                                                 <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
-                                                        item-id="@recepcionista.dni">
+                                                        item-id="@recepcionista.idUsuario">
                                                     <i class="fas fa-check-square check-visible"></i>
                                                     <span class="txt-modif-visible">Modificar</span>
                                                 </button>
                                             </td>
                                             @if (recepcionista.activo == 1)
                                             {
-                                        <td class="align-middle table-recepcion estado-size">
-                                            <span class="txt-btn-visibilidad">Habilitado</span>
-                                            <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad"
-                                                    item-id="@recepcionista.dni">                                                
-                                                <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena" />
-                                            </button>
-                                        </td>
+                                                <td class="align-middle table-recepcion estado-size">
+                                                    <span class="txt-btn-visibilidad">Habilitado</span>
+                                                    <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad"
+                                                            item-id="@recepcionista.idUsuario">
+                                                        <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena" />
+                                                    </button>
+                                                </td>
                                             }
                                             else
                                             {
-                                        <td class="align-middle table-recepcion estado-size">
-                                            <span class="txt-btn-visibilidad">Deshabilitado</span>
-                                            <button type="button" class="btn btn-sm item-enable-selection btn-grill-style img-visibilidad"
-                                                    item-id="@recepcionista.dni">                                                
-                                                <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena" />
-                                            </button>
-                                        </td>
+                                                <td class="align-middle table-recepcion estado-size">
+                                                    <span class="txt-btn-visibilidad">Deshabilitado</span>
+                                                    <button type="button" class="btn btn-sm item-enable-selection btn-grill-style img-visibilidad"
+                                                            item-id="@recepcionista.idUsuario">
+                                                        <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena" />
+                                                    </button>
+                                                </td>
                                             }
 
                                             @if (recepcionista.activo == 1)
                                             {
                                                 <td class="table-recepcion txt-btn-visibilidad">
                                                     <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
-                                                            item-id="@recepcionista.dni">
-                                                        <span class="">Deshabilitar</span>                                                        
+                                                            item-id="@recepcionista.idUsuario">
+                                                        <span class="">Deshabilitar</span>
                                                     </button>
                                                 </td>
                                             }
@@ -198,8 +198,8 @@
                                             {
                                                 <td class="table-recepcion txt-btn-visibilidad">
                                                     <button type="button" class="btn btn-sm item-enable-selection btn-grill-style"
-                                                            item-id="@recepcionista.dni">
-                                                        <span class="">Habilitar</span>                                                        
+                                                            item-id="@recepcionista.idUsuario">
+                                                        <span class="">Habilitar</span>
                                                     </button>
                                                 </td>
                                             }
@@ -248,7 +248,8 @@
                 $(".item-update-selection").click(function () {
                     var $itemClicked = $(this);
                     var id = $itemClicked.attr('item-id');
-                    var val = document.getElementById("emailInput").value
+                    var val = $(this).closest('td').find('.mail-size').val();
+                    //var val = document.getElementById("emailInput").value
                     $("#inRecepcionistaId").val(id);
                     $("#inRecepcionistaVal").val(val);
                     $("#updateModal").modal("show");

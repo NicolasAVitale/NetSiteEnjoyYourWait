@@ -93,12 +93,12 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> DeshabilitarRecepcionista(int dni)
+        public async Task<ActionResult> DeshabilitarRecepcionista(int id)
         {
             try
             {
                 TempData["SuccessState"] = "DISABLE_FAILED";
-                bool result = await bsRecepcionista.DisableRecepcionista(dni);
+                bool result = await bsRecepcionista.DisableRecepcionista(id);
                 if (result)
                 {
                     TempData["SuccessState"] = "DISABLE_SUCCESS";
@@ -112,12 +112,12 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> HabilitarRecepcionista(int dni)
+        public async Task<ActionResult> HabilitarRecepcionista(int id)
         {
             try
             {
                 TempData["SuccessState"] = "ENABLE_FAILED";
-                bool result = await bsRecepcionista.EnableRecepcionista(dni);
+                bool result = await bsRecepcionista.EnableRecepcionista(id);
                 if (result)
                 {
                     TempData["SuccessState"] = "ENABLE_SUCCESS";
@@ -131,7 +131,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             }
         }
 
-        public async Task<ActionResult> ModificarRecepcionista(int dni, string email)
+        public async Task<ActionResult> ModificarRecepcionista(int id, string email)
         {
             try
             {
@@ -139,7 +139,7 @@ namespace EnjoyYourWaitNetSite.Controllers
                 bool isValid = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
                 if(isValid)
                 {
-                    bool result = await bsRecepcionista.UpdateRecepcionista(dni, email);
+                    bool result = await bsRecepcionista.UpdateRecepcionista(id, new Usuario(){ email = email});
                     if (result)
                     {
                         TempData["SuccessState"] = "UPDATE_SUCCESS";
