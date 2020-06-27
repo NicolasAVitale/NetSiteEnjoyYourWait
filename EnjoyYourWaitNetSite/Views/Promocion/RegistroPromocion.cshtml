@@ -36,11 +36,11 @@
     {
         <div class="card shadow-lg">
             <div class="card-body">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center sin-margin">
                     <table>
                         <tr>
                             <td>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <label>Descripción:</label>
                                     @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control mt-1 shadow" })
                                     @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
@@ -49,7 +49,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <label>Inicio:</label>
                                     @Html.TextBoxFor(model => model.FechaInicio, new { @class = "datefield", type = "date", style = "color: black;" })
                                     @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
@@ -62,7 +62,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <label>Vencimiento:</label>
                                     @Html.TextBoxFor(model => model.FechaBaja, new { @class = "datefield", type = "date", style = "color: black;" })
                                     @Html.ValidationMessageFor(model => model.FechaBaja, "", new { @class = "text-danger" })
