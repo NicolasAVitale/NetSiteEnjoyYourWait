@@ -722,7 +722,7 @@ a:link, a:hover, a:visited {
 }
 
 @media(max-width: 434px) {
-    .item-update-selection {
+    .change-color {
         background-color: rgba(61, 148, 222, 0);
         border-color: rgba(61, 148, 222, 0);
         padding: 0px;
