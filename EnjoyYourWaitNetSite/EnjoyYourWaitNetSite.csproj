@@ -370,6 +370,8 @@
     <Compile Include="Models\ProductoViewModel.cs" />
     <Compile Include="Models\AddProductoViewModel.cs" />
     <Compile Include="Models\AddRecepcionistaViewModel.cs" />
+    <Compile Include="Models\UpdatePromocionApiModel.cs" />
+    <Compile Include="Models\UpdatePromocionViewModel.cs" />
     <Compile Include="Models\UserLoginViewModel.cs" />
     <Compile Include="Models\RecepcionistaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -553,6 +555,7 @@
     <Content Include="Views\Producto\ModificarProducto.cshtml" />
     <Content Include="Views\Fila\ConfirmarIngreso.cshtml" />
     <Content Include="Views\Promocion\GestionProductosPromocion.cshtml" />
+    <Content Include="Views\Promocion\ModificarPromocion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

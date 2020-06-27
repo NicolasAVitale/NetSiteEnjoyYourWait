@@ -99,7 +99,7 @@ namespace EnjoyYourWaitNetSite.Controllers
             try
             {
                 ViewBag.Success = null;
-                if (ModelState.IsValid && producto.IdTipo > 0)
+                if (ModelState.IsValid)
                 {
                     ViewBag.Success = false;
                     bool result = await bsProducto.CreateProducto(new Producto()

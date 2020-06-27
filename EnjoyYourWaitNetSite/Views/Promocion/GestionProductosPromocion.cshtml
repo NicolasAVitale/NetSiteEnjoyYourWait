@@ -194,6 +194,7 @@
                             data: ({ idProductos: ids, idPromocion: @Model.IdPromocion })
                         }).done(function (r) {
                             window.location.href = '@Url.Action("GestionPromocion","Promocion")';
+                        }).catch(function (r) {
                         });
                     }
                     else {

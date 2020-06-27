@@ -55,8 +55,8 @@
             </div>
         </div>
     }
-                                @if (Model != null)
-                                {
+    @if (Model != null)
+    {
         <div id="disableModal" class="modal">
             <div class="modal-dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -129,77 +129,77 @@
                                 </thead>
                                 <tbody>
                                     @foreach (var promocion in Model.lstPromociones)
-                            {
-                                    <tr>
-                                        <td class="align-middle">@promocion.descripcion</td>
-                                        <td class="align-middle">@promocion.fechaInicio</td>
-                                        <td class="align-middle">@promocion.fechaBaja</td>
-                                        @if (promocion.esPremio == 1)
-                            {
-                                            <td class="align-middle">Premio</td>
-                                        }
-                                        else
-                                        {
-                                            <td class="align-middle">Promoción</td>
-                                        }
+                                    {
+                                        <tr>
+                                            <td class="align-middle">@promocion.descripcion</td>
+                                            <td class="align-middle">@promocion.fechaInicio</td>
+                                            <td class="align-middle">@promocion.fechaBaja</td>
+                                            @if (promocion.esPremio == 1)
+                                            {
+                                                <td class="align-middle">Premio</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="align-middle">Promoción</td>
+                                            }
 
-                                        @if (promocion.activo == 1)
-                            {
-                                            <td class="align-middle table-recepcion estado-size">
-                                                <span class="txt-btn-visibilidad">Habilitado</span>
-                                                <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad">
-                                                    <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena" />
+                                            @if (promocion.activo == 1)
+                                            {
+                                                <td class="align-middle table-recepcion estado-size">
+                                                    <span class="txt-btn-visibilidad">Habilitado</span>
+                                                    <button type="button" class="btn btn-sm item-disable-selection btn-grill-style img-visibilidad">
+                                                        <img src="~/Content/img/icon-enable.png" class="img-visibilidad img-dis-ena" />
+                                                    </button>
+                                                </td>
+                                            }
+                                            else
+                                            {
+
+                                                <td class="align-middle table-recepcion estado-size">
+                                                    <span class="txt-btn-visibilidad">Deshabilitado</span>
+                                                    <button type="button" class="btn btn-sm item-enable-selection btn-grill-style img-visibilidad">
+                                                        <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena" />
+                                                    </button>
+                                                </td>
+                                            }
+
+                                            <td>
+                                                <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
+                                                        onclick="location.href='@Url.Action("AbrirModificarPromocion", "Promocion", promocion)'">
+                                                    <i class="fas fa-check-square check-visible"></i>
+                                                    <span class="txt-modif-visible">Modificar</span>
                                                 </button>
                                             </td>
-                                        }
-                                        else
-                                        {
 
-                                            <td class="align-middle table-recepcion estado-size">
-                                                <span class="txt-btn-visibilidad">Deshabilitado</span>
-                                                <button type="button" class="btn btn-sm item-enable-selection btn-grill-style img-visibilidad">
-                                                    <img src="~/Content/img/icon-disable.png" class="img-visibilidad img-dis-ena" />
+                                            <td>
+                                                <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
+                                                        onclick="location.href='@Url.Action("VerDetallePromocion", "Promocion", promocion)'">
+                                                    <i class="fas fa-check-square check-visible"></i>
+                                                    <span class="txt-modif-visible">Ver productos</span>
                                                 </button>
                                             </td>
-                                        }
-
-                                        <td>
-                                            <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
-                                                    onclick="location.href='@Url.Action("AbrirModificarPromocion", "Promocion", promocion)'">
-                                                <i class="fas fa-check-square check-visible"></i>
-                                                <span class="txt-modif-visible">Modificar</span>
-                                            </button>
-                                        </td>
-
-                                        <td>
-                                            <button type="button" class="btn btn-sm item-update-selection btn-grill-style"
-                                                    onclick="location.href='@Url.Action("VerDetallePromocion", "Promocion", promocion)'">
-                                                <i class="fas fa-check-square check-visible"></i>
-                                                <span class="txt-modif-visible">Ver productos</span>
-                                            </button>
-                                        </td>
 
 
 
-                                        @if (promocion.activo == 1)
-                            {
-                                            <td class="table-recepcion txt-btn-visibilidad">
-                                                <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
-                                                        item-id="@promocion.idPromocion">
-                                                    Deshabilitar
-                                                </button>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td class="table-recepcion txt-btn-visibilidad">
-                                                <button type="button" class="btn btn-sm item-enable-selection btn-grill-style"
-                                                        item-id="@promocion.idPromocion">
-                                                    Habilitar
-                                                </button>
-                                            </td>
-                                        }
-                                    </tr>
+                                            @if (promocion.activo == 1)
+                                            {
+                                                <td class="table-recepcion txt-btn-visibilidad">
+                                                    <button type="button" class="btn btn-sm item-disable-selection btn-grill-style"
+                                                            item-id="@promocion.idPromocion">
+                                                        Deshabilitar
+                                                    </button>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="table-recepcion txt-btn-visibilidad">
+                                                    <button type="button" class="btn btn-sm item-enable-selection btn-grill-style"
+                                                            item-id="@promocion.idPromocion">
+                                                        Habilitar
+                                                    </button>
+                                                </td>
+                                            }
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -213,33 +213,33 @@
 
 @section scripts
                             {
-                                @if (ViewBag.SuccessState != null)
+    @if (ViewBag.SuccessState != null)
     {
         <script>
             $(function () {
                 $('#messageModal').modal('show');
-                                    });
+            });
         </script>
     }
-                                @if (Model != null)
+    @if (Model != null)
     {
         <script>
             $(function () {
                 $(".item-disable-selection").click(function () {
-                                            var $itemClicked = $(this);
-                                            var id = $itemClicked.attr('item-id');
+                    var $itemClicked = $(this);
+                    var id = $itemClicked.attr('item-id');
                     $("#inDisable").val(id);
                     $("#disableModal").modal("show");
-                                        });
-                                    });
+                });
+            });
             $(function () {
                 $(".item-enable-selection").click(function () {
-                                            var $itemClicked = $(this);
-                                            var id = $itemClicked.attr('item-id');
+                    var $itemClicked = $(this);
+                    var id = $itemClicked.attr('item-id');
                     $("#inEnable").val(id);
                     $("#enableModal").modal("show");
-                                        });
-                                    });
+                });
+            });
         </script>
     }
-                            }
+}

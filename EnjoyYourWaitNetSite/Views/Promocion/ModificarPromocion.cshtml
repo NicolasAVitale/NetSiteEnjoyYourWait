@@ -1,4 +1,4 @@
-﻿@model EnjoyYourWaitNetSite.Models.AddPromocionViewModel
+﻿@model EnjoyYourWaitNetSite.Models.UpdatePromocionViewModel
 @{
     ViewBag.Title = "Registro de Promociones";
 }
@@ -12,11 +12,11 @@
                         <div class="modal-body">
                             @if (ViewBag.Success)
                             {
-                                <p>La promoción se registro correctamente</p>
+                                <p>La promoción se modificó correctamente</p>
                             }
                             else
                             {
-                                <p>Error al crear la promoción</p>
+                                <p>Error al modificar la promoción</p>
                             }
                         </div>
                         <div class="modal-footer">
@@ -32,7 +32,7 @@
         <font size="6">Ingresar los datos de la promoción</font>
     </div>
 
-    @using (Html.BeginForm("AñadirPromocion", "Promocion", FormMethod.Post))
+    @using (Html.BeginForm("ModificarPromocion", "Promocion", FormMethod.Post))
     {
         <div class="card shadow-lg">
             <div class="card-body">
@@ -51,7 +51,7 @@
                             <td>
                                 <div class="form-group row">
                                     <label>Inicio:</label>
-                                    @Html.TextBoxFor(model => model.FechaInicio, new { @class = "datefield", type = "date", style = "color: black;" })
+                                    @Html.TextBoxFor(model => model.FechaInicio, new { @class = "datefield", type = "date", style = "color: black;", @Value = Model.FechaInicio })
                                     @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
                                     @if (ViewBag.FechaInicioInvalida != null)
                                     {
@@ -64,7 +64,7 @@
                             <td>
                                 <div class="form-group row">
                                     <label>Vencimiento:</label>
-                                    @Html.TextBoxFor(model => model.FechaBaja, new { @class = "datefield", type = "date", style = "color: black;" })
+                                    @Html.TextBoxFor(model => model.FechaBaja, new { @class = "datefield", type = "date", style = "color: black;", @Value = Model.FechaBaja })
                                     @Html.ValidationMessageFor(model => model.FechaBaja, "", new { @class = "text-danger" })
                                     @if (ViewBag.FechaBajaInvalida != null)
                                     {
@@ -88,6 +88,14 @@
                                 <div class="form-group" hidden="hidden">
                                     @Html.TextBoxFor(model => model.EsPremio, new { @class = "form-control mt-1 shadow", @id = "inTipo" })
                                     @Html.ValidationMessageFor(model => model.EsPremio, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group row" hidden="hidden">
+                                    @Html.TextBoxFor(model => model.IdPromocion, new { @class = "form-control mt-1 shadow" })
+                                    @Html.ValidationMessageFor(model => model.IdPromocion, "", new { @class = "text-danger" })
                                 </div>
                             </td>
                         </tr>

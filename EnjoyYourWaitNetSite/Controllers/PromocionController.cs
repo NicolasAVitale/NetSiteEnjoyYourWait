@@ -23,21 +23,6 @@ namespace EnjoyYourWaitNetSite.Controllers
             return View();
         }
 
-        public ActionResult AgregarProducto()
-        {
-            return View();
-        }
-
-        public ActionResult ModificarProducto()
-        {
-            return View();
-        }
-
-        public ActionResult EliminarProducto()
-        {
-            return View();
-        }
-       
         public async Task<ActionResult> GestionPromocion()
         {
             PromocionesViewModel model = new PromocionesViewModel();
@@ -51,8 +36,8 @@ namespace EnjoyYourWaitNetSite.Controllers
 
                 foreach (var promocion in promociones)
                 {
-                    promocion.fechaInicio = DateTime.Parse(promocion.fechaInicio, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd-MM-yyyy");
-                    promocion.fechaBaja = DateTime.Parse(promocion.fechaBaja, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd-MM-yyyy");
+                    promocion.fechaInicio = DateTime.Parse(promocion.fechaInicio, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd/MM/yyyy");
+                    promocion.fechaBaja = DateTime.Parse(promocion.fechaBaja, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd/MM/yyyy");
                 }
 
                 model.lstPromociones = promociones;
@@ -61,7 +46,7 @@ namespace EnjoyYourWaitNetSite.Controllers
                 {
                     TempData["SuccessState"] = "LOAD_NOPROMO";
                 }
-                
+
                 return View("GestionPromocion", model);
             }
             catch (Exception)
@@ -89,10 +74,10 @@ namespace EnjoyYourWaitNetSite.Controllers
                     ViewBag.Success = false;
                     bool result = await bsPromocion.CreatePromocion(new Promocion()
                     {
-                       descripcion = promocion.Descripcion,
-                       fechaInicio = promocion.FechaInicio.ToString("yyyy-MM-dd"),
-                       fechaBaja = promocion.FechaBaja.ToString("yyyy-MM-dd"),
-                       esPremio = promocion.EsPremio
+                        descripcion = promocion.Descripcion,
+                        fechaInicio = promocion.FechaInicio.ToString("yyyy-MM-dd"),
+                        fechaBaja = promocion.FechaBaja.ToString("yyyy-MM-dd"),
+                        esPremio = promocion.EsPremio
                     });
                     if (result)
                     {
@@ -155,7 +140,7 @@ namespace EnjoyYourWaitNetSite.Controllers
                 return RedirectToAction("GestionPromocion");
             }
         }
-        
+
         public async Task<ActionResult> VerDetallePromocion(Promocion promocion)
         {
             PromocionProductoViewModel model = new PromocionProductoViewModel();
@@ -189,26 +174,100 @@ namespace EnjoyYourWaitNetSite.Controllers
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
 
-                
+
                 bool result = false;
                 foreach (var idProducto in idProductos)
                 {
                     result = await bsPromocion.AsociarProductosPromocion(idPromocion, new ProductoId() { idProducto = idProducto });
                 }
-                
+
                 if (result)
                 {
                     TempData["SuccessState"] = "LOAD_PRODUCTS_SUCCESSFULL";
                 }
+                else
+                {
+                    TempData["SuccessState"] = "LOAD_FAILED";
+                }
+                
                 return null;
             }
             catch (Exception)
             {
                 TempData["SuccessState"] = "LOAD_FAILED";
-                return null; 
+                return null;
             }
         }
 
+        public ActionResult AbrirModificarPromocion(Promocion promocion)
+        {
+            string[] fechaInicioString = promocion.fechaInicio.Split('/');
+            string[] fechaBajaString = promocion.fechaBaja.Split('/');
+            promocion.fechaInicio = fechaInicioString[2] + "-" + fechaInicioString[1] + "-" + fechaInicioString[0];
+            promocion.fechaBaja = fechaBajaString[2] + "-" + fechaBajaString[1] + "-" + fechaBajaString[0];
+            
+            UpdatePromocionViewModel model = new UpdatePromocionViewModel
+            {
+                Descripcion = promocion.descripcion,
+                FechaInicio = promocion.fechaInicio,
+                FechaBaja = promocion.fechaBaja,
+                EsPremio = promocion.esPremio,
+                IdPromocion = promocion.idPromocion
+            };
+            return View("ModificarPromocion", model);
+        }
+
+        public async Task<ActionResult> ModificarPromocion(UpdatePromocionViewModel promocion)
+        {
+            try
+            {
+                TempData["SuccessState"] = "UPDATE_FAILED";
+
+                string[] fechaInicioString = promocion.FechaInicio.Split('-');
+                string[] fechaBajaString = promocion.FechaBaja.Split('-');
+                DateTime fechaInicio = new DateTime(Convert.ToInt32(fechaInicioString[0]), Convert.ToInt32(fechaInicioString[1]), Convert.ToInt32(fechaInicioString[2]));
+                DateTime fechaBaja = new DateTime(Convert.ToInt32(fechaBajaString[0]), Convert.ToInt32(fechaBajaString[1]), Convert.ToInt32(fechaBajaString[2]));
+
+                bool fechaInicioValida = fechaInicio >= DateTime.Now.Date;
+                bool fechaBajaValida = fechaBaja >= fechaInicio;
+
+                if (ModelState.IsValid && fechaInicioValida && fechaBajaValida)
+                {
+                    UpdatePromocionApiModel promocionApi = new UpdatePromocionApiModel()
+                    {
+                        descripcion = promocion.Descripcion,
+                        fechaInicio = fechaInicio.ToString("yyyy-MM-dd HH:mm:ss"),
+                        fechaBaja = fechaBaja.ToString("yyyy-MM-dd HH:mm:ss"),
+                        esPremio = promocion.EsPremio
+                    };
+                    bool result = await bsPromocion.UpdatePromocion(promocion.IdPromocion, promocionApi);
+
+                    if (result)
+                    {
+                        TempData["SuccessState"] = "UPDATE_SUCCESS";
+                        return RedirectToAction("GestionPromocion");
+                    }
+
+                    return RedirectToAction("GestionPromocion");
+                }
+
+                if (!fechaInicioValida)
+                {
+                    ViewBag.FechaInicioInvalida = "La fecha de inicio de la promoción debe igual o posterior o la fecha de hoy";
+                }
+                if (!fechaBajaValida)
+                {
+                    ViewBag.FechaBajaInvalida = "La fecha de vencimiento de la promoción debe igual o posterior o la fecha de inicio";
+                }
+
+                return View("ModificarPromocion", promocion);
+            }
+            catch (Exception)
+            {
+                TempData["SuccessState"] = "UPDATE_FAILED";
+                return RedirectToAction("GestionPromocion");
+            }
+        }
 
         public ActionResult ObtenerTiposPromocion()
         {

@@ -32,13 +32,17 @@ namespace EnjoyYourWaitNetSite.BusinessLogic
 
         public async Task<List<Producto>> GetAllProductosPromocion(int idPromocion)
         {
-            //return await dataAccess.GetAllProductosPromocion(idPromocion);
-            return new List<Producto>();
+            return await dataAccess.GetAllProductosPromocion(idPromocion);
         }
 
         public async Task<bool> AsociarProductosPromocion(int idPromocion, ProductoId productoId)
         {
             return await dataAccess.AsociarProductosPromocion(idPromocion, productoId);
+        }
+
+        public async Task<bool> UpdatePromocion(int idPromocion, UpdatePromocionApiModel promocionApi)
+        {
+            return await dataAccess.UpdatePromocion(idPromocion, promocionApi);
         }
     }
 }
