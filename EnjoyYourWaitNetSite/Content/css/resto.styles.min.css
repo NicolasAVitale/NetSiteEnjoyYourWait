@@ -329,7 +329,7 @@ a:link, a:hover, a:visited {
     color: yellow;
 }
 /*RECEPCIONISTA*/
-#btnRegistrarRecepcionista, #btnRegistrarProducto, #btnVerMenu, #tipos {
+#btnRegistrarRecepcionista, #btnRegistrarProducto, #btnRegistrarPromocion, #btnVerPromociones, #btnVerMenu, #tipos {
     background-color: #3d94de;
     border-color: #3d94de;
     vertical-align: text-bottom;
@@ -542,6 +542,10 @@ a:link, a:hover, a:visited {
 
 @media(max-width: 767px) {
 
+    .no-767 {
+    display:none;
+    }
+
     .body-content {
         padding-top: 0.5vw;
     }
@@ -604,7 +608,23 @@ a:link, a:hover, a:visited {
     }
 }
 
+@media(max-width: 627px) {
+    .no-627 {
+        display: none;
+    }
+}
 
+@media(max-width: 502px) {
+    .no-502 {
+        display: none;
+    }
+}
+
+@media(max-width: 375px) {
+    .no-375 {
+        display: none;
+    }
+}
 
 @media(min-width: 709px) {
     .mail-size {
