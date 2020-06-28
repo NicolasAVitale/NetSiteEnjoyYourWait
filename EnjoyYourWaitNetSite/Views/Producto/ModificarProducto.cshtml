@@ -2,106 +2,112 @@
 @{
     ViewBag.Title = "Modificar producto";
 }
-<div>
-    @if (ViewBag.Success != null)
-    {
-        <div id="messageModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            @if (ViewBag.Success)
-                            {
-                                <p>El producto se modificó correctamente</p>
-                            }
-                            else
-                            {
-                                <p>Error al modificar el producto</p>
-                            }
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+    <div>
+        @if (ViewBag.Success != null)
+        {
+            <div id="messageModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                @if (ViewBag.Success)
+                                {
+                                    <p>El producto se modificó correctamente</p>
+                                }
+                                else
+                                {
+                                    <p>Error al modificar el producto</p>
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cerrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="mb-3">
+                <font size="6">Ingresar los datos del producto</font>
+            </div>
 
-    <div class="mb-3">
-        <font size="6">Ingresar los datos del producto</font>
+            @using (Html.BeginForm("ModificarProducto", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <div class="row justify-content-center sin-margin">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
+                                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Precio:</label>
+                                            @Html.TextBoxFor(model => model.Precio, new { @class = "form-control mt-1 shadow" })
+                                            @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Imagen:</label>
+                                            <input class="form-control" type="file" id="Imagen" name="Imagen" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group" hidden="hidden">
+                                            @Html.TextBoxFor(model => model.IdProducto, new { @class = "form-control mt-1 shadow" })
+                                            @Html.ValidationMessageFor(model => model.IdProducto, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group" hidden="hidden">
+                                            @Html.TextBoxFor(model => model.ImagenName, new { @class = "form-control mt-1 shadow" })
+                                            @Html.ValidationMessageFor(model => model.ImagenName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="submit" value="Modificar" class="btn btn-sm item-update-selection btn-grill-style" /></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-sm-7 no-767">
+            <img alt="promo-pinchos" src="/Content/img/pinchos1.png" class="promo-img" />
+        </div>
+    </div>
     </div>
 
-    @using (Html.BeginForm("ModificarProducto", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="row justify-content-center sin-margin">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label>Nombre:</label>
-                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label>Precio:</label>
-                                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label>Imagen:</label>
-                                    <input class="form-control" type="file" id="Imagen" name="Imagen"/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group" hidden="hidden">
-                                    @Html.TextBoxFor(model => model.IdProducto, new { @class = "form-control mt-1 shadow"})
-                                    @Html.ValidationMessageFor(model => model.IdProducto, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group" hidden="hidden">
-                                    @Html.TextBoxFor(model => model.ImagenName, new { @class = "form-control mt-1 shadow"})
-                                    @Html.ValidationMessageFor(model => model.ImagenName, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Modificar" class="btn btn-sm item-update-selection btn-grill-style" /></td>
-                        </tr>
-                    </table>
-
-                </div>
-            </div>
-        </div>
-    }
-</div>
-
-@section scripts
+        @section scripts
 {
-    @if (ViewBag.Success != null)
-    {
-        <script>
-            $(function () {
-                $('#messageModal').modal('show');
-            });
-        </script>
-    }
-}
+            @if (ViewBag.Success != null)
+            {
+                <script>
+                    $(function () {
+                        $('#messageModal').modal('show');
+                    });
+                </script>
+            }
+        }
 
 
 

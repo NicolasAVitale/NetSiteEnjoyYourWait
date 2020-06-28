@@ -28,69 +28,78 @@
         </div>
     }
 
-    <div class="mb-3">
-        <font size="6">Ingresar los datos del producto</font>
-    </div>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="mb-3">
+            <font size="6">Ingresar los datos del producto</font>
+        </div>
 
-    @using (Html.BeginForm("AñadirProducto", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="row justify-content-center sin-margin">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label>Nombre:</label>
-                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label>Precio:</label>
-                                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control mt-1 shadow" })
-                                    @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label>Imagen:</label>
-                                    <input class="form-control" type="file" id="Imagen" name="Imagen" required />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label>Tipo:</label>
-                                    <select class="btn" id="tipos" onchange="AsignarTipo()">
-                                        <option value="0" selected="selected" disabled="disabled">Seleccione Tipo</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group" hidden="hidden">
-                                    @Html.TextBoxFor(model => model.IdTipo, new { @class = "form-control mt-1 shadow", @id = "inTipo"})
-                                    @Html.ValidationMessageFor(model => model.IdTipo, "", new { @class = "text-danger" })
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Crear" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
-                        </tr>
-                    </table>
+        @using (Html.BeginForm("AñadirProducto", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="row justify-content-center sin-margin">
+                        <div class="">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control mt-1 shadow" })
+                                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Precio:</label>
+                                            @Html.TextBoxFor(model => model.Precio, new { @class = "form-control mt-1 shadow" })
+                                            @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Imagen:</label>
+                                            <input class="form-control" type="file" id="Imagen" name="Imagen" required />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Tipo:</label>
+                                            <select class="btn" id="tipos" onchange="AsignarTipo()">
+                                                <option value="0" selected="selected" disabled="disabled">Seleccione Tipo</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group" hidden="hidden">
+                                            @Html.TextBoxFor(model => model.IdTipo, new { @class = "form-control mt-1 shadow", @id = "inTipo" })
+                                            @Html.ValidationMessageFor(model => model.IdTipo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="submit" value="Crear" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
+                                </tr>
+                            </table>
+                        </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+    <div class="col-sm-7 no-767">
+        <img alt="promo-pinchos" src="/Content/img/pinchos1.png" class="promo-img" />
+    </div>
+</div>
 </div>
 
 @section scripts

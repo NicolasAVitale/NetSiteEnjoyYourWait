@@ -42,5 +42,5 @@ function sortArray(array) {
         var firstElem = array.shift();
         array.push(firstElem);
         return startAnim(array);
-    }, 10000)
+    }, 7000)
 }
