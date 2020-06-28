@@ -129,6 +129,12 @@
     }
 }
 
+@media(max-width: 350px) {
+    .slider-item {
+        width: 280px;
+    }
+}
+
 .promo-bife {
     width: 93%;
     float: right;

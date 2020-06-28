@@ -48,10 +48,10 @@
                             <div class="animation-card_content">
                                 <h4 class="animation-card_content_title title-2">@promocion.descripcion</h4>
                                 <p class="animation-card_content_description p-2">
-                                    <h6 class="animation-card_content_title">Productos asociados:</h6>
+                                    Productos asociados:
                                     @foreach (var productos in promocion.productosAsociados)
                                     {
-                                        <h6 class="animation-card_content_title">@productos.nombre</h6>
+                                        @productos.nombre
                                     }
                                     </p>
                                 <p class="animation-card_content_city">Vigencia del @promocion.fechaInicio al @promocion.fechaBaja</p>
