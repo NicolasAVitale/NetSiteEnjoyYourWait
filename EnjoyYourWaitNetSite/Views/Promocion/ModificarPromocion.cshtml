@@ -1,6 +1,6 @@
 ﻿@model EnjoyYourWaitNetSite.Models.UpdatePromocionViewModel
 @{
-    ViewBag.Title = "Registro de Promociones";
+    ViewBag.Title = "Modificar promoción";
 }
     <div>
         @if (ViewBag.Success != null)
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <div class="mb-3">
-                    <font size="6">Ingresar los datos de la promoción</font>
+                    <font size="6">Modificar los datos de la promoción</font>
                 </div>
 
                 @using (Html.BeginForm("ModificarPromocion", "Promocion", FormMethod.Post))
@@ -101,7 +101,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><input type="submit" value="Crear" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
+                                        <td><input type="submit" value="Modificar" class="btn btn-sm btn-success float-right mt-2 mb-2 shadow" /></td>
                                     </tr>
                                 </table>
 
