@@ -1,4 +1,4 @@
-﻿@model EnjoyYourWaitNetSite.Models.PromocionesViewModel
+﻿@model EnjoyYourWaitNetSite.Models.MenuPromocionesViewModel
 @{
     ViewBag.Title = "Promociones";
 }
@@ -48,12 +48,12 @@
                             <div class="animation-card_content">
                                 <h4 class="animation-card_content_title title-2">@promocion.descripcion</h4>
                                 <p class="animation-card_content_description p-2">
-                                    @using (Html.BeginForm("VerDetallePromocion", "Promocion", FormMethod.Post))
+                                    <h6 class="animation-card_content_title">Productos asociados:</h6>
+                                    @foreach (var productos in promocion.productosAsociados)
                                     {
-                                        <input id="inPromocionId" name="idPromocion" value="@promocion.idPromocion" type="hidden">
-                                        <input type="submit" class="btn btn-sm btn-grill-style btn-prod-asoc" value="Ver Productos relacionados">
+                                        <h6 class="animation-card_content_title">@productos.nombre</h6>
                                     }
-                                </p>
+                                    </p>
                                 <p class="animation-card_content_city">Vigencia del @promocion.fechaInicio al @promocion.fechaBaja</p>
                             </div>
                         </div>
@@ -63,44 +63,6 @@
         </div>
     </div>
 </div>
-        
-        <!--<div class="row mt-3">
-            <div class="col justify-content-center">
-                <div class="row mt-3">
-                    <div class="col-md-12 col-recep">
-                        <div id="divTablaProductos" class="table-responsive">
-                            <table class="table table-prod">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="table-recepcion">Descripción</th>
-                                        <th scope="col" class="table-recepcion">Inicio</th>
-                                        <th scope="col" class="table-recepcion">Vencimiento</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    foreach (var promo in Model.lstPromociones)
-                                    {
-                                        <tr>
-                                            <td class="align-middle">promo.descripcion</td>
-                                            <td class="align-middle">promo.fechaInicio</td>
-                                            <td class="align-middle">promo.fechaBaja</td>
-
-                                            <td>
-                                                using (Html.BeginForm("VerDetallePromocion", "Promocion", FormMethod.Post))
-                                                {
-                                                    <input id="inPromocionId" name="idPromocion" value="promo.idPromocion" type="hidden">
-                                                    <input type="submit" class="btn btn-sm btn-success" value="Ver Productos">
-                                                }
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     }
 </div>
 

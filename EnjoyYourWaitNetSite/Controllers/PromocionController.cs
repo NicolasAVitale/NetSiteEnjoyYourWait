@@ -15,8 +15,8 @@ namespace EnjoyYourWaitNetSite.Controllers
 
         public async Task<ActionResult> Promociones()
         {
-            PromocionesViewModel model = new PromocionesViewModel();
-            model.lstPromociones = new List<Promocion>();
+            MenuPromocionesViewModel model = new MenuPromocionesViewModel();
+            model.lstPromociones = new List<MenuPromocion>();
             try
             {
                 ViewBag.SuccessState = TempData["SuccessState"];
@@ -28,9 +28,19 @@ namespace EnjoyYourWaitNetSite.Controllers
                 {
                     promocion.fechaInicio = DateTime.Parse(promocion.fechaInicio, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd/MM/yyyy");
                     promocion.fechaBaja = DateTime.Parse(promocion.fechaBaja, null, System.Globalization.DateTimeStyles.RoundtripKind).ToString("dd/MM/yyyy");
+                    List<Producto> productos = await bsPromocion.GetAllProductosPromocion(promocion.idPromocion);
+                    MenuPromocion menuPromo = new MenuPromocion()
+                    {
+                        idPromocion = promocion.idPromocion,
+                        descripcion = promocion.descripcion,
+                        fechaInicio = promocion.fechaInicio,
+                        fechaBaja = promocion.fechaBaja,
+                        esPremio = promocion.esPremio,
+                        activo = promocion.activo,
+                        productosAsociados = productos
+                    };
+                    model.lstPromociones.Add(menuPromo);
                 }
-
-                model.lstPromociones = promociones;
 
                 if (promociones.Count == 0)
                 {

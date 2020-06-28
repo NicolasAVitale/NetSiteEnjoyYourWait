@@ -330,10 +330,12 @@
     <Compile Include="Controllers\JuegoController.cs" />
     <Compile Include="Controllers\FilaController.cs" />
     <Compile Include="Controllers\PromocionController.cs" />
+    <Compile Include="Entities\MenuPromocion.cs" />
     <Compile Include="Entities\ValidGuidResponse.cs" />
     <Compile Include="Entities\GuidEmailRequest.cs" />
     <Compile Include="Models\AddPromocionViewModel.cs" />
     <Compile Include="Models\ProductoId.cs" />
+    <Compile Include="Models\MenuPromocionesViewModel.cs" />
     <Compile Include="Models\PromocionesViewModel.cs" />
     <Compile Include="Controllers\RecepcionistaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
@@ -346,7 +348,6 @@
     <Compile Include="Entities\EsperaResponse.cs" />
     <Compile Include="Entities\Premio.cs" />
     <Compile Include="Entities\Producto.cs" />
-    <Compile Include="Entities\Productos.cs" />
     <Compile Include="Entities\Promocion.cs" />
     <Compile Include="Entities\Recepcionista.cs" />
     <Compile Include="Entities\Reporte.cs" />
