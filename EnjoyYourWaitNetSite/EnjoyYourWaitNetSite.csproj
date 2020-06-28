@@ -382,6 +382,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\promos.css" />
     <Content Include="Content\css\ruleta.css" />
     <Content Include="Content\css\memotest.css" />
     <Content Include="Content\css\resto.styles.min.css" />
@@ -444,6 +445,8 @@
     <Content Include="Content\img\pinches red.svg" />
     <Content Include="Content\img\pinchos1.png" />
     <Content Include="Content\img\pollo.png" />
+    <Content Include="Content\img\promo-bife.png" />
+    <Content Include="Content\img\promo-pinchos.png" />
     <Content Include="Content\img\ruleta.png" />
     <Content Include="Content\img\ruleta\spin_off.png" />
     <Content Include="Content\img\ruleta\spin_on.png" />
@@ -458,6 +461,7 @@
     <Content Include="Scripts\jquery.easing.js" />
     <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\promos.js" />
     <Content Include="Scripts\memotest.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

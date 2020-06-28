@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Promociones";
 }
+
+<link href="~/Content/css/promos.css" rel="stylesheet">
 <div>
     @if (ViewBag.SuccessState != null)
     {
@@ -30,7 +32,39 @@
     }
     @if (Model != null)
     {
-        <div class="row mt-3">
+<div class="row">
+    <div class="col-xs-6 img-promo-big">
+        <img alt="promo-bife" src="~/Content/img/promo-bife.png" class="promo-bife" />
+    </div>
+    <div class="col-xs-6 col-promo-carusel">
+        <div class="slider-wrap">
+            <div id="card-slider" class="slider">
+                @foreach (var promocion in Model.lstPromociones)
+                    {
+                        <div class="slider-item">
+                            <div class="animation-card_image no-visible-img-car">
+                                <img src="~/Content/img/pinches red.svg" alt="" class="no-visible-img-car">
+                            </div>
+                            <div class="animation-card_content">
+                                <h4 class="animation-card_content_title title-2">@promocion.descripcion</h4>
+                                <p class="animation-card_content_description p-2">
+                                    @using (Html.BeginForm("VerDetallePromocion", "Promocion", FormMethod.Post))
+                                    {
+                                        <input id="inPromocionId" name="idPromocion" value="@promocion.idPromocion" type="hidden">
+                                        <input type="submit" class="btn btn-sm btn-grill-style btn-prod-asoc" value="Ver Productos relacionados">
+                                    }
+                                </p>
+                                <p class="animation-card_content_city">Vigencia del @promocion.fechaInicio al @promocion.fechaBaja</p>
+                            </div>
+                        </div>
+                    }
+
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <!--<div class="row mt-3">
             <div class="col justify-content-center">
                 <div class="row mt-3">
                     <div class="col-md-12 col-recep">
@@ -44,17 +78,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var promocion in Model.lstPromociones)
+                                    foreach (var promo in Model.lstPromociones)
                                     {
                                         <tr>
-                                            <td class="align-middle">@promocion.descripcion</td>
-                                            <td class="align-middle">@promocion.fechaInicio</td>
-                                            <td class="align-middle">@promocion.fechaBaja</td>
+                                            <td class="align-middle">promo.descripcion</td>
+                                            <td class="align-middle">promo.fechaInicio</td>
+                                            <td class="align-middle">promo.fechaBaja</td>
 
                                             <td>
-                                                @using (Html.BeginForm("VerDetallePromocion", "Promocion", FormMethod.Post))
+                                                using (Html.BeginForm("VerDetallePromocion", "Promocion", FormMethod.Post))
                                                 {
-                                                    <input id="inPromocionId" name="idPromocion" value="@promocion.idPromocion" type="hidden">
+                                                    <input id="inPromocionId" name="idPromocion" value="promo.idPromocion" type="hidden">
                                                     <input type="submit" class="btn btn-sm btn-success" value="Ver Productos">
                                                 }
                                             </td>
@@ -66,7 +100,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     }
 </div>
 
@@ -81,3 +115,7 @@
         </script>
     }
 }
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdn.jsdelivr.net/gsap/1.19.1/TweenMax.min.js'></script>
+<script src="~/Scripts/promos.js"></script>
