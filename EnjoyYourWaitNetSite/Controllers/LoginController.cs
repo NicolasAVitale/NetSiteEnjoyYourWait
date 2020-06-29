@@ -36,40 +36,45 @@ namespace EnjoyYourWaitNetSite.Controllers
                     Usuario userLogin = await bsLogin.Login(userCredentials);
                     if(userLogin != null)
                     {
-                        if (userLogin.idRol == 1)
+                        if (userLogin.activo != 0)
                         {
-                            SessionHelper.Administrador = new Administrador
+                            if (userLogin.idRol == 1)
                             {
-                                idUsuario = userLogin.idUsuario,
-                                dni = userLogin.dni,
-                                nombre = userLogin.nombre,
-                                apellido = userLogin.apellido,
-                                email = userLogin.email,
-                                fechaNacimiento = userLogin.fechaNacimiento,
-                                contrasena = userLogin.contrasena,
-                                idRol = userLogin.idRol
-                            };
-                        }
-                        else
-                        {
-                            SessionHelper.Recepcionista = new Recepcionista
+                                SessionHelper.Administrador = new Administrador
+                                {
+                                    idUsuario = userLogin.idUsuario,
+                                    dni = userLogin.dni,
+                                    nombre = userLogin.nombre,
+                                    apellido = userLogin.apellido,
+                                    email = userLogin.email,
+                                    fechaNacimiento = userLogin.fechaNacimiento,
+                                    contrasena = userLogin.contrasena,
+                                    idRol = userLogin.idRol
+                                };
+                            }
+                            else
                             {
-                                idUsuario = userLogin.idUsuario,
-                                dni = userLogin.dni,
-                                nombre = userLogin.nombre,
-                                apellido = userLogin.apellido,
-                                email = userLogin.email,
-                                fechaNacimiento = userLogin.fechaNacimiento,
-                                contrasena = userLogin.contrasena,
-                                idRol = userLogin.idRol
-                            };
-                        }
+                                SessionHelper.Recepcionista = new Recepcionista
+                                {
+                                    idUsuario = userLogin.idUsuario,
+                                    dni = userLogin.dni,
+                                    nombre = userLogin.nombre,
+                                    apellido = userLogin.apellido,
+                                    email = userLogin.email,
+                                    fechaNacimiento = userLogin.fechaNacimiento,
+                                    contrasena = userLogin.contrasena,
+                                    idRol = userLogin.idRol
+                                };
+                            }
 
-                        TempData["SuccessState"] = "LOGIN_SUCCESS";
+                            TempData["SuccessState"] = "LOGIN_SUCCESS";
+                            ViewBag.SuccessState = TempData["SuccessState"];
+
+                            return RedirectToAction("Index",
+                                "Home");
+                        }
+                        TempData["SuccessState"] = "LOGIN_DISABLE";
                         ViewBag.SuccessState = TempData["SuccessState"];
-
-                        return RedirectToAction("Index",
-                            "Home");
                     }
                 }
                 return View("Login",

@@ -43,6 +43,9 @@
                                 case "UNEXPECTED_ERROR":
                                     <p>Se produjo un error inesperado al iniciar sesión.</p>
                                     break;
+                                case "LOGIN_DISABLE":
+                                    <p>El usuario esta inactivo en el sistema.</p>
+                                    break;
                             }
                         </div>
                         <div class="modal-footer">
@@ -99,15 +102,15 @@
     </div>
     @section scripts {
 
-        @if (ViewBag.SuccessState != null)
+                                @if (ViewBag.SuccessState != null)
         {
             <script>
                 $(function () {
                     $('#messageModal').modal('show');
-                });
+                                    });
             </script>
         }
-    }
+                            }
 
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
